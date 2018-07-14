@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html id="home" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="resources/style.css" />
+    <title>ScalaLoci</title>
+  </head>
+  <body>
+    <header>
+      <h1>ScalaLoci</h1>
+      <p>Research and development of <em>language abstractions</em> for <em>distributed applications</em> in Scala</p>
+    </header>
+    <main>
+      <section id="features">
+        <h2>Features</h2>
+        <dl>
+          <div><dt>Coherent</dt> <dd>Implement a cohesive distributed application in a single multitier language</dd></div>
+          <div><dt>Comprehensive</dt> <dd>Freely express any distributed architecture</dd></div>
+          <div><dt>Safe</dt> <dd>Enjoy static type-safety across components</dd></div>
+        </dl>
+      </section>
+      <section id="concepts">
+        <h2>Concepts</h2>
+        <section>
+          <header>
+            <h3>Specify Architecture</h3>
+            <p>Define the architectural relation of the components of the distributed system</p>
+          </header>
+          <pre><code><span class="keyword">trait</span> Server <span class="keyword">extends</span> Peer {
+   <span class="keyword">type</span> <span class="dsl">Tie</span> = <span class="highlight"><span class="dsl">Multiple</span>[Client]</span>
+}
+
+<span class="keyword">trait</span> Client <span class="keyword">extends</span> Peer {
+   <span class="keyword">type</span> <span class="dsl">Tie</span> = <span class="highlight"><span class="dsl">Single</span>[Server]</span>
+}</code></pre>
+        </section>
+        <section>
+          <header>
+            <h3>Specify Placement</h3>
+            <p>Control where data is located and computations are executed</p>
+          </header>
+          <pre><code><span class="keyword">val</span> items = <span class="highlight"><span class="dsl">placed</span>[Server]</span> {
+  getCurrentItems()
+}
+
+<span class="keyword">val</span> ui = <span class="highlight"><span class="dsl">placed</span>[Client]</span> {
+  <span class="keyword">new</span> UI
+}</code></pre>
+        </section>
+        <section>
+          <header>
+            <h3>Compose</h3>
+            <p>Combine data flow across components through reactive programming</p>
+          </header>
+          <pre><code><span class="keyword">val</span> items = <span class="dsl">placed</span>[Server] {
+  <span class="highlight">Var</span>(getCurrentItems())
+}
+
+<span class="dsl">placed</span>[Client] {
+  <span class="highlight">Signal</span> {
+    items.<span class="highlight"><span class="dsl">asLocal</span></span>() map createUIEntry
+  }
+}</code></pre>
+        </section>
+      </section>
+
+      <section id="getting-started">
+        <h2>Getting Started</h2>
+        <section>
+          <header>
+            <h3>Check out ScalaLoci by Code Examples</h3>
+          </header>
+          <ul>
+            <li><a href="step-by-step-example.html">Step-by-Step Example</a></li>
+            <li><a href="showcases.html">Small Showcases</a></li>
+          </ul>
+        </section>
+        <section>
+          <header>
+            <h3>Try out ScalaLoci Examples from GitHub</h3>
+          </header>
+          <ul>
+            <li><a href="http://github.com/scala-loci/examples-simple">Simple Examples</a></li>
+            <li><a href="http://github.com/scala-loci/examples-variants">Applications in Different Variants</a></li>
+          </ul>
+        </section>
+        <section>
+          <header>
+            <h3>Add ScalaLoci to Your Project</h3>
+          </header>
+            <ol>
+              <li>
+                Enable the <a href="http://docs.scala-lang.org/overviews/macros/paradise.html" rel="nofollow">Macro Paradise Plugin</a> (for macro annotations) in your <em>build.sbt</em>
+                <pre><code>addCompilerPlugin(<span class="string">"org.scalamacros"</span> % <span class="string">"paradise"</span> % <span class="string">"2.1.0"</span> cross CrossVersion.patch)</code></pre>
+              </li>
+              <li>
+                Add the resolver for the ScalaLoci dependencies to your <em>build.sbt</em>
+                <pre><code>resolvers += Resolver.bintrayRepo(<span class="string">"stg-tud"</span>, <span class="string">"maven"</span>)</code></pre>
+              </li>
+              <li>
+                Add the ScalaLoci dependencies that you need for your system to your <em>build.sbt</em>
+                <ol>
+                  <li>
+                    ScalaLoci core (always required):
+                    <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-core"</span> % <span class="string">"0.1.0"</span></code></pre>
+                  </li>
+                  <li>
+                    Transmitter for the types of values to be accessed remotely
+                    <ul>
+                      <li>
+                        Built-in Scala types and standard collections
+                        <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-transmitter-basic"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      </li>
+                      <li>
+                        <a href="http://www.rescala-lang.com/">REScala</a> reactive events and signals
+                        <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-transmitter-rescala"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Network protocols to connect the different components of the distributed system
+                    <ul>
+                      <li>
+                        TCP [<em>JVM only</em>]
+                        <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-network-tcp"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      </li>
+                      <li>
+                        WebSocket (using <a href="http://doc.akka.io/docs/akka-http/current/">Akka HTTP</a> on the JVM) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
+                        <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-network-ws-akka"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      </li>
+                      <li>
+                        WebSocket (<a href="http://www.playframework.com">Play</a> integration) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
+                        <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-network-ws-akka-play"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      </li>
+                      <li>
+                        WebRTC [<em>JS web browser APIs only</em>]
+                        <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-network-webrtc"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Serializer for network communication
+                    <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-serializable-upickle"</span> % <span class="string">"0.1.0"</span></code></pre>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <p>ScalaLoci is a research project held in the <em>Reactive Programming Technology</em> group at <em>TU Darmstadt</em>.</p>
+    </footer>
+  </body>
+</html>

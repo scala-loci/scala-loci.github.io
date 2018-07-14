@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 240" width="240" height="240" version="1.1">
+  <defs>
+    <filter id="effect">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+      <feOffset result="result" dx="5" dy="5" />
+      <feComposite in="SourceGraphic" in2="result" operator="xor" />
+    </filter>
+    <path id="circle"
+       d="M 119.9987,20.000044 A 99.999649,99.999609 0 0 0 20,119.99875 99.999649,99.999609 0 0 0 119.9987,219.99996 99.999649,99.999609 0 0 0 220,119.99875 99.999649,99.999609 0 0 0 119.9987,20.000044 Z m 0,25.000938 A 74.999737,74.999709 0 0 1 194.99904,119.99875 74.999737,74.999709 0 0 1 119.9987,194.99902 74.999737,74.999709 0 0 1 45.000973,119.99875 74.999737,74.999709 0 0 1 119.9987,45.000982 Z" />
+    <circle id="dot" cx="120" cy="120" r="50" />
+  </defs>
+  <style>
+    #with-dot:not(:target) { display: none }
+  </style>
+  <g>
+    <use xlink:href="#circle" fill="#ffffff" />
+    <use xlink:href="#circle" fill="#800000" filter="url(#effect)" />
+  </g>
+  <g id="with-dot">
+    <use xlink:href="#dot" fill="#ffffff" />
+    <use xlink:href="#dot" fill="#800000" filter="url(#effect)" />
+  </g>
+</svg>

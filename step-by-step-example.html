@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html id="step-by-step-example" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="resources/style.css" />
+    <title>ScalaLoci</title>
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">ScalaLoci</a></h1>
+      <p>Step-by-Step Example</p>
+    </header>
+    <main>
+      <section>
+        <label for="step-1"></label>
+        <label for="step-2"></label>
+        <label for="step-3"></label>
+        <label for="step-4"></label>
+        <label for="step-5"></label>
+        <input type="radio" name="step" id="step-1" />
+        <input type="radio" name="step" id="step-2" />
+        <input type="radio" name="step" id="step-3" />
+        <input type="radio" name="step" id="step-4" />
+        <input type="radio" name="step" id="step-5" />
+        <p>The example demonstrates the design of a chat application in five steps</p>
+        <ol>
+          <li>Declaring a <em>Server</em></li>
+          <li>Declaring a <em>Client</em></li>
+          <li>Declaring a <em>message</em> event on the <em>Client</em> and firing the event for every user input</li>
+          <li>Declaring a <em>publicMessage</em> event on the <em>Server</em> aggregating all events from the clients</li>
+          <li>Declaring a client-side observer for the server-side <em>publicMessage</em> event</li>
+        </ol>
+        <figure>
+          <figure>
+            <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> Chat {
+  <span class="keyword">trait</span> Server <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> = <span class="dsl">Multiple</span>[Client] }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}</code></pre>
+            <img width="465" height="324" src="resources/chat.svg?segment-0#segment-0" />
+            <figcaption><em>Server</em> declaration</figcaption>
+          </figure>
+
+          <figure>
+            <pre><code>
+
+  <span class="keyword">trait</span> Client <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> = <span class="dsl">Single</span>[Server] }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+            <img width="465" height="324" src="resources/chat.svg?segment-1#segment-1" />
+            <figcaption><em>Client</em> declaration</figcaption>
+          </figure>
+
+          <figure>
+            <pre><code>
+
+
+
+  <span class="keyword">val</span> message = <span class="dsl">placed</span>[Client] { Evt[String]() }
+
+
+
+
+
+  <span class="dsl">placed</span>[Client].main {
+
+    <span class="keyword">for</span> (line &lt;- io.Source.stdin.getLines)
+      message fire line
+  }
+
+</code></pre>
+            <img width="465" height="324" src="resources/chat.svg?segment-2#segment-2" />
+            <figcaption>Event <em>message</em> declaration</figcaption>
+          </figure>
+
+          <figure>
+            <pre><code>
+
+
+
+
+
+  <span class="keyword">val</span> publicMessage = <span class="dsl">placed</span>[Server] {
+    message.<span class="dsl">asLocalFromAllSeq</span> map { <span class="keyword">case</span> (_, message) => message }
+  }
+
+
+
+
+
+
+
+</code></pre>
+            <img width="465" height="324" src="resources/chat.svg?segment-3#segment-3" />
+            <figcaption>Event <em>publicMessage</em> declaration</figcaption>
+          </figure>
+
+          <figure>
+            <pre><code>
+
+
+
+
+
+
+
+
+
+
+    publicMessage.<span class="dsl">asLocal</span> observe println
+
+
+
+
+</code></pre>
+            <img width="465" height="324" src="resources/chat.svg?segment-4#segment-4" />
+            <figcaption>Remote observer for <em>publicMessage</em> declaration</figcaption>
+          </figure>
+          <figcaption>Incremental <em>Chat</em> example</figcaption>
+        </figure>
+      </section>
+    </main>
+    <footer>
+      <p>ScalaLoci is a research project held in the <em>Reactive Programming Technology</em> group at <em>TU Darmstadt</em>.</p>
+    </footer>
+  </body>
+</html>

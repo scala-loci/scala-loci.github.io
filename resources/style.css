@@ -1,0 +1,1214 @@
+/* -- general -- */
+
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,700|Lato:300,400,400i,700|Oxygen+Mono");
+
+@font-face {
+  font-family: "Linux Biolinum";
+  src: url("LinuxBiolinumRegular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
+p
+{
+  margin: 1em 0;
+}
+
+html
+{
+  height: 100%;
+  color: white;
+  background: black;
+}
+
+body
+{
+  position: relative;
+  height: 100%;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) /* IE 10+ */
+{
+  html { background: url(fabric.png) #212; }
+  html { overflow: hidden; }
+  body { overflow: auto; }
+}
+
+@supports (-ms-accelerator: true) /* Edge 12-15 */
+{
+  html { overflow: hidden; }
+  body { overflow: auto; }
+}
+
+@supports (-ms-ime-align: auto) /* Edge 16+ */ 
+{
+  html { overflow: hidden; }
+  body { overflow: auto; }
+}
+
+main
+{
+  background: url(fabric.png) #212;
+  padding: 0 1em 4em 1em;
+  min-height: 100%;
+  min-height: calc(100% - 20em);
+  border-top: 1px solid transparent;
+}
+
+body > header
+{
+  margin: 0;
+  padding: 0;
+  background:
+    linear-gradient(rgba(0, 0, 48, 0.5), rgba(0, 0, 48, 0)) fixed repeat-x,
+    url(network.svg) fixed,
+    linear-gradient(160deg, rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0) 50%) fixed no-repeat,
+    linear-gradient(rgb(0, 0, 48), black) fixed repeat-x,
+    #657;
+  background-size: auto, cover, auto, auto;
+}
+body > header h1
+{
+  margin: 0;
+  padding: 0.8em 0.1em 0 2.4em;
+  font-family: 'Linux Biolinum', sans-serif;
+  font-weight: normal;
+  font-size: 5em;
+  line-height: 1em;
+}
+body > header h1 a
+{
+  color: white;
+  text-decoration: none;
+}
+body > header h1::before
+{
+  content: "";
+  display: block;
+  margin: -0.2em 0 0 -1.9em;
+  position: absolute;
+  width: 1.8em;
+  height: 1.8em;
+  background: url(logo.svg) no-repeat center center;
+  background-size: contain;
+}
+body > header p
+{
+  margin: 0;
+  padding: 0 0.75em 4em 7.5em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 1.6em;
+  line-height: 1em;
+}
+body > header p em
+{
+  font-style: normal;
+}
+
+footer
+{
+  padding: 1em;
+  background: url(fabric.png) #200;
+  box-shadow: inset 0 25px 25px 0 rgba(0, 0, 0, 0.7);
+  color: #caa;
+  font-family: 'Lato', sans-serif;
+}
+
+a
+{
+  color: lightblue;
+}
+
+pre, code
+{
+  font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Oxygen Mono', monospace;
+  font-size: 1em;
+}
+
+code .keyword
+{
+  font-weight: bold;
+  color: #d8f;
+}
+
+code .dsl
+{
+  font-weight: bold;
+  color: #e77;
+}
+
+code .string
+{
+  color: #873;
+}
+
+
+/* -- home -- */
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes floatin {
+  from {
+    position: relative;
+    left: -1em;
+    opacity: 0;
+  }
+  
+  to {
+    position: relative;
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes spinin {
+  from {
+    transform: rotate(-20deg);
+  }
+  
+  to {
+    transform: rotate(0);
+  }
+}
+
+#home body > header
+{
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0, 0, 48, 0.5), rgba(0, 0, 48, 0)) fixed repeat-x,
+    url(network-animated.svg) fixed,
+    linear-gradient(160deg, rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0) 50%) fixed no-repeat,
+    linear-gradient(rgb(0, 0, 48), black) fixed repeat-x,
+    #657;
+  background-size: auto, cover, auto, auto;
+}
+#home body > header h1
+{
+  margin: auto;
+  padding: 1.2em 0 3.2em 4.16em;
+  position: sticky;
+  top: 0;
+  font-family: 'Linux Biolinum', sans-serif;
+  font-weight: normal;
+  font-size: 5em;
+  line-height: 1em;
+  width: 5.12em;
+  transition:
+    margin-left 0.3s ease,
+    margin-right 0.3s ease,
+    padding-left 0.3s ease,
+    padding-right 0.3s ease;
+  animation: 2s ease fadein;
+}
+#home body > header h1::before
+{
+  content: "";
+  display: block;
+  margin: -0.8em 0 0 -4em;
+  position: absolute;
+  width: 3.6em;
+  height: 3.6em;
+  background: url(logo.svg) no-repeat center center;
+  background-size: contain;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    margin 0.3s ease,
+    padding 0.3s ease;
+  animation: 2s ease spinin;
+}
+#home body > header p
+{
+  margin: -16.875em auto 0 auto;
+  padding: 6.875em 0 7em 13em;
+  position: sticky;
+  top: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 1.6em;
+  line-height: 1em;
+  white-space: pre;
+  width: 16em;
+  transition:
+    margin-left 0.3s ease,
+    margin-right 0.3s ease,
+    padding-left 0.3s ease,
+    padding-right 0.3s ease;
+  animation: 2s ease fadein;
+}
+#home body > header p em
+{
+  font-style: normal;
+}
+#home body > header p em::before
+{
+  content: "\0A    ";
+}
+#home body > header p em ~ em::before
+{
+  content: "\0A        ";
+}
+@media (max-width: 62em)
+{
+  #home body > header h1::before
+  {
+    width: 3.2em;
+    height: 3.2em;
+    margin: -0.7em 0 0 -3.3em;
+  }
+  #home body > header h1
+  {
+    padding: 1.2em 0 4.4em 3.2em;
+  }
+  #home body > header p
+  {
+    margin-top: -20.625em;
+    padding: 6.875em 0 10.75em 10em;
+  }
+}
+@media (max-width: 43em)
+{
+  #home body > header h1::before
+  {
+    margin: auto;
+    position: static;
+  }
+  #home body > header h1
+  {
+    margin: 0 auto 0 auto;
+    padding: 0 0.32em 0 0.32em;
+    position: static;
+    max-width: 4.48em;
+    width: auto;
+  }
+  #home body > header p
+  {
+    margin: auto;
+    padding: 0 1em 3em 1em;
+    position: static;
+    white-space: normal;
+    max-width: 14em;
+    width: auto;
+  }
+  #home body > header p em::before,
+  #home body > header p em ~ em::before
+  {
+    content: none;
+  }
+}
+
+#home h2
+{
+  display: none;
+}
+
+#home main
+{
+  padding: 0 0 4em 0;
+}
+
+#home #features
+{
+  top: -50vh;
+  min-height: 50vh;
+  margin-bottom: -50vh;
+  position: relative;
+}
+#home #features dl
+{
+  margin: 6em auto 0 auto;
+  padding: 0;
+  position: sticky;
+  top: 62vh;
+  max-width: 70em;
+  display: flex;
+  flex-wrap: wrap;
+}
+#home #features dl div
+{
+  flex-grow: 1;
+  flex-basis: 15em;
+  margin: 1em 1.5em;
+  padding: 1em;
+  border-radius: 0.3em;
+  background: #623;
+  text-align: center;
+  animation: 1.5s ease 1s floatin both;
+}
+#home #features dl div + div
+{
+  animation: 1.5s ease 1.5s floatin both;
+}
+#home #features dl div + div + div
+{
+  animation: 1.5s ease 2s floatin both;
+}
+#home #features dl div dt
+{
+  margin: 0 0 0.4em 0;
+  padding: 0;
+  font-size: 2em;
+  line-height: 0.8em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+#home #features dl div dd
+{
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+  line-height: 0.9em;
+  font-family: 'Josefin Sans', sans-serif;
+}
+@media (max-width: 62em)
+{
+  #home #features dl
+  {
+    margin-top: 4em;
+  }
+  #home #features dl div
+  {
+    flex-basis: 16em;
+  }
+}
+@media (max-width: 43em)
+{
+  #home #features dl div
+  {
+    flex-basis: 17em;
+  }
+}
+@media (max-height: 30em), (max-height: 40em) and (max-width: 62em), (max-height: 50em) and (max-width: 43em)
+{
+  #home #features
+  {
+    top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: auto;
+  }
+  #home #features dl
+  {
+    position: static;
+    margin-top: -3em;
+  }
+}
+@media (max-height: 40em) and (max-width: 62em)
+{
+  #home #features dl
+  {
+    margin-top: -13em;
+  }
+}
+@media (max-height: 50em) and (max-width: 43em)
+{
+  #home body > header
+  {
+    min-height: auto;
+    padding-bottom: 20em;
+  }
+  #home #features dl
+  {
+    margin-top: -22em;
+  }
+}
+@media (max-width: 22em)
+{
+  #home body > header h1
+  {
+    font-size: 4em;
+    padding: 0 0.4em 0 0.4em;
+    max-width: 5.6em;
+  }
+}
+
+#home #concepts
+{
+  margin: 4em 0;
+}
+#home #concepts section
+{
+  margin: auto;
+  padding: 2em 11em;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 59em;
+  transition: padding 0.3s ease;
+}
+#home #concepts section::before
+{
+  content: "1";
+  margin-left: -2em;
+  margin-top: -0.1em;
+  height: 1.7em;
+  width: 1.7em;
+  position: absolute;
+  font-size: 5em;
+  text-align: center;
+  line-height: 1.9em;
+  border-radius: 1em;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  background: url(circle.svg);
+  background-size: 100% 100%;
+  text-shadow: -0.02em -0.02em 0.01em darkred, 0.03em 0.03em 0.01em black;
+}
+#home #concepts section + section::before
+{
+  content: "2";
+}
+#home #concepts section + section + section::before
+{
+  content: "3";
+}
+#home #concepts section header,
+#home #concepts section pre
+{
+  flex-grow: 1;
+  flex-basis: 23em;
+}
+#home #concepts section header
+{
+  margin: 0;
+  padding: 1em 1em 1em 8em;
+  min-height: 4em;
+  border-radius: 0.3em 0 0 0.3em;
+  background: url(architecture.svg) 0.5em 0.8em no-repeat #424;
+  background-size: 6.8em, auto;
+  transition: flex-basis 0.3s ease;
+}
+#home #concepts section + section header
+{
+  background: url(placement.svg) 0.5em 0.8em no-repeat #424;
+  background-size: 6.8em, auto;
+}
+#home #concepts section + section + section header
+{
+  background: url(composition.svg) 0.5em 0.8em no-repeat #424;
+  background-size: 6.8em, auto;
+}
+#home #concepts section pre
+{
+  margin: 0;
+  padding: 1em;
+  border-radius: 0 0.3em 0.3em 0;
+  background: #322;
+}
+@media (max-width: 90em)
+{
+  #home #concepts section header
+  {
+    flex-basis: 15em;
+  }
+}
+@media (max-width: 72em)
+{
+  #home #concepts section header
+  {
+    flex-basis: 25em;
+    border-radius: 0.3em 0.3em 0 0;
+  }
+  #home #concepts section pre
+  {
+    border-radius: 0 0 0.3em 0.3em;
+  }
+}
+@media (max-width: 50em)
+{
+  #home #concepts section
+  {
+    padding-right: 1.5em;
+  }
+}
+@media (max-width: 40em)
+{
+  #home #concepts section
+  {
+    padding-left: 1.5em;
+  }
+}
+#home #concepts header h3
+{
+  margin: 0 0 0.4em 0;
+  padding: 0;
+  font-size: 2em;
+  line-height: 0.8em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+#home #concepts header p
+{
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+  line-height: 0.9em;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#home #getting-started
+{
+  margin: 0 1em;
+}
+#home #getting-started section
+{
+  margin: 3.5em auto;
+  max-width: 59em;
+  position: relative;
+  border-radius: 0.3em 0.3em 1em 0.3em;
+  background: #428;
+}
+#home #getting-started section::before,
+#home #getting-started section::after
+{
+  content: "";
+  position: absolute;
+  top: 1em;
+  left: 0.2em;
+  width: 8.4em;
+  height: 8.4em;
+  transition: transform 0.3s ease, left 0.3s ease;
+  backface-visibility: hidden;
+}
+#home #getting-started section::before
+{
+  background: url(lightbulb.svg);
+  background-size: 100%;
+  transform: perspective(20em) rotateY(0) scale(0.7);
+}
+#home #getting-started section:hover::before
+{
+  left: -0.6em;
+  transform: perspective(20em) rotateY(179deg) scale(1);
+}
+#home #getting-started section::after
+{
+  background: url(lightbulb.svg);
+  background-size: 100%;
+  transform : perspective(20em) rotateY(-179deg) scale(0.7);
+}
+#home #getting-started section:hover::after
+{
+  left: -0.6em;
+  transform: perspective(20em) rotateY(0) scale(1);
+}
+/*
+#home #getting-started section::before,
+#home #getting-started section::after
+{
+  content: "";
+  position: absolute;
+  top: 2em;
+  left: 1.5em;
+  width: 6em;
+  height: 6em;
+  transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, top 0.3s ease, left 0.3s ease;
+  backface-visibility: hidden;
+}
+#home #getting-started section:hover::before,
+#home #getting-started section:hover::after
+{
+  width: 8.4em;
+  height: 8.4em;
+}
+#home #getting-started section::before
+{
+  background: url(lightbulb.svg);
+  background-size: 100%;
+  transform: perspective(20em) rotateY(0);
+}
+#home #getting-started section:hover::before
+{
+  top: 0.8em;
+  left: -0.7em;
+  transform: perspective(20em) rotateY(179deg);
+}
+#home #getting-started section::after
+{
+  background: url(lightbulb.svg);
+  background-size: 100%;
+  transform : perspective(20em) rotateY(-179deg);
+}
+#home #getting-started section:hover::after
+{
+  top: 0.8em;
+  left: -0.7em;
+  transform: perspective(20em) rotateY(0);
+}
+*/
+#home #getting-started section + section::before,
+#home #getting-started section + section::after
+{
+  background: url(github.svg);
+  background-size: 100%;
+}
+#home #getting-started section + section + section::before,
+#home #getting-started section + section + section::after
+{
+  background: url(download.svg);
+  background-size: 100%;
+}
+#home #getting-started section header h3
+{
+  margin: 0;
+  padding: 1em 1em 0.5em 4.75em;
+  font-size: 2em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+#home #getting-started section > ul
+{
+  margin: 0;
+  padding: 0 0 0 8em;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+#home #getting-started section > ul li
+{
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+}
+#home #getting-started section > ul li + li
+{
+  flex-grow: 1.25;
+}
+#home #getting-started section > ul li a
+{
+  flex-grow: 1;
+  padding: 1em;
+  display: block;
+  background: #428;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  color: white;
+}
+#home #getting-started section > ul li + li a
+{
+  border-radius: 0 0 0.2em 0;
+}
+#home #getting-started section > ul li a:hover
+{
+  background: #63b;
+}
+
+#home #getting-started section + section + section
+{
+  border-radius: 0.3em;
+  background: #428;
+}
+#home #getting-started section + section + section h3
+{
+  min-height: 1em;
+  transition: min-height 0.3s ease;
+}
+#home #getting-started section > ol
+{
+  margin: 0;
+  padding: 1em 1em 1em 9em;
+  font-size: 1.5em;
+  font-family: 'Josefin Sans', sans-serif;
+  list-style: none;
+  transition: padding 0.3s ease;
+}
+#home #getting-started section > ol a
+{
+  color: lightblue;
+  text-decoration: none;
+}
+#home #getting-started section > ol > li + li
+{
+  margin: 2em 0 0 0;
+}
+#home #getting-started section > ol > li::before
+{
+  content: "1";
+  margin-left: -2em;
+  margin-top: -0.6em;
+  height: 1.7em;
+  width: 1.7em;
+  position: absolute;
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 1.9em;
+  border-radius: 1em;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  background: url(circle.svg);
+  background-size: 100% 100%;
+  text-shadow: -0.02em -0.02em 0.01em darkred, 0.03em 0.03em 0.01em black;
+  transition: margin 0.3s ease;
+}
+#home #getting-started section > ol > li + li::before
+{
+  content: "2";
+}
+#home #getting-started section > ol > li + li + li::before
+{
+  content: "3";
+}
+#home #getting-started ol ol
+{
+  list-style: lower-roman;
+}
+#home #getting-started ol ol, #getting-started ol ul
+{
+  margin: 0.5em 0 0 0;
+  padding: 0 0 0 1.2em;
+}
+#home #getting-started pre
+{
+  margin: 0.5em 0 1.5em 0;
+  padding: 1em 1em 1em 2em;
+  text-indent: -1em;
+  font-size: 0.7em;
+  border-radius: 0.3em;
+  background: #322;
+  white-space: pre-wrap;
+}
+@media (max-width: 50em)
+{
+  #home #getting-started section + section + section h3
+  {
+    min-height: 4em;
+  }
+  #home #getting-started section > ol
+  {
+    padding: 0 1em 1em 4em;
+  }
+}
+@media (max-width: 40em)
+{
+  #home #getting-started section > ol
+  {
+    padding: 0 1em 1em 3em;
+  }
+  #home #getting-started section > ol > li::before
+  {
+    margin-left: -1.8em;
+  }
+}
+
+#home pre .highlight
+{
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+#home section:hover > pre .highlight
+{
+  background: rgba(255, 255, 0, 0.3);
+  box-shadow: 0 0 3px 3px rgba(255, 255, 0, 0.3);
+}
+
+
+/* -- step-by-step example -- */
+
+@keyframes fade {
+  from {
+    color: rgba(255, 255, 255, 0);
+  }
+  
+  to {
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+#step-by-step-example section
+{
+  margin: 6em auto;
+  padding: 4em 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  position: relative;
+  min-width: 16em;
+  max-width: 80em;
+  background: #424;
+  border-radius: 0.3em 0.3em 1em 1em;
+}
+#step-by-step-example section ol
+{
+  margin: 0 0 0 -100%;
+  padding: 0;
+  display: flex;
+  flex-basis: 100%;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  list-style: none;
+}
+#step-by-step-example section ol li,
+#step-by-step-example section p
+{
+  margin: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  flex-basis: 100%;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0);
+  font-size: 1.5em;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+#step-by-step-example section ol li
+{
+  margin: 0 0 0 -100%;
+}
+#step-by-step-example section ol li:first-of-type
+{
+  margin: 0;
+}
+#step-by-step-example section input
+{
+  display: none;
+}
+
+#step-by-step-example section label
+{
+  font-size: 1.5em;
+  z-index: 1;
+}
+#step-by-step-example section ol li::before
+{
+  content: "";
+  background: url(circle.svg?dot#with-dot);
+  background-size: 100% 100%;
+  transition: background 0.3s ease;
+}
+#step-by-step-example section label,
+#step-by-step-example section ol li::before
+{
+  margin: 0;
+  padding: 2em 0 0 0;
+  width: 2em;
+  height: 0;
+  display: block;
+  position: absolute;
+  top: 0.5em;
+  left: 50%;
+}
+#step-by-step-example section label:nth-of-type(1),
+#step-by-step-example section ol li:nth-of-type(1)::before { margin-left: -5em; }
+#step-by-step-example section label:nth-of-type(2),
+#step-by-step-example section ol li:nth-of-type(2)::before { margin-left: -3em; }
+#step-by-step-example section label:nth-of-type(3),
+#step-by-step-example section ol li:nth-of-type(3)::before { margin-left: -1em; }
+#step-by-step-example section label:nth-of-type(4),
+#step-by-step-example section ol li:nth-of-type(4)::before { margin-left: 1em; }
+#step-by-step-example section label:nth-of-type(5),
+#step-by-step-example section ol li:nth-of-type(5)::before { margin-left: 3em; }
+
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(1):checked ~ ol li:nth-of-type(n+2)::before,
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(2):checked ~ ol li:nth-of-type(n+3)::before,
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(3):checked ~ ol li:nth-of-type(n+4)::before,
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(4):checked ~ ol li:nth-of-type(n+5)::before,
+#step-by-step-example section
+  label:nth-of-type(1):hover ~ ol li:nth-of-type(n+2)::before,
+#step-by-step-example section
+  label:nth-of-type(2):hover ~ ol li:nth-of-type(n+3)::before,
+#step-by-step-example section
+  label:nth-of-type(3):hover ~ ol li:nth-of-type(n+4)::before,
+#step-by-step-example section
+  label:nth-of-type(4):hover ~ ol li:nth-of-type(n+5)::before
+{
+  background: url(circle.svg);
+  background-size: 100% 100%;
+}
+
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(1):checked ~ figure figure:nth-of-type(n+2),
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(2):checked ~ figure figure:nth-of-type(n+3),
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(3):checked ~ figure figure:nth-of-type(n+4),
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(4):checked ~ figure figure:nth-of-type(n+5),
+#step-by-step-example section
+  label:nth-of-type(1):hover ~ figure figure:nth-of-type(n+2),
+#step-by-step-example section
+  label:nth-of-type(2):hover ~ figure figure:nth-of-type(n+3),
+#step-by-step-example section
+  label:nth-of-type(3):hover ~ figure figure:nth-of-type(n+4),
+#step-by-step-example section
+  label:nth-of-type(4):hover ~ figure figure:nth-of-type(n+5)
+{
+  opacity: 0;
+}
+
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(1):checked ~ ol li:nth-of-type(1),
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(2):checked ~ ol li:nth-of-type(2),
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(3):checked ~ ol li:nth-of-type(3),
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(4):checked ~ ol li:nth-of-type(4),
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(5):checked ~ ol li:nth-of-type(5),
+#step-by-step-example section
+  label:nth-of-type(1):hover ~ ol li:nth-of-type(1),
+#step-by-step-example section
+  label:nth-of-type(2):hover ~ ol li:nth-of-type(2),
+#step-by-step-example section
+  label:nth-of-type(3):hover ~ ol li:nth-of-type(3),
+#step-by-step-example section
+  label:nth-of-type(4):hover ~ ol li:nth-of-type(4),
+#step-by-step-example section
+  label:nth-of-type(5):hover ~ ol li:nth-of-type(5)
+{
+  color: rgba(255, 255, 255, 1);
+}
+
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(5):checked ~ ol li:nth-of-type(5)
+{
+  animation: 0.3s ease reverse both 4s fade;
+}
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(5):checked ~ p
+{
+  animation: 0.3s ease both 4s fade;
+}
+#step-by-step-example section
+  label:nth-of-type(1):not(:hover) ~
+  label:nth-of-type(2):not(:hover) ~
+  label:nth-of-type(3):not(:hover) ~
+  label:nth-of-type(4):not(:hover) ~
+  label:nth-of-type(5):not(:hover) ~
+  input:nth-of-type(1):not(:checked) ~
+  input:nth-of-type(2):not(:checked) ~
+  input:nth-of-type(3):not(:checked) ~
+  input:nth-of-type(4):not(:checked) ~
+  input:nth-of-type(5):not(:checked) ~ p
+{
+  color: rgba(255, 255, 255, 1);
+}
+
+#step-by-step-example section > figure
+{
+  margin: 0;
+  padding: 1em;
+  flex-grow: 1;
+  position: relative;
+  background: #322;
+  border-radius: 0 0 0.3em 0.3em;
+}
+#step-by-step-example figure figure
+{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  transition: opacity 0.6s ease;
+}
+#step-by-step-example figure figcaption
+{
+  display: none;
+}
+#step-by-step-example figure pre
+{
+  width: 42em;
+  display: inline-block;
+  text-align: left;
+}
+#step-by-step-example figure img
+{
+  display: inline-block;
+  width: auto;
+  height: auto;
+  max-width: 30em;
+}
+#step-by-step-example figure + figure
+{
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  right: 1em;
+}
+
+
+/* -- showcases -- */
+
+#showcases section
+{
+  margin: 6em auto;
+  max-width: 90em;
+  display: flex;
+  flex-wrap: wrap;
+}
+#showcases section header,
+#showcases section pre
+{
+  flex-grow: 1;
+  flex-basis: 10em;
+}
+#showcases section header
+{
+  margin: 0;
+  padding: 1em;
+  min-height: 4em;
+  border-radius: 0.3em 0 0 0.3em;
+  background: #424;
+  background-size: 6.8em, auto;
+  color: white;
+}
+#showcases section pre
+{
+  margin: 0;
+  padding: 1em;
+  border-radius: 0 0.3em 0.3em 0;
+  background: url(fabric-dark_.png) #322;
+  color: white;
+}
+#showcases section:nth-of-type(2n)
+{
+  flex-direction: row-reverse;
+}
+#showcases section:nth-of-type(2n) header
+{
+  border-radius: 0 0.3em 0.3em 0;
+}
+#showcases section:nth-of-type(2n) pre
+{
+  border-radius: 0.3em 0 0 0.3em;
+}
+@media (max-width: 85em)
+{
+  #showcases section:nth-of-type(n)
+  {
+    flex-direction: row;
+    max-width: 60em;
+  }
+  #showcases section:nth-of-type(n) header
+  {
+    flex-basis: 50em;
+    border-radius: 0.3em 0.3em 0 0;
+  }
+  #showcases section:nth-of-type(n) pre
+  {
+    border-radius: 0 0 0.3em 0.3em;
+  }
+}
+#showcases section header h3
+{
+  margin: 0 0 0.4em 0;
+  padding: 0;
+  font-size: 2em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+#showcases section header p
+{
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#showcases section header p code
+{
+  font-size: 0.8em;
+}
+
+#showcases code span:not([class])
+{
+  font-family: 'Lato', sans-serif;
+}

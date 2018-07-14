@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 155 108" width="465" height="324" version="1.1">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" fill="#ccf" orient="auto">
+      <path d="M 0,0 V 6 L 9,3 Z" />
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+    #step-0:target ~ .step-1,
+    #step-0:target ~ .step-2,
+    #step-0:target ~ .step-3,
+    #step-0:target ~ .step-4,
+    #step-1:target ~ .step-2,
+    #step-1:target ~ .step-3,
+    #step-1:target ~ .step-4,
+    #step-2:target ~ .step-3,
+    #step-2:target ~ .step-4,
+    #step-3:target ~ .step-4,
+    #segment-0:target ~ :not(.segment-0),
+    #segment-1:target ~ :not(.segment-1),
+    #segment-2:target ~ :not(.segment-2),
+    #segment-3:target ~ :not(.segment-3),
+    #segment-4:target ~ :not(.segment-4) { display: none }
+  </style>
+  <g id="step-0" />
+  <g id="step-1" />
+  <g id="step-2" />
+  <g id="step-3" />
+  <g id="step-4" />
+  <g id="segment-0" />
+  <g id="segment-1" />
+  <g id="segment-2" />
+  <g id="segment-3" />
+  <g id="segment-4" />
+  <circle class="step-0 segment-0" cx="27" cy="52" r="24" fill="#623" />
+  <text class="step-0 segment-0" x="27" y="40" font-size="7" text-anchor="middle" fill="white">Server</text>
+  <ellipse class="step-1 segment-1" cx="105.5" cy="25" rx="46" ry="22" fill="#623" />
+  <text class="step-1 segment-1" x="105.5" y="15" font-size="7" text-anchor="middle" fill="white">Client</text>
+  <circle class="step-4 segment-4" cx="85.5" cy="28" r="14" fill="#428" />
+  <text class="step-4 segment-4" x="85.5" y="30" font-size="6" text-anchor="middle" fill="white">println</text>
+  <ellipse class="step-1 segment-1" cx="105.5" cy="83" rx="46" ry="22" fill="#623" />
+  <text class="step-1 segment-1" x="105.5" y="73" font-size="7" text-anchor="middle" fill="white">Client</text>
+  <circle class="step-4 segment-4" cx="85.5" cy="86" r="14" fill="#428" />
+  <text class="step-4 segment-4" x="85.5" y="88" font-size="6" text-anchor="middle" fill="white">println</text>
+  <path class="step-4 segment-4" d="M 34.5,45 C 41,35 50,28.5 62,28" stroke="#ccf" fill="none" marker-end="url(#arrow)" />
+  <path class="step-4 segment-4" d="M 26.5,71 C 26,81 50,87 62,86.5" stroke="#ccf" fill="none" marker-end="url(#arrow)" />
+  <circle class="step-3 segment-3 segment-4" cx="27" cy="57" r="14" fill="#428" />
+  <text class="step-3 segment-3 segment-4" x="27" y="56" font-size="6" text-anchor="middle" fill="white">public</text>
+  <text class="step-3 segment-3 segment-4" x="27" y="62" font-size="6" text-anchor="middle" fill="white">Message</text>
+  <path class="step-3 segment-3" d="M 123,72 C 118,55 74,71 49,64" stroke="#ccf" fill="none" marker-end="url(#arrow)" />
+  <path class="step-3 segment-3" d="M 125,42 C 125,53 68,55 50.5,55" stroke="#ccf" fill="none" marker-end="url(#arrow)" />
+  <circle class="step-2 segment-2 segment-3" cx="125.5" cy="28" r="14" fill="#428" />
+  <text class="step-2 segment-2 segment-3" x="125.5" y="30" font-size="6" text-anchor="middle" fill="white">message</text>
+  <circle class="step-2 segment-2 segment-3" cx="125.5" cy="86" r="14" fill="#428" />
+  <text class="step-2 segment-2 segment-3" x="125.5" y="88" font-size="6" text-anchor="middle" fill="white">message</text>
+</svg>
