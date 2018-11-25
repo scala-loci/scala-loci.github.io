@@ -689,19 +689,24 @@ code .string
 }
 #home #getting-started section > ul li + li
 {
-  flex-grow: 1.25;
+  flex-grow: 1.35;
 }
 #home #getting-started section > ul li a
 {
   flex-grow: 1;
-  padding: 1em;
+  padding: 1em 1em 1em 1.8em;
   display: block;
   background: #428;
   text-decoration: none;
   font-size: 1.5em;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 700;
-  color: white;
+}
+#home #getting-started section > ul li a::before {
+  content: ">";
+  display: inline-block;
+  width: 0.8em;
+  margin-left: -0.8em;
 }
 #home #getting-started section > ul li + li a
 {
