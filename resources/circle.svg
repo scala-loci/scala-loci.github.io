@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 240" width="240" height="240" version="1.1">
   <defs>
-    <filter id="effect">
+    <filter id="effect" filterUnits="userSpaceOnUse">
       <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
       <feOffset result="result" dx="5" dy="5" />
       <feComposite in="SourceGraphic" in2="result" operator="xor" />
@@ -10,13 +10,16 @@
     <circle id="dot" cx="120" cy="120" r="50" />
   </defs>
   <style>
-    #with-dot:not(:target) { display: none }
+    #only-dot:not(:target) + #with-dot:not(:target) + g + g { display: none }
+    #only-dot:target + g + g { display: none }
   </style>
+  <g id="only-dot" />
+  <g id="with-dot" />
   <g>
     <use xlink:href="#circle" fill="#ffffff" />
     <use xlink:href="#circle" fill="#800000" filter="url(#effect)" />
   </g>
-  <g id="with-dot">
+  <g>
     <use xlink:href="#dot" fill="#ffffff" />
     <use xlink:href="#dot" fill="#800000" filter="url(#effect)" />
   </g>

@@ -28,11 +28,11 @@
             <p>Define the architectural relation of the components of the distributed system</p>
           </header>
           <pre><code><span class="keyword">trait</span> Server <span class="keyword">extends</span> Peer {
-   <span class="keyword">type</span> <span class="dsl">Tie</span> = <span class="highlight"><span class="dsl">Multiple</span>[Client]</span>
+   <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="highlight"><span class="dsl">Multiple</span>[Client]</span>
 }
 
 <span class="keyword">trait</span> Client <span class="keyword">extends</span> Peer {
-   <span class="keyword">type</span> <span class="dsl">Tie</span> = <span class="highlight"><span class="dsl">Single</span>[Server]</span>
+   <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="highlight"><span class="dsl">Single</span>[Server]</span>
 }</code></pre>
         </section>
         <section>

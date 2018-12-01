@@ -34,7 +34,7 @@
         <figure>
           <figure>
             <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> Chat {
-  <span class="keyword">trait</span> Server <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> = <span class="dsl">Multiple</span>[Client] }
+  <span class="keyword">trait</span> Server <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Multiple</span>[Client] }
 
 
 
@@ -56,7 +56,7 @@
           <figure>
             <pre><code>
 
-  <span class="keyword">trait</span> Client <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> = <span class="dsl">Single</span>[Server] }
+  <span class="keyword">trait</span> Client <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Server] }
 
 
 

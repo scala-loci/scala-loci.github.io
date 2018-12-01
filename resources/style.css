@@ -67,11 +67,16 @@ body > header
   padding: 0;
   background:
     linear-gradient(rgba(0, 0, 48, 0.5), rgba(0, 0, 48, 0)) fixed repeat-x,
-    url(network.svg) fixed,
+    url(network.svg) fixed no-repeat,
     linear-gradient(160deg, rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0) 50%) fixed no-repeat,
     linear-gradient(rgb(0, 0, 48), black) fixed repeat-x,
     #657;
-  background-size: auto, cover, auto, auto;
+}
+@media (min-width: 2000px), (min-height: 2000px) {
+  body > header
+  {
+    background-size: auto, cover, auto, auto;
+  }
 }
 body > header h1
 {
@@ -81,6 +86,7 @@ body > header h1
   font-weight: normal;
   font-size: 5em;
   line-height: 1em;
+  transition: padding-left 0.3s ease
 }
 body > header h1 a
 {
@@ -97,6 +103,7 @@ body > header h1::before
   height: 1.8em;
   background: url(logo.svg) no-repeat center center;
   background-size: contain;
+  transition: margin-left 0.3s ease
 }
 body > header p
 {
@@ -106,10 +113,42 @@ body > header p
   font-weight: 300;
   font-size: 1.6em;
   line-height: 1em;
+  transition: padding-left 0.3s ease
 }
 body > header p em
 {
   font-style: normal;
+}
+@media (max-width: 34em)
+{
+  body > header h1
+  {
+    padding-left: 1.9em;
+  }
+  body > header h1::before
+  {
+    margin-left: -1.8em;
+  }
+  body > header p
+  {
+    padding-left: 5.9375em;
+  }
+}
+@media (max-width: 31em)
+{
+  body > header h1
+  {
+    padding: 0.3em 0.3em 0 0.3em
+  }
+  body > header h1::before
+  {
+    position: static;
+    margin: 0 0 -0.2em 0;
+  }
+  body > header p
+  {
+    padding: 0 1em 1em 1em;
+  }
 }
 
 footer
@@ -197,7 +236,12 @@ code .string
     linear-gradient(160deg, rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0) 50%) fixed no-repeat,
     linear-gradient(rgb(0, 0, 48), black) fixed repeat-x,
     #657;
-  background-size: auto, cover, auto, auto;
+}
+@media (min-width: 2000px), (min-height: 2000px) {
+  #home body > header
+  {
+    background-size: auto, cover, auto, auto;
+  }
 }
 #home body > header h1
 {
@@ -838,6 +882,73 @@ code .string
   }
 }
 
+@keyframes caption-0 {
+  0.00001%, 0.01%, 20%, 100% { color: rgba(255, 255, 255, 0); }
+  0%, 4%, 16% { color: rgba(255, 255, 255, 1); }
+}
+@keyframes caption-1 {
+  0.00001%, 0.01%, 16%, 36%, 100% { color: rgba(255, 255, 255, 0); }
+  0%, 20%, 32% { color: rgba(255, 255, 255, 1); }
+}
+@keyframes caption-2 {
+  0.00001%, 0.01%, 32%, 52%, 100% { color: rgba(255, 255, 255, 0); }
+  0%, 36%, 48% { color: rgba(255, 255, 255, 1); }
+}
+@keyframes caption-3 {
+  0.00001%, 0.01%, 48%, 68%, 100% { color: rgba(255, 255, 255, 0); }
+  0%, 52%, 64% { color: rgba(255, 255, 255, 1); }
+}
+@keyframes caption-4 {
+  0.00001%, 0.01%, 64%, 84%, 100% { color: rgba(255, 255, 255, 0); }
+  0%, 68%, 80% { color: rgba(255, 255, 255, 1); }
+}
+@keyframes caption-5 {
+  0.00001%, 0.01%, 80%, 100% { color: rgba(255, 255, 255, 0); }
+  0%, 84%, 96% { color: rgba(255, 255, 255, 1); }
+}
+
+@keyframes radio-button-1 {
+  0.00001%, 0.01%, 16% { opacity: 0; }
+  0%, 20%, 100% { opacity: 1; }
+}
+@keyframes radio-button-2 {
+  0.00001%, 0.01%, 32% { opacity: 0; }
+  0%, 36%, 100% { opacity: 1; }
+}
+@keyframes radio-button-3 {
+  0.00001%, 0.01%, 48% { opacity: 0; }
+  0%, 52%, 100% { opacity: 1; }
+}
+@keyframes radio-button-4 {
+  0.00001%, 0.01%, 64% { opacity: 0; }
+  0%, 68%, 100% { opacity: 1; }
+}
+@keyframes radio-button-5 {
+  0.00001%, 0.01%, 80% { opacity: 0; }
+  0%, 84%, 100% { opacity: 1; }
+}
+
+@keyframes figure-1 {
+  0.00001%, 0.01%, 16% { opacity: 0; }
+  0%, 24%, 100% { opacity: 1; }
+}
+@keyframes figure-2 {
+  0.00001%, 0.01%, 32% { opacity: 0; }
+  0%, 40%, 100% { opacity: 1; }
+}
+@keyframes figure-3 {
+  0.00001%, 0.01%, 48% { opacity: 0; }
+  0%, 56%, 100% { opacity: 1; }
+}
+@keyframes figure-4 {
+  0.00001%, 0.01%, 64% { opacity: 0; }
+  0%, 72%, 100% { opacity: 1; }
+}
+@keyframes figure-5 {
+  0.00001%, 0.01%, 80% { opacity: 0; }
+  0%, 88%, 100% { opacity: 1; }
+}
+
 #step-by-step-example section
 {
   margin: 6em auto;
@@ -888,6 +999,35 @@ code .string
   display: none;
 }
 
+#step-by-step-example section p { animation: 10s caption-0 infinite; }
+#step-by-step-example section ol li:nth-of-type(1) { animation: 10s caption-1 infinite; }
+#step-by-step-example section ol li:nth-of-type(2) { animation: 10s caption-2 infinite; }
+#step-by-step-example section ol li:nth-of-type(3) { animation: 10s caption-3 infinite; }
+#step-by-step-example section ol li:nth-of-type(4) { animation: 10s caption-4 infinite; }
+#step-by-step-example section ol li:nth-of-type(5) { animation: 10s caption-5 infinite; }
+#step-by-step-example section ol li:nth-of-type(1)::before { animation: 10s radio-button-1 infinite; }
+#step-by-step-example section ol li:nth-of-type(2)::before { animation: 10s radio-button-2 infinite; }
+#step-by-step-example section ol li:nth-of-type(3)::before { animation: 10s radio-button-3 infinite; }
+#step-by-step-example section ol li:nth-of-type(4)::before { animation: 10s radio-button-4 infinite; }
+#step-by-step-example section ol li:nth-of-type(5)::before { animation: 10s radio-button-5 infinite; }
+#step-by-step-example section figure figure:nth-of-type(1) { animation: 10s figure-1 infinite; }
+#step-by-step-example section figure figure:nth-of-type(2) { animation: 10s figure-2 infinite; }
+#step-by-step-example section figure figure:nth-of-type(3) { animation: 10s figure-3 infinite; }
+#step-by-step-example section figure figure:nth-of-type(4) { animation: 10s figure-4 infinite; }
+#step-by-step-example section figure figure:nth-of-type(5) { animation: 10s figure-5 infinite; }
+
+#step-by-step-example main section input:nth-of-type(n):checked ~ p,
+#step-by-step-example main section label:nth-of-type(n):hover ~ p,
+#step-by-step-example main section input:nth-of-type(n):checked ~ ol li:nth-of-type(n),
+#step-by-step-example main section label:nth-of-type(n):hover ~ ol li:nth-of-type(n),
+#step-by-step-example main section input:nth-of-type(n):checked ~ ol li:nth-of-type(n)::before,
+#step-by-step-example main section label:nth-of-type(n):hover ~ ol li:nth-of-type(n)::before,
+#step-by-step-example main section input:nth-of-type(n):checked ~ figure figure:nth-of-type(n),
+#step-by-step-example main section label:nth-of-type(n):hover ~ figure figure:nth-of-type(n)
+{
+  animation: none;
+}
+
 #step-by-step-example section label
 {
   font-size: 1.5em;
@@ -895,13 +1035,22 @@ code .string
 }
 #step-by-step-example section ol li::before
 {
+  background: url(circle.svg?only-dot#only-dot);
+}
+#step-by-step-example section ol li::after
+{
+  background: url(circle.svg);
+}
+#step-by-step-example section ol li::before,
+#step-by-step-example section ol li::after
+{
   content: "";
-  background: url(circle.svg?dot#with-dot);
   background-size: 100% 100%;
-  transition: background 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 #step-by-step-example section label,
-#step-by-step-example section ol li::before
+#step-by-step-example section ol li::before,
+#step-by-step-example section ol li::after
 {
   margin: 0;
   padding: 2em 0 0 0;
@@ -913,14 +1062,19 @@ code .string
   left: 50%;
 }
 #step-by-step-example section label:nth-of-type(1),
+#step-by-step-example section ol li:nth-of-type(1)::after,
 #step-by-step-example section ol li:nth-of-type(1)::before { margin-left: -5em; }
 #step-by-step-example section label:nth-of-type(2),
+#step-by-step-example section ol li:nth-of-type(2)::after,
 #step-by-step-example section ol li:nth-of-type(2)::before { margin-left: -3em; }
 #step-by-step-example section label:nth-of-type(3),
+#step-by-step-example section ol li:nth-of-type(3)::after,
 #step-by-step-example section ol li:nth-of-type(3)::before { margin-left: -1em; }
 #step-by-step-example section label:nth-of-type(4),
+#step-by-step-example section ol li:nth-of-type(4)::after,
 #step-by-step-example section ol li:nth-of-type(4)::before { margin-left: 1em; }
 #step-by-step-example section label:nth-of-type(5),
+#step-by-step-example section ol li:nth-of-type(5)::after,
 #step-by-step-example section ol li:nth-of-type(5)::before { margin-left: 3em; }
 
 #step-by-step-example section
@@ -960,8 +1114,7 @@ code .string
 #step-by-step-example section
   label:nth-of-type(4):hover ~ ol li:nth-of-type(n+5)::before
 {
-  background: url(circle.svg);
-  background-size: 100% 100%;
+  opacity: 0;
 }
 
 #step-by-step-example section
