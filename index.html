@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#424" />
+    <meta name="google-site-verification" content="hPhlgOa-i_VITSyOHYwXB0xF0ZsZa_1K7z4LQc1nTDg" />
     <link rel="apple-touch-icon" sizes="192x192" href="resources/logo-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="resources/logo-180.png" />
     <link rel="apple-touch-icon" sizes="167x167" href="resources/logo-167.png" />
@@ -46,11 +47,11 @@
             <p>Define the architectural relation of the components of the distributed system</p>
           </header>
           <pre><code><span class="keyword">trait</span> Server <span class="keyword">extends</span> Peer {
-   <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="highlight"><span class="dsl">Multiple</span>[Client]</span>
+  <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="highlight"><span class="dsl">Multiple</span>[Client]</span>
 }
 
 <span class="keyword">trait</span> Client <span class="keyword">extends</span> Peer {
-   <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="highlight"><span class="dsl">Single</span>[Server]</span>
+  <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="highlight"><span class="dsl">Single</span>[Server]</span>
 }</code></pre>
         </section>
         <section>
@@ -58,11 +59,11 @@
             <h3>Specify Placement</h3>
             <p>Control where data is located and computations are executed</p>
           </header>
-          <pre><code><span class="keyword">val</span> items = <span class="highlight"><span class="dsl">placed</span>[Server]</span> {
+          <pre><code><span class="keyword">val</span> items: <span class="highlight">Items <span class="dsl">on</span> Server</span> = <span class="dsl">placed</span> {
   getCurrentItems()
 }
 
-<span class="keyword">val</span> ui = <span class="highlight"><span class="dsl">placed</span>[Client]</span> {
+<span class="keyword">val</span> ui: <span class="highlight">UI <span class="dsl">on</span> Client</span> = <span class="dsl">placed</span> {
   <span class="keyword">new</span> UI
 }</code></pre>
         </section>
@@ -71,9 +72,8 @@
             <h3>Compose</h3>
             <p>Combine data flow across components through reactive programming</p>
           </header>
-          <pre><code><span class="keyword">val</span> items = <span class="dsl">placed</span>[Server] {
-  <span class="highlight">Var</span>(getCurrentItems())
-}
+          <pre><code><span class="keyword">val</span> items: Var[Items] <span class="dsl">on</span> Server =
+  <span class="dsl">placed</span> { <span class="highlight">Var</span>(getCurrentItems()) }
 
 <span class="dsl">placed</span>[Client] {
   <span class="highlight">Signal</span> {
