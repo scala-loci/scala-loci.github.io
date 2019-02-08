@@ -1,6 +1,6 @@
 /* -- general -- */
 
-@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,700|Lato:300,400,400i,700|Oxygen+Mono");
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,700|Lato:300,400,400i,700|Oxygen+Mono|Indie+Flower");
 
 @font-face {
   font-family: "Linux Biolinum";
@@ -246,7 +246,7 @@ code .string
 #home body > header h1
 {
   margin: auto;
-  padding: 1.2em 0 3.2em 4.16em;
+  padding: 1.6em 0 2.8em 4.16em;
   position: sticky;
   top: 0;
   font-family: 'Linux Biolinum', sans-serif;
@@ -281,7 +281,7 @@ code .string
 #home body > header p
 {
   margin: -16.875em auto 0 auto;
-  padding: 6.875em 0 7em 13em;
+  padding: 8.125em 0 5.75em 13em;
   position: sticky;
   top: 0;
   font-family: 'Lato', sans-serif;
@@ -297,6 +297,7 @@ code .string
     padding-right 0.3s ease;
   animation: 2s ease fadein;
 }
+/*
 #home body > header p em
 {
   font-style: normal;
@@ -309,6 +310,15 @@ code .string
 {
   content: "\0A        ";
 }
+*/
+#home body > header p em ~ em::before
+{
+  content: "\0A";
+}
+#home body > header p em ~ em::after
+{
+  content: "\0A\A0";
+}
 @media (max-width: 62em)
 {
   #home body > header h1::before
@@ -319,12 +329,12 @@ code .string
   }
   #home body > header h1
   {
-    padding: 1.2em 0 4.4em 3.2em;
+    padding: 1.6em 0 4.4em 3.2em;
   }
   #home body > header p
   {
-    margin-top: -20.625em;
-    padding: 6.875em 0 10.75em 10em;
+    margin-top: -21.875em;
+    padding: 8.125em 0 10.75em 10em;
   }
 }
 @media (max-width: 43em)
@@ -337,7 +347,7 @@ code .string
   #home body > header h1
   {
     margin: 0 auto 0 auto;
-    padding: 0 0.32em 0 0.32em;
+    padding: 1em 0.32em 0 0.32em;
     position: static;
     max-width: 4.48em;
     width: auto;
@@ -351,11 +361,13 @@ code .string
     max-width: 14em;
     width: auto;
   }
+  /*
   #home body > header p em::before,
   #home body > header p em ~ em::before
   {
     content: none;
   }
+  */
 }
 
 #home h2
@@ -478,7 +490,7 @@ code .string
   #home body > header h1
   {
     font-size: 4em;
-    padding: 0 0.4em 0 0.4em;
+    padding: 1em 0.4em 0 0.4em;
     max-width: 5.6em;
   }
 }
@@ -708,7 +720,7 @@ code .string
   background: url(download.svg);
   background-size: 100%;
 }
-#home #getting-started section header h3
+#home #getting-started section h3
 {
   margin: 0;
   padding: 1em 1em 0.5em 4.75em;
@@ -858,15 +870,160 @@ code .string
   }
 }
 
-#home pre .highlight
+#home #scientific-publications
 {
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  margin: 3.5em auto;
+  max-width: 59em;
+  position: relative;
+  border-radius: 0.3em;
+  background: #428;
+}
+#home #scientific-publications h2
+{
+  display: block;
+  margin: 0;
+  padding: 1em 1em 0.5em 1em;
+  font-size: 2em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+#home #scientific-publications ol
+{
+  counter-reset: publication;
+  margin: 1em 1em 1em 3em;
+  padding-bottom: 1em;
+  font-size: 1.2em;
+  font-family: 'Josefin Sans', sans-serif;
+  list-style: none;
+}
+#home #scientific-publications ol li
+{
+  margin-top: 1em;
+}
+#home #scientific-publications ol li::before
+{
+  counter-increment: publication;
+  content: "[" counter(publication) "]";
+  display: block;
+  position: absolute;
+  width: 1.5em;
+  margin-left: -1.5em;
+}
+#home #scientific-publications cite
+{
+  font-style: normal;
 }
 
-#home section:hover > pre .highlight
+#home pre code
+{
+  cursor: default;
+}
+#home pre code .highlight
+{
+  pointer-events: none;
+  cursor: inherit;
+  position: relative;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+#home section:hover > pre code .highlight
 {
   background: rgba(255, 255, 0, 0.3);
   box-shadow: 0 0 3px 3px rgba(255, 255, 0, 0.3);
+}
+#home section > pre code .highlight[title]::before
+{
+  content: attr(title);
+  position: absolute;
+  color: #aa0;
+  font-family: 'Indie Flower', sans-serif;
+  font-size: 1.4em;
+  top: -1.5em;
+  left: 0.5em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#home section > pre code .highlight[title] ~ .highlight[title]::before
+{
+  top: 4.7em;
+  left: auto;
+  right: 2em;
+}
+#home section + section > pre code .highlight[title]::before
+{
+  left: 0.8em;
+}
+#home section + section + section > pre code .highlight[title]::before
+{
+  top: -2.4em;
+  left: 0em;
+}
+#home #concepts section + section + section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::before {
+  content: attr(title);
+  top: 1.3em;
+  right: -6em;
+}
+#home section > pre code .highlight[title]::after
+{
+  content: "";
+  position: absolute;
+  width: 5em;
+  height: 7.4em;
+  top: -2em;
+  left: -4.5em;
+  background: url(concept-arrow-1.svg) no-repeat;
+  background-size: 100% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#home section > pre code .highlight[title] ~ .highlight[title]::after
+{
+  width: 6.2em;
+  height: 7.4em;
+  top: 1em;
+  left: auto;
+  right: -4em;
+  background: url(concept-arrow-2.svg) no-repeat;
+  background-size: 100% 100%;
+}
+#home section + section > pre code .highlight[title]::after
+{
+  width: 6.2em;
+  height: 7.4em;
+  left: -5.5em;
+  background: url(concept-arrow-3.svg) no-repeat;
+  background-size: 100% 100%;
+}
+#home section + section + section > pre code .highlight[title]::after
+{
+  width: 6.8em;
+  height: 7.4em;
+  top: -3.2em;
+  left: -7.5em;
+  background: url(concept-arrow-4.svg) no-repeat;
+  background-size: 100% 100%;
+}
+#home #concepts section + section + section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::after
+{
+  width: 11.9em;
+  height: 3em;
+  top: 0.5em;
+  left: auto;
+  right: -12.5em;
+  background: url(concept-arrow-5.svg) no-repeat;
+  background-size: 100% 100%;
+}
+#home section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::before,
+#home section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::after,
+#home section + section > pre code .highlight[title] ~ .highlight[title]::before,
+#home section + section > pre code .highlight[title] ~ .highlight[title]::after
+{
+  content: "";
+  background: none;
+}
+#home section:hover > pre code .highlight[title]::before,
+#home section:hover > pre code .highlight[title]::after
+{
+  opacity: 1;
 }
 
 
