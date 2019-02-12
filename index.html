@@ -30,6 +30,16 @@
       <h1>ScalaLoci</h1>
       <p>A <em>programming language</em> for <em>distributed applications</em></p>
     </header>
+    <nav class="menu">
+      <ol>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#concepts">Concepts</a></li>
+        <li><a href="#step-by-step-example">Step-by-Step Example</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#showcases">Small Showcases</a></li>
+        <li><a href="#scientific-publications">Scientific Publications</a></li>
+      </ol>
+    </nav>
     <main>
       <section id="features">
         <h2>Features</h2>
@@ -83,15 +93,143 @@
         </section>
       </section>
 
+      <section id="step-by-step-example">
+        <h2>Step-by-Step Example</h2>
+        <section>
+          <label for="step-1"></label>
+          <label for="step-2"></label>
+          <label for="step-3"></label>
+          <label for="step-4"></label>
+          <label for="step-5"></label>
+          <input type="radio" name="step" id="step-1" />
+          <input type="radio" name="step" id="step-2" />
+          <input type="radio" name="step" id="step-3" />
+          <input type="radio" name="step" id="step-4" />
+          <input type="radio" name="step" id="step-5" />
+          <p>The example demonstrates the design of a chat application in five steps</p>
+          <ol>
+            <li>Declaring a <em>Server</em></li>
+            <li>Declaring a <em>Client</em></li>
+            <li>Declaring a <em>message</em> event on the <em>Client</em> and firing the event for every user input</li>
+            <li>Declaring a <em>publicMessage</em> event on the <em>Server</em> aggregating all events from the clients</li>
+            <li>Declaring a client-side observer for the server-side <em>publicMessage</em> event</li>
+          </ol>
+          <figure>
+            <figure>
+              <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> Chat {
+  <span class="keyword">trait</span> Server <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Multiple</span>[Client] }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}</code></pre>
+              <img width="465" height="324" src="resources/chat.svg?segment-0#segment-0" />
+              <figcaption><em>Server</em> declaration</figcaption>
+            </figure>
+
+            <figure>
+              <pre><code>
+
+  <span class="keyword">trait</span> Client <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Server] }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+              <img width="465" height="324" src="resources/chat.svg?segment-1#segment-1" />
+              <figcaption><em>Client</em> declaration</figcaption>
+            </figure>
+
+            <figure>
+              <pre><code>
+
+
+
+  <span class="keyword">val</span> message = <span class="dsl">placed</span>[Client] { Evt[String]() }
+
+
+
+
+
+  <span class="dsl">placed</span>[Client].main {
+
+    <span class="keyword">for</span> (line &lt;- io.Source.stdin.getLines)
+      message fire line
+  }
+
+</code></pre>
+              <img width="465" height="324" src="resources/chat.svg?segment-2#segment-2" />
+              <figcaption>Event <em>message</em> declaration</figcaption>
+            </figure>
+
+            <figure>
+              <pre><code>
+
+
+
+
+
+  <span class="keyword">val</span> publicMessage = <span class="dsl">placed</span>[Server] {
+    message.<span class="dsl">asLocalFromAllSeq</span> map { <span class="keyword">case</span> (_, message) => message }
+  }
+
+
+
+
+
+
+
+</code></pre>
+              <img width="465" height="324" src="resources/chat.svg?segment-3#segment-3" />
+              <figcaption>Event <em>publicMessage</em> declaration</figcaption>
+            </figure>
+
+            <figure>
+              <pre><code>
+
+
+
+
+
+
+
+
+
+
+    publicMessage.<span class="dsl">asLocal</span> observe println
+
+
+
+
+</code></pre>
+              <img width="465" height="324" src="resources/chat.svg?segment-4#segment-4" />
+              <figcaption>Remote observer for <em>publicMessage</em> declaration</figcaption>
+            </figure>
+            <figcaption>Incremental <em>Chat</em> example</figcaption>
+          </figure>
+        </section>
+      </section>
+
       <section id="getting-started">
         <h2>Getting Started</h2>
-        <section>
-          <h3>Check out ScalaLoci by Code Examples</h3>
-          <ul>
-            <li><a href="step-by-step-example.html">Step-by-Step Example</a></li>
-            <li><a href="showcases.html">Small Showcases</a></li>
-          </ul>
-        </section>
         <section>
           <h3>Try out ScalaLoci Examples from GitHub</h3>
           <ul>
@@ -158,6 +296,108 @@
               </ol>
             </li>
           </ol>
+        </section>
+      </section>
+
+      <section id="showcases">
+        <h2>Small Showcases</h2>
+        <section>
+          <header>
+            <h3>P2P Chat</h3>
+            <p>The example logs messages that are sent and received by each participant as a composition of the data flow from the local UI and from remote chat partners. In the application, nodes are connected to multiple remote nodes and maintain a one-to-one chat with each. Users can select any chat to send messages. The <code>messageSent</code> event is defined as subjective value filtering the <code>ui.&#x200b;messageTyped</code> messages from the UI for the currently active chat partner <code>node</code>. The <code>messageLog</code> signal contains the chat log for the chat between the local peer instance and the remote <code>node</code> given as parameter. It merges the remote stream for the chat messages <em>from the remote instance</em> <code>node</code> and the local stream <em>subjective to the remote instance</em> <code>node</code> via the <code>||</code> operator. The chat log is a signal created using <code>list</code>, which extends the list by an element for each new event occurrence in the merged stream. The <code>chatLogs</code> signal folds the <code>remote[Node].&#x200b;joined</code> event stream, which is fired for each newly connected chat partner, into a signal that contains the chat logs for every chat partner generated by calling <code>messageLog</code>.</p>
+          </header>
+          <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> Chat {
+  <span class="keyword">trait</span> Node <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Multiple</span>[Node] }
+
+  <span class="keyword">val</span> ui = <span class="dsl">placed</span>[Node] { UI() }
+
+  <span class="keyword">val</span> messageSent = <span class="dsl">placed</span>[Node].<span class="dsl">sbj</span> { node: Remote[Node] =&gt;
+    ui.messageTyped filter { msg =&gt; ui.isSelectedChat(node) } }
+
+  <span class="keyword">def</span> messageLog(node: Remote[Node]) = <span class="dsl">placed</span>[Node] {
+    ((messageSent <span class="dsl">from</span> node).asLocal || (messageSent <span class="dsl">to</span> node)).list }
+
+  <span class="keyword">val</span> chatLogs = <span class="dsl">placed</span>[Node] {
+    <span class="dsl">remote</span>[Node].joined.fold(List.empty[Signal[List[String]]]) {
+      <span class="keyword">case</span> (chats, node) =&gt; messageLog(node) :: chats } }
+}</code></pre>
+        </section>
+        <section>
+          <header>
+            <h3>Tweets</h3>
+            <p>The example shows how the operators in a processing pipeline can be placed on different peers to count the tweets that each author produces in a tweet stream. The application receives a stream of tweets on the <code>Input</code> peer, selects those containing the <code>"multitier"</code> string on the <code>Filter</code> peer, extracts the <code>author</code> for each tweet on the <code>Mapper</code> peer, and stores a signal with a map counting the tweets from each author on the <code>Folder</code> peer.</p>
+          </header>
+          <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> TweetAuthoring {
+  <span class="keyword">trait</span> Input <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Filter] }
+  <span class="keyword">trait</span> Filter <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Mapper] <span class="keyword">with</span> <span class="dsl">Single</span>[Input] }
+  <span class="keyword">trait</span> Mapper <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Folder] <span class="keyword">with</span> <span class="dsl">Single</span>[Filter] } 
+  <span class="keyword">trait</span> Folder <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Mapper] }
+
+  <span class="keyword">val</span> tweetStream: Event[Tweet] <span class="dsl">on</span> Input = <span class="dsl">placed</span> { retrieveTweetStream() }
+
+  <span class="keyword">val</span> filtered: Event[Tweet] <span class="dsl">on</span> Filter = <span class="dsl">placed</span> {
+    tweetStream.<span class="dsl">asLocal</span> filter { tweet =&gt; tweet.hasHashtag(<span class="string">"multitier"</span>) } }
+
+  <span class="keyword">val</span> mapped: Event[Author] <span class="dsl">on</span> Mapper = <span class="dsl">placed</span> {
+    filtered.<span class="dsl">asLocal</span> map { tweet =&gt; tweet.author } }
+
+  <span class="keyword">val</span> folded: Signal[Map[Author, Int]] <span class="dsl">on</span> Folder = <span class="dsl">placed</span> {
+    mapped.<span class="dsl">asLocal</span>.fold(Map.empty[Author, Int].withDefaultValue(0)) {
+      (map, author) =&gt; map.updated(map(author) + 1) } }
+}</code></pre>
+        </section>
+        <section>
+          <header>
+            <h3>E-Mail Application</h3>
+            <p>The example shows a client–server e-mail application. The server stores a list of e-mails. The client can request the e-mails received in the <em>n</em> previous days containing a given word. The client user interface displays the e-mails broken into several pages. If the word is not in the current page, the user is informed. The definition of <code>word</code> of type <code>Signal[String]<span>&thinsp;</span>on<span>&thinsp;</span>Client</code> defines a signal carrying strings placed on the <code>Client</code> peer. Thanks to multitier reactives, the client-side signal <code>inCurrentPage</code> is defined by the composition of the local client-side signal <code>word</code> and the remote server-side signal <code>filteredEmails</code>. The latter is defined as a composition of a local signal and two remote signals.</p>
+          </header>
+          <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> MailApp {
+  <span class="keyword">trait</span> Server <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Client] }
+  <span class="keyword">trait</span> Client <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Server] }
+
+  <span class="keyword">val</span> word: Signal[String] <span class="dsl">on</span> Client = <span class="dsl">placed</span> { <span class="comment">/* GUI input */</span> }
+  <span class="keyword">val</span> days: Signal[Int] <span class="dsl">on</span> Client = <span class="dsl">placed</span> { <span class="comment">/* GUI input */</span> }
+
+  <span class="keyword">val</span> allEmails: Signal[List[Email]] <span class="dsl">localOn</span> Server = <span class="dsl">placed</span> {
+    <span class="comment">/* e-mail collection */</span> }
+
+  <span class="keyword">val</span> filteredEmails: Signal[List[Email]] <span class="dsl">on</span> Server = <span class="dsl">placed</span> {
+    Signal {
+      allEmails() filter { email =&gt;
+        (email.date &lt; Date.today() - days.<span class="dsl">asLocal</span>()) &amp;&amp;
+        (email.text contains word.<span class="dsl">asLocal</span>()) } } }
+
+  <span class="keyword">val</span> inCurrentPage: Boolean <span class="dsl">localOn</span> Client = <span class="dsl">placed</span> {
+    Signal { isCurrentFirstPage(word(), filteredEmails.<span class="dsl">asLocal</span>()) }
+}</code></pre>
+        </section>
+        <section>
+          <header>
+            <h3>Master–worker</h3>
+            <p>The example shows a ScalaLoci implementation of the master–worker pattern where a master node dispatches tasks – double a number, for simplicity – to workers. The <code>taskStream</code> on the master carries the tasks as events. The <code>assocs</code> signal contains the assignments of workers to tasks. It folds over the <code>taskStream<span>&thinsp;</span>||<span>&thinsp;</span>taskResult.&#x200b;asLocalFromAllSeq</code> event stream that fires for every new task (<code>taskStream</code>) and every completed task (<code>taskResult.&#x200b;asLocalFromAllSeq</code>). The <code>assignTasks</code> method assigns a worker to the new task (<code>taskAssocs</code>), or enqueues the task if no worker is free (<code>taskQueue</code>) based on the folded event (<code>taskChanged</code>) and the currently connected worker instances (<code>remote[Worker].&#x200b;connected</code>). The <code>deployTask</code> event subjectively provides every worker instance with the task it is assigned. Workers provide the result in the <code>taskResult</code> event stream which the master aggregates into the <code>result</code> signal. The signal is updated for every event to contain the sum of all values carried by the events.</p>
+          </header>
+          <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> MasterWorker {
+  <span class="keyword">trait</span> Master <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Multiple</span>[Worker] }
+  <span class="keyword">trait</span> Worker <span class="keyword">extends</span> Peer { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Master] }
+
+  <span class="keyword">class</span> Task(v: Int) { <span class="keyword">def</span> exec: Int = 2 * v }
+
+  <span class="keyword">val</span> taskStream: Event[Task] <span class="dsl">localOn</span> Master = Event[Task]
+    <span class="comment">// to add tasks: `taskStream.fire(Task(42))`</span>
+
+  <span class="keyword">val</span> assocs: Signal[Map[Remote[Worker], Task]] <span class="dsl">localOn</span> Master = <span class="dsl">placed</span> {
+    (taskStream || taskResult.<span class="dsl">asLocalFromAllSeq</span>)
+      .fold(Map.empty[Remote[Worker], Task], List.empty[Task])
+       { (taskAssocs, taskQueue, taskChanged) =&gt;
+         assignTasks(taskAssocs, taskQueue, taskChanged, <span class="dsl">remote</span>[Worker].<span class="dsl">connected</span>) } }
+
+  <span class="keyword">val</span> deployTask = <span class="dsl">placed</span>[Master].<span class="dsl">sbj</span> { worker: Remote[Worker] =&gt;           <span class="comment">// Event[Task]</span>
+    Signal{ assocs().get(worker) }.changed }
+  <span class="keyword">val</span> taskResult = <span class="dsl">placed</span>[Worker] {                                         <span class="comment">// Event[Int]</span>
+    deployTask.<span class="dsl">asLocal</span> collect { <span class="keyword">case</span> Some(task) =&gt; task.exec } }
+  <span class="keyword">val</span> result = <span class="dsl">placed</span>[Master] {                                             <span class="comment">// Signal[Int]</span>
+    taskResult.<span class="dsl">asLocalFromAllSeq</span>.fold(0){ <span class="keyword">case</span> (acc, (worker, result)) =&gt; acc + result } }
+}</code></pre>
         </section>
       </section>
 

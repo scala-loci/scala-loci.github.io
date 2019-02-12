@@ -25,6 +25,7 @@ html
   height: 100%;
   color: white;
   background: black;
+  scroll-behavior: smooth;
 }
 
 body
@@ -372,12 +373,73 @@ code .string
 
 #home h2
 {
-  display: none;
+  font-size: 2em;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  max-width: 20em;
+  line-height: 0.7em;
+  text-align: center;
+  margin: auto;
+  padding-top: 3em;
+  border-bottom: 1px solid gray;
 }
 
 #home main
 {
-  padding: 0 0 4em 0;
+  padding: 0 0 1em 0;
+}
+
+#home nav {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  width: 100vw;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+#home nav:hover {
+  opacity: 1;
+}
+#home nav ol {
+  padding: 0 0.5em;
+  list-style: none;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+#home nav li {
+  display: inline;
+}
+#home nav li:first-child {
+  display: none;
+}
+#home nav a {
+  display: inline-block;
+  padding: 0.6em 0.5em;
+  position: relative;
+  color: white;
+  text-decoration: none;
+}
+#home nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0.4em;
+  left: 50%;
+  right: 50%;
+  border-bottom: 2px solid #b00;
+  transition: left 0.3s ease, right 0.3s ease;
+}
+#home nav a:hover::after {
+  left: 0;
+  right: 0;
+}
+@media (max-width: 47em)
+{
+  #home nav li:last-child {
+    display: none;
+  }
 }
 
 #home #features
@@ -387,6 +449,11 @@ code .string
   margin-bottom: -50vh;
   position: relative;
 }
+#home #features h2
+{
+  display: none;
+}
+
 #home #features dl
 {
   margin: 6em auto 0 auto;
@@ -497,7 +564,11 @@ code .string
 
 #home #concepts
 {
-  margin: 4em 0;
+  padding: 4em 0;
+}
+#home #concepts h2
+{
+  display: none;
 }
 #home #concepts section
 {
@@ -618,9 +689,22 @@ code .string
   font-family: 'Josefin Sans', sans-serif;
 }
 
+#home #step-by-step-example
+{
+  margin: 5em 1em;
+}
+#home #step-by-step-example section
+{
+  margin: 3em auto;
+}
+
+#home #showcases {
+  margin: 5em 1em;
+}
+
 #home #getting-started
 {
-  margin: 0 1em;
+  margin: 5em 1em;
 }
 #home #getting-started section
 {
@@ -644,7 +728,10 @@ code .string
 }
 #home #getting-started section::before
 {
+  /*
   background: url(lightbulb.svg);
+  */
+  background: url(github.svg);
   background-size: 100%;
   transform: perspective(20em) rotateY(0) scale(0.7);
 }
@@ -655,7 +742,10 @@ code .string
 }
 #home #getting-started section::after
 {
+  /*
   background: url(lightbulb.svg);
+  */
+  background: url(github.svg);
   background-size: 100%;
   transform : perspective(20em) rotateY(-179deg) scale(0.7);
 }
@@ -711,15 +801,20 @@ code .string
 #home #getting-started section + section::before,
 #home #getting-started section + section::after
 {
+  /*
   background: url(github.svg);
+  */
+  background: url(download.svg);
   background-size: 100%;
 }
+/*
 #home #getting-started section + section + section::before,
 #home #getting-started section + section + section::after
 {
   background: url(download.svg);
   background-size: 100%;
 }
+*/
 #home #getting-started section h3
 {
   margin: 0;
@@ -773,6 +868,7 @@ code .string
   background: #63b;
 }
 
+/*
 #home #getting-started section + section + section
 {
   border-radius: 0.3em;
@@ -783,6 +879,18 @@ code .string
   min-height: 1em;
   transition: min-height 0.3s ease;
 }
+*/
+#home #getting-started section + section
+{
+  border-radius: 0.3em;
+  background: #428;
+}
+#home #getting-started section + section h3
+{
+  min-height: 1em;
+  transition: min-height 0.3s ease;
+}
+
 #home #getting-started section > ol
 {
   margin: 0;
@@ -849,7 +957,13 @@ code .string
 }
 @media (max-width: 50em)
 {
+  /*
   #home #getting-started section + section + section h3
+  {
+    min-height: 4em;
+  }
+  */
+  #home #getting-started section + section h3
   {
     min-height: 4em;
   }
@@ -872,29 +986,17 @@ code .string
 
 #home #scientific-publications
 {
-  margin: 3.5em auto;
-  max-width: 59em;
-  position: relative;
-  border-radius: 0.3em;
-  background: #428;
-}
-#home #scientific-publications h2
-{
-  display: block;
-  margin: 0;
-  padding: 1em 1em 0.5em 1em;
-  font-size: 2em;
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
+  margin: 5em 1em;
 }
 #home #scientific-publications ol
 {
   counter-reset: publication;
-  margin: 1em 1em 1em 3em;
-  padding-bottom: 1em;
+  margin: auto;
+  padding: 0 0 1em 1.5em;
   font-size: 1.2em;
   font-family: 'Josefin Sans', sans-serif;
   list-style: none;
+  max-width: 49em;
 }
 #home #scientific-publications ol li
 {
@@ -912,6 +1014,10 @@ code .string
 #home #scientific-publications cite
 {
   font-style: normal;
+}
+#home #scientific-publications a
+{
+  white-space: nowrap;
 }
 
 #home pre code
@@ -1180,7 +1286,15 @@ code .string
 #step-by-step-example main section input:nth-of-type(n):checked ~ ol li:nth-of-type(n)::before,
 #step-by-step-example main section label:nth-of-type(n):hover ~ ol li:nth-of-type(n)::before,
 #step-by-step-example main section input:nth-of-type(n):checked ~ figure figure:nth-of-type(n),
-#step-by-step-example main section label:nth-of-type(n):hover ~ figure figure:nth-of-type(n)
+#step-by-step-example main section label:nth-of-type(n):hover ~ figure figure:nth-of-type(n),
+#home #step-by-step-example section input:nth-of-type(n):checked ~ p,
+#home #step-by-step-example section label:nth-of-type(n):hover ~ p,
+#home #step-by-step-example section input:nth-of-type(n):checked ~ ol li:nth-of-type(n),
+#home #step-by-step-example section label:nth-of-type(n):hover ~ ol li:nth-of-type(n),
+#home #step-by-step-example section input:nth-of-type(n):checked ~ ol li:nth-of-type(n)::before,
+#home #step-by-step-example section label:nth-of-type(n):hover ~ ol li:nth-of-type(n)::before,
+#home #step-by-step-example section input:nth-of-type(n):checked ~ figure figure:nth-of-type(n),
+#home #step-by-step-example section label:nth-of-type(n):hover ~ figure figure:nth-of-type(n)
 {
   animation: none;
 }
@@ -1470,7 +1584,7 @@ code .string
   margin: 0;
   padding: 1em;
   border-radius: 0 0.3em 0.3em 0;
-  background: url(fabric-dark_.png) #322;
+  background: #322;
   color: white;
 }
 #showcases section:nth-of-type(2n)
