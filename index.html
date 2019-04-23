@@ -242,7 +242,7 @@
           <ol>
             <li>
               Enable the <a href="http://docs.scala-lang.org/overviews/macros/paradise.html" rel="nofollow">Macro Paradise Plugin</a> (for macro annotations) in your <em>build.sbt</em>
-              <pre><code>addCompilerPlugin(<span class="string">"org.scalamacros"</span> % <span class="string">"paradise"</span> % <span class="string">"2.1.0"</span> cross CrossVersion.patch)</code></pre>
+              <pre><code>addCompilerPlugin(<span class="string">"org.scalamacros"</span> % <span class="string">"paradise"</span> % <span class="string">"2.1.1"</span> cross CrossVersion.patch)</code></pre>
             </li>
             <li>
               Add the resolver for the ScalaLoci dependencies to your <em>build.sbt</em>
@@ -252,46 +252,55 @@
               Add the ScalaLoci dependencies that you need for your system to your <em>build.sbt</em>
               <ol>
                 <li>
-                  ScalaLoci core (always required):
-                  <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-core"</span> % <span class="string">"0.1.0"</span></code></pre>
+                  ScalaLoci language (always required):
+                  <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-lang"</span> % <span class="string">"0.2.0"</span></code></pre>
                 </li>
                 <li>
                   Transmitter for the types of values to be accessed remotely
                   <ul>
                     <li>
                       Built-in Scala types and standard collections
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-transmitter-basic"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-lang-transmitter-basic"</span> % <span class="string">"0.2.0"</span></code></pre>
                     </li>
                     <li>
                       <a href="http://www.rescala-lang.com/">REScala</a> reactive events and signals
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-transmitter-rescala"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-lang-transmitter-rescala"</span> % <span class="string">"0.2.0"</span></code></pre>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  Network protocols to connect the different components of the distributed system
+                  Network communicators to connect the different components of the distributed system
                   <ul>
                     <li>
                       TCP [<em>JVM only</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-network-tcp"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-tcp"</span> % <span class="string">"0.2.0"</span></code></pre>
                     </li>
                     <li>
                       WebSocket (using <a href="http://doc.akka.io/docs/akka-http/current/">Akka HTTP</a> on the JVM) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-network-ws-akka"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-ws-akka"</span> % <span class="string">"0.2.0"</span></code></pre>
                     </li>
                     <li>
                       WebSocket (<a href="http://www.playframework.com">Play</a> integration) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-network-ws-akka-play"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-ws-akka-play"</span> % <span class="string">"0.2.0"</span></code></pre>
                     </li>
                     <li>
                       WebRTC [<em>JS web browser APIs only</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-network-webrtc"</span> % <span class="string">"0.1.0"</span></code></pre>
+                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-webrtc"</span> % <span class="string">"0.2.0"</span></code></pre>
                     </li>
                   </ul>
                 </li>
                 <li>
                   Serializer for network communication
-                  <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-serializable-upickle"</span> % <span class="string">"0.1.0"</span></code></pre>
+                  <ul>
+                    <li>
+                      <a href="http://www.lihaoyi.com/upickle/">µPickle</a> serialization
+                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-serializer-upickle"</span> % <span class="string">"0.2.0"</span></code></pre>
+                    </li>
+                    <li>
+                      <a href="http://circe.github.io/circe/">Circe</a> serialization
+                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-serializer-circe"</span> % <span class="string">"0.2.0"</span></code></pre>
+                    </li>
+                  </ul>
                 </li>
               </ol>
             </li>
