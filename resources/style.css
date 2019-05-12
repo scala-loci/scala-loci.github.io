@@ -984,11 +984,11 @@ code .string
   }
 }
 
-#home #scientific-publications
+#home #publications
 {
   margin: 5em 1em;
 }
-#home #scientific-publications ol
+#home #publications ol
 {
   counter-reset: publication;
   margin: auto;
@@ -998,11 +998,11 @@ code .string
   list-style: none;
   max-width: 49em;
 }
-#home #scientific-publications ol li
+#home #publications ol li
 {
   margin-top: 1em;
 }
-#home #scientific-publications ol li::before
+#home #publications ol li::before
 {
   counter-increment: publication;
   content: "[" counter(publication) "]";
@@ -1011,11 +1011,11 @@ code .string
   width: 1.5em;
   margin-left: -1.5em;
 }
-#home #scientific-publications cite
+#home #publications cite
 {
   font-style: normal;
 }
-#home #scientific-publications a
+#home #publications a
 {
   white-space: nowrap;
 }
