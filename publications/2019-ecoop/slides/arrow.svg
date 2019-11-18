@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="700" height="700" version="1.1">
+  <defs>
+    <linearGradient id="linearGradient">
+      <stop offset="0" stop-color="#008000" />
+      <stop offset="1" stop-color="#004500" />
+    </linearGradient>
+    <radialGradient
+      id="radialGradient"
+      xlink:href="#linearGradient"
+      gradientUnits="userSpaceOnUse"
+      cx="300" cy="400" fx="170" fy="500" r="500" />
+  </defs>
+  <path
+    d="M 0.71277,-5.7992883e-6 C 2.5712,-5.7992883e-6 700.70129,349.99228 699.99947,350.57212 697.6447,352.51761 0.53861,700.63964 0.2802,699.99912 0.11142,699.58075 33.971119,620.70187 75.523971,524.71272 L 151.07463,350.18698 75.537306,175.94488 C 33.991793,80.111704 0,1.3196342 0,0.8513742 0,0.3831142 0.32075,-5.7992883e-6 0.71277,-5.7992883e-6 Z"
+    fill="url(#radialGradient)" />
+</svg>

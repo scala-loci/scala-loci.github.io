@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Distributed System Development with ScalaLoci</title>
+
+    <link rel="stylesheet" href="../../../presentation/reveal.js/css/reveal.css" />
+    <link rel="stylesheet" href="../../../presentation/reveal.js/css/theme/white.css" />
+
+    <link rel="stylesheet" href="../../../presentation/highlight.js/styles/atom-one-light.css" />
+
+    <style>
+      @import url('http://fontlibrary.org/face/linux-biolinum');
+      @import url('http://fonts.googleapis.com/css?family=Lato:400,400i,700|Oxygen+Mono');
+
+      body,
+      body > .reveal > .slides > .pdf-page {
+        background:
+          linear-gradient(rgba(0, 0, 48, 0.1), rgba(0, 0, 48, 0)) repeat-x,
+          url(simple-network.svg) no-repeat,
+          linear-gradient(160deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0) 50%) no-repeat,
+          linear-gradient(rgb(224, 224, 255), white) repeat-x,
+          white;
+      }
+      @media (min-width: 2000px), (min-height: 2000px) {
+        body,
+        body > .reveal > .slides > .pdf-page {
+          background-size:
+            auto,
+            cover,
+            auto,
+            auto;
+        }
+      }
+      @media print {
+        body {
+          background: none;
+        }
+      }
+      .reveal,
+      .reveal .slide-number {
+        font-family: 'Lato', sans-serif;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .revealx figcaption {
+        font-family: 'Linux Biolinum', sans-serif;
+        font-weight: normal;
+        text-transform: none;
+      }
+      .reveal .slide-number {
+        display: block;
+        margin: 0 40%;
+        width: 20%;
+        text-align: center;
+        background: none;
+      }
+      .reveal .slide-number a {
+        background: none;
+        color: black;
+      }
+      .reveal table th,
+      .reveal table td {
+        border: none;
+      }
+      .reveal .slides > section[data-transition=none].past,
+      .reveal .slides > section[data-transition~=none-out].past,
+      .reveal.none .slides > section:not([data-transition]).past,
+      .reveal .slides > section > section[data-transition=none].past,
+      .reveal .slides > section > section[data-transition~=none-out].past,
+      .reveal.none .slides > section > section:not([data-transition]).past,
+      .reveal .slides > section[data-transition=none].present,
+      .reveal .slides > section[data-transition~=none-in].present,
+      .reveal.none .slides > section:not([data-transition]).present,
+      .reveal .slides > section section[data-transition=none].present,
+      .reveal .slides > section section[data-transition~=none-in].present,
+      .reveal.none .slides > section section:not([data-transition]).present {
+        -webkit-transform: none;
+        transform: none;
+        transition: none;
+      }
+      .reveal .slides > section.present,
+      .reveal .slides > section > section.present {
+        z-index: 9;
+      }
+      .reveal h2 {
+        font-size: 1.2em;
+        width: 80%;
+        margin: 1em auto 0.5em;
+        border-bottom: 0.02em solid #555;
+        line-height: 0.8em;
+      }
+      .reveal .slides pre {
+        background: #efefef;
+        font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Oxygen Mono', monospace !important;
+      }
+      .reveal pre.grayed-out {
+        background: #f6f6f6;
+      }
+      .reveal .slides pre code {
+        padding: 10px;
+        line-height: 1.6em;
+        max-height: none;
+        background: none;
+        font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Oxygen Mono', monospace !important;
+      }
+      .reveal pre.grayed-out code {
+        opacity: 0.3;
+      }
+      .reveal section img {
+        background: none;
+        border: none;
+        box-shadow: none;
+      }
+      .reveal .slides section .semi-out {
+        opacity: 0.5;
+      }
+      .reveal .slides section .fragment.highlight.current-fragment,
+      .reveal .slides section .fragment.highlight-visible.current-fragment {
+        background: #c8c8ff;
+        box-shadow: 0 0 5px 5px #c8c8ff;
+      }
+      .reveal .slides section .fragment.highlight-visible {
+        visibility: inherit;
+        opacity: 1;
+      }
+      .reveal .slides section .fragment.extend {
+        display: inline-block;
+        max-width: 0;
+        transition: all 3s ease;
+      }
+      .reveal .slides section .fragment.extend.visible {
+        max-width: 100em;
+      }
+      .reveal figcaption {
+        margin: 0 0.3em 0.5em 0.3em;
+        line-height: 1.2em;
+        min-height: 2.4em;
+        font-size: 0.8em;
+        color: #666;
+        text-align: left;
+      }
+      .reveal ul.legend {
+        margin: 0;
+        padding: 0;
+        display: block;
+        list-style: none;
+        font-size: 0.3em;
+      }
+      .reveal ul.legend li {
+        position: relative;
+        display: inline;
+        margin: 0 1em;
+      }
+      .reveal figure ul.legend li {
+        display: block;
+        margin: 0.2em 1em;
+      }
+      .reveal ul.legend li[data-color="b08000"]::before,
+      .reveal ul.legend li[data-color="b08000"]::after {
+        background: #b08000;
+        border-color: #b08000;
+      }
+      .reveal ul.legend li[data-color="b0b000"]::before,
+      .reveal ul.legend li[data-color="b0b000"]::after {
+        background: #b0b000;
+        border-color: #b0b000;
+      }
+      .reveal ul.legend li[data-color="ffff00"]::before,
+      .reveal ul.legend li[data-color="ffff00"]::after {
+        background: #ffff00;
+        border-color: #ffff00;
+      }
+      .reveal ul.legend li[data-color="ffa500"]::before,
+      .reveal ul.legend li[data-color="ffa500"]::after {
+        background: #ffa500;
+        border-color: #ffa500;
+      }
+      .reveal ul.legend li::before {
+        content: "";
+        display: inline-block;
+        margin-right: 0.5em;
+        width: 1em;
+        height: 1em;
+      }
+      .reveal ul.legend li[data-symbol]::before {
+        width: 2em;
+        height: 0.2em;
+        margin-bottom: 0.3em;
+      }
+      .reveal ul.legend li[data-symbol]::after {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: 0.6em;
+        margin-top: 0.1em;
+        border-style: solid;
+        background: none;
+      }
+      .reveal ul.legend li[data-symbol="triangle"]::after {
+        border-width: 0 0.4em 0.8em;
+        border-left-color: transparent;
+        border-right-color: transparent;
+      }
+      .reveal ul.legend li[data-symbol="circle"]::after {
+        border-width: 0.4em;
+        border-radius: 0.4em;
+      }
+      .reveal ul.legend li[data-symbol="rect"]::after {
+        border-width: 0.4em;
+      }
+      .reveal section img[src="check.svg"],
+      .reveal section img[src="cross.svg"] {
+        margin: -16px 0 0 -72px;
+        position: absolute;
+      }
+      .reveal .info,
+      .reveal .solution {
+        position: relative;
+        padding: 5px;
+        font-size: 0.7em;
+        border-radius: 5px;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+      }
+      .reveal .info {
+        background: #bd582c;
+        color: white;
+      }
+      .reveal .solution {
+        background: #309030;
+        color: white;
+      }
+      section#cover::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 12em;
+        height: 12em;
+        left: 50%;
+        margin-top: -2em;
+        margin-left: -6em;
+        background: url(logo.svg) no-repeat center center;
+        background-size: contain;
+        opacity: 0.2;
+      }
+      section#cover h1 {
+        position: relative;
+        margin-top: 3em;
+        font-size: 1em;
+        line-height: 0.8em;
+        color: #333;
+      }
+      section#cover h1 em {
+        display: block;
+        margin: 0.2em auto;
+        padding-top: 0.2em;
+        width: 80%;
+        font-style: normal;
+        border-top: 0.05em solid #555;
+        font-size: 1.25em;
+        color: black;
+      }
+      section#cover p {
+        position: relative;
+        margin-top: 5.5em;
+        margin-bottom: 0;
+        font-size: 0.7em;
+        color: #555;
+      }
+      section#cover p + p {
+        position: relative;
+        margin-top: 0.2em;
+        font-size: 0.7em;
+        color: #555;
+      }
+      section#problem {
+        width: 1280px;
+        height: 720px;
+      }
+      section#problem object {
+        position: absolute;
+        top: 20px;
+        left: 50px;
+        width: 1080px;
+        height: 856px;
+      }
+      section#problem img {
+        position: absolute;
+        top: 20px;
+        left: 150px;
+        width: 202px;
+        height: 204px;
+      }
+      section#problem object + img {
+        top: auto;
+        bottom: 50px;
+        left: 200px;
+        width: 152px;
+        height: 368px;
+      }
+      section#multitier {
+        width: 1280px;
+        height: 720px;
+      }
+      section#multitier > object {
+        position: absolute;
+        top: 20px;
+        left: 50px;
+        width: 1080px;
+        height: 856px;
+        transition: transform .5s ease;
+        transform: perspective(1000px);
+      }
+      section#multitier .fragment.visible ~ object {
+        transform: perspective(1000px) rotateX(-10deg);
+      }
+      @media print {
+        section#multitier .fragment.visible ~ object {
+          transform: rotateX(-10deg);
+        }
+      }
+      .speaker-view section#multitier object {
+        transition: none;
+      }
+      section#multitier img {
+        position: absolute;
+        top: 20px;
+        left: 150px;
+        width: 202px;
+        height: 204px;
+      }
+      section#multitier object + img {
+        top: auto;
+        bottom: 50px;
+        left: 200px;
+        width: 152px;
+        height: 368px;
+      }
+      section#multitier div {
+        position: absolute;
+        top: 2em;
+        left: 230px;
+        padding: 0 0.5em 0.5em 0.5em;
+        line-height: 2em;
+        width: 15em;
+        font-size: 1em;
+        z-index: 1;
+      }
+      section#multitier div object {
+        display: block;
+        margin: 0.5em auto 0 auto
+      }
+      section#scala-loci ul {
+        list-style: none;
+        margin-right: 1.5em;
+      }
+      section#scala-loci li {
+        margin: 3em auto;
+        padding: 1em 0.1em 1em 3em;
+        list-style: none;
+        text-align: center;
+        font-size: 0.8em;
+        width: 17em;
+        background: url(architecture.svg) #309030 no-repeat 0.5em 0.25em;
+        background-size: 91px 77px;
+      }
+      section#scala-loci li + li {
+        background-image: url(composition.svg);
+      }
+      section#scala-loci li li {
+        position: absolute;
+        z-index: 1;
+        font-size: 1em;
+        margin-top: 0.9em;
+        margin-left: -2.5em;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3), 0px 0px 0px 10px rgba(255, 255, 255, 0.5);
+        background-image: url(placement.svg);
+      }
+      section#placement-types pre {
+        float: left;
+        width: 60%;
+        margin: 25px 0 25px 15%;
+      }
+      section#placement-types div:first-of-type {
+        line-height: 2.8em;
+      }
+      section#placement-types div {
+        float: left;
+        width: 15%;
+        min-height: 2.8em;
+        margin: 25px 0 25px 1%;
+      }
+      section#architecture pre {
+        margin: 25px 5%;
+        width: 90%;
+        float: left;
+      }
+      section#architecture div {
+        position: absolute;
+        box-sizing: border-box;
+        right: 5%;
+        width: 13em;
+        top: 10em;
+      }
+      section#architecture div + div {
+        top: 14em;
+        padding: 5px 20px;
+      }
+      section#architecture object {
+        display: block;
+        margin: 4.5em 0 0 3em;
+      }
+      section#remote-access object,
+      section#aggregation object {
+        position: absolute;
+        top: 9.5em;
+        left: 9em;
+      }
+      section#data-flow object,
+      section#distributed-data-flow object {
+        margin: 1em 0 0 2em;
+      }
+      section#complete-distributed-chat pre {
+        font-size: 0.47em;
+      }
+      section#complete-distributed-chat object {
+        position: absolute;
+        top: 5em;
+        right: 1.4em;
+      }
+      section#evaluation {
+        width: 1280px;
+        height: 720px;
+      }
+      @media print {
+        section#evaluation img {
+          margin-top: -0.2em;
+        }
+      }
+      section#evaluation h4 {
+        font-size: 0.75em;
+        font-family: 'Lato', sans-serif;
+        text-align: left;
+        margin-left: 2em;
+      }
+      section#evaluation img + h4 {
+        margin-top: 7em;
+      }
+      section#evaluation img {
+        position: absolute;
+        transform: scale(0);
+        transition: all 0.5s ease;
+      }
+      section#evaluation img.visible {
+        transform: scale(1);
+      }
+      section#evaluation img:first-of-type {
+        z-index: 1;
+        top: 170px;
+        left: 170px;
+        width: 109px;
+        height: 143px;
+      }
+      section#evaluation img:first-of-type + img {
+        top: 170px;
+        left: 250px;
+        width: 237px;
+        height: 180px;
+      }
+      section#evaluation img:first-of-type + img + img {
+        z-index: 1;
+        top: 185px;
+        left: 620px;
+        width: 120px;
+        height: 120px;
+      }
+      section#evaluation img:first-of-type + img + img + img {
+        top: 170px;
+        left: 700px;
+        width: 349px;
+        height: 185px;
+      }
+      section#evaluation img + h4 ~ img {
+        top: 440px;
+        left: 650px;
+        width: 267px;
+        height: 134px;
+      }
+      section#evaluation img + h4 + img + img {
+        z-index: 1;
+        top: 480px;
+        left: 790px;
+      }
+      section#evaluation img + h4 + img + img + img {
+        z-index: 0;
+        top: 430px;
+        left: 270px;
+      }
+      section#evaluation img + h4 + img + img + img + img {
+        z-index: 1;
+        top: 480px;
+        left: 140px;
+      }
+      section#evaluation img + h4 + img + img + img + img + img {
+        z-index: 0;
+        top: 500px;
+        left: 370px;
+      }
+      section#evaluation img + h4 + img + img + img + img + img + img {
+        top: 545px;
+        left: 590px;
+      }
+      section#side-by-side ol,
+      section#side-by-side li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      section#side-by-side ol {
+        width: 922px;
+      }
+      section#side-by-side ol li {
+        font-size: 0.75em;
+        float: left;
+        color: #666;
+        width: 24.2%;
+      }
+      section#side-by-side ol li + li {
+        width: 25.8%;
+      }
+      section#side-by-side ol li + li + li {
+        width: 27.2%;
+      }
+      section#side-by-side ol li + li + li + li {
+        width: 22.8%;
+      }
+      section#side-by-side object {
+        margin-top: -0.5em;
+        width: 922px;
+        height: 520px;
+      }
+      section#side-by-side .legend {
+        position: absolute;
+        top: 22em;
+        left: 6.6em;
+        font-size: 0.65em;
+        color: #666;
+      }
+      @media print {
+        section#side-by-side .legend {
+          top: 21em;
+        }
+      }
+      section#side-by-side .legend li {
+        display: block;
+      }
+      section#gearpump img {
+        position: absolute;
+        top: 115px;
+        left: 150px;
+        width: 100px;
+        height: 100px;
+      }
+      section#gearpump img + img {
+        top: 130px;
+        left: 295px;
+        width: 106px;
+        height: 70px;
+      }
+      section#gearpump img + img + img {
+        left: 420px;
+        width: 144px;
+      }
+      section#gearpump object {
+        margin-left: 5em;
+        margin-top: 0;
+        transform: scale(0.8);
+      }
+      section#gearpump div {
+        width: 10em;
+        margin-left: 3em;
+        margin-top: -7em;
+      }
+      section#gearpump div + div {
+        margin-top: 1em;
+      }
+      section#gearpump pre {
+        margin-top: 1.5em;
+        font-size: 0.5em;
+      }
+      section#flink {
+        width: 1280px;
+        height: 720px;
+      }
+      section#flink img {
+        position: absolute;
+        top: 115px;
+        left: 150px;
+        width: 109px;
+        height: 143px;
+      }
+      section#flink object {
+        position: absolute;
+        top: 0;
+        left: 350px;
+      }
+      section#flink object + object {
+        position: absolute;
+        top: 0;
+        left: 950px;
+      }
+      section#flink div {
+        width: 21em;
+        padding: 8px;
+        margin-left: 3.5em;
+        font-size: 0.6em;
+        text-align: left;
+      }
+      section#flink object + div {
+        margin-top: 12em;
+      }
+      section#flink object + div + div {
+        margin-top: 0.5em;
+      }
+      section#flink-performance img {
+        position: absolute;
+        top: 115px;
+        left: 150px;
+        width: 109px;
+        height: 143px;
+      }
+      section#flink-performance img + img {
+        position: absolute;
+        top: 115px;
+        left: 300px;
+        width: 119px;
+        height: 143px;
+      }
+      section#flink-performance img + ul,
+      section#flink-performance img + ul li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      section#flink-performance img + ul li,
+      section#flink-performance img + ul li + li {
+        display: block;
+        top: 5.5em;
+        left: 350px;
+        font-size: 0.7em;
+        position: absolute;
+        margin-left: 120px;
+      }
+      section#flink-performance img + ul li + li {
+        top: 7em;
+      }
+      section#flink-performance figcaption {
+        font-size: 0.5em;
+        margin-bottom: -0.5em;
+      }
+      section#flink-performance figure {
+        position: absolute;
+        height: 6em;
+        width: 300px;
+        top: 6.8em;
+        left: 350px;
+      }
+      section#flink-performance figure + figure {
+        left: 700px;
+      }
+      section#flink-performance figure ul {
+        margin-left: 5em;
+      }
+      section#paper {
+        width: 1280px;
+        height: 720px;
+      }
+      section#paper img {
+        width: 927px;
+        height: 1373px;
+        margin-top: -0.05em;
+        max-height: none;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+      }
+      section#paper ul,
+      section#paper li {
+        margin: 0;
+        list-style: none;
+      }
+      section#paper li {
+        position: absolute;
+        top: 5.8em;
+        right: 1.6em;
+        width: 10em;
+        padding: 10px;
+        font-size: 0.8em;
+        line-height: 1.5em;
+      }
+      section#paper li + li {
+        top: 8.2em;
+      }
+      section#paper li + li + li {
+        top: 10.6em;
+      }
+      section#paper li + li + li + li {
+        top: 13em;
+      }
+      section#paper li + li + li + li + li {
+        top: 15.4em;
+      }
+      section#paper li + li + li + li + li + li {
+        top: 17.8em;
+      }
+      section#website img {
+        width: 960px;
+        height: 540px;
+      }
+      section#conclusion::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 5em;
+        height: 5em;
+        left: 6em;
+        margin-top: -0.4em;
+        background: url(logo.svg) no-repeat center center;
+        background-size: contain;
+      }
+      section#conclusion h2::before {
+        content: "ScalaLoci";
+        display: block;
+      }
+      section#conclusion h2 {
+        height: 0.8em;
+        overflow: hidden;
+      }
+      section#conclusion ul,
+      section#conclusion li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      section#conclusion ul {
+        margin-right: 42%;
+      }
+      section#conclusion li {
+        margin: 3em auto;
+        padding: 1em 0.1em 1em 3em;
+        list-style: none;
+        text-align: center;
+        font-size: 0.8em;
+        width: 17em;
+        background: url(architecture.svg) #309030 no-repeat 0.5em 0.25em;
+        background-size: 91px 77px;
+      }
+      section#conclusion li + li {
+        background-image: url(composition.svg);
+      }
+      section#conclusion li li {
+        position: absolute;
+        z-index: 1;
+        font-size: 1em;
+        margin-top: 0.9em;
+        margin-left: -1.4em;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3), 0px 0px 0px 10px rgba(255, 255, 255, 0.5);
+        background-image: url(placement.svg);
+      }
+      section#conclusion img {
+        position: absolute;
+        margin-top: -1.5em;
+        left: 100%;
+        transform: scale(1.5);
+      }
+      section#conclusion li + li img {
+        position: absolute;
+        margin-top: -0.5em;
+        left: 102%;
+      }
+      section#conclusion pre {
+        position: absolute;
+        margin-top: -2em;
+        left: 105%;
+        width: 19.5em;
+        font-size: 0.7em;
+        font-weight: normal;
+      }
+    </style>
+
+    <script>
+      var link = document.createElement("link")
+      link.rel = "stylesheet"
+      link.type = "text/css"
+      link.href = window.location.search.match(/print-pdf/gi) ? "../../../presentation/reveal.js/css/print/pdf.css" : "../../../presentation/reveal.js/css/print/paper.css"
+      document.getElementsByTagName("head")[0].appendChild(link)
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section id="cover" class="center" data-transition="convex">
+          <h1>Distributed System Development with <em>ScalaLoci</em></h1>
+          <p>Pascal Weisenburger, Mirko Köhler, Guido Salvaneschi</p>
+          <p>TU Darmstadt, Germany</p>
+        </section>
+
+        <section id="problem" data-transition="convex-in none-out">
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <object class="animate-svg" data="flink-original-extended.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var lines = [
+                  [ "line-a-b-0", 33, 20, 205, 28 ],
+                  [ "line-a-b-1", 33, 35, 205, 57 ],
+                  [ "line-a-b-2", 34, 46, 205, 18 ],
+                  [ "line-a-b-3", 34, 60, 205, 142 ],
+                  [ "line-a-b-4", 34, 72, 205, 150 ],
+                  [ "line-a-b-5", 34, 85, 205, 194 ],
+                  [ "line-a-b-6", 34, 97, 205, 109 ],
+                  [ "line-a-b-7", 33, 113, 205, 118 ],
+                  [ "line-a-b-8", 32, 130, 205, 262 ],
+                  [ "line-a-b-9", 32, 150, 205, 226 ],
+                  [ "line-a-b-10", 34, 161, 205, 77 ],
+                  [ "line-b-a-0", 226, 20, 101, 45 ],
+                  [ "line-b-a-1", 281, 85, 139, 160 ],
+                  [ "line-b-a-2", 283, 90, 139, 160 ],
+                  [ "line-b-a-3", 238, 100, 139, 160 ],
+                  [ "line-b-a-4", 227, 112, 68, 101 ],
+                  [ "line-b-a-5", 227, 146, 104, 63 ],
+                  [ "line-b-a-6", 235, 166, 128, 76 ],
+                  [ "line-b-a-7", 238, 175, 128, 76 ],
+                  [ "line-b-a-8", 232, 207, 128, 88 ],
+                  [ "line-b-a-9", 232, 217, 128, 88 ]
+                ]
+
+                lines.forEach(function(line, index) {
+                  var id = line[0], x1 = line[1], y1 = line[2], x2 = line[3], y2 = line[4]
+                  x1 = 0.999 * x1 + 0.001 * x2
+                  y1 = 0.999 * y1 + 0.001 * y2
+                  begin = (index % 4) / 8
+
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />')
+
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="marker-end" from="none" to="url(#arrow)" data-begin="' + begin + '" dur="0.5s" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="x2" from="' + x1 + '" to="' + x2 + '" data-begin="' + begin + '" dur="0.5s" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="y2" from="' + y1 + '" to="' + y2 + '" data-begin="' + begin + '" dur="0.5s" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+
+              <animate xlink:href="#task-manager-actions" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#task-manager-actions" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#checkpoint-responder" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#checkpoint-responder" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#kv-state-registry-listener" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#kv-state-registry-listener" attributeName="opacity" from="0" to="0" fill="freeze" />
+            </svg>
+          </object>
+
+          <img class="fragment" data-fragment-index="2" src="confused.svg" width="38" height="92" />
+        </section>
+
+        <section id="multitier" class="load-first-fragment" data-transition="none-in convex-out">
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <span class="fragment" data-fragment-index="0"></span>
+
+          <div class="fragment info" data-fragment-index="1">Multitier Languages <object class="fragment" data-fragment-index="2" data="multitier.svg"></object></div>
+
+          <object class="animate-svg" data="flink-original-extended.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var lines = [
+                  "line-a-b-0", "line-a-b-1", "line-a-b-2", "line-a-b-3", "line-a-b-4", "line-a-b-5",
+                  "line-a-b-6", "line-a-b-7", "line-a-b-8", "line-a-b-9", "line-a-b-10",
+                  "line-b-a-0", "line-b-a-1", "line-b-a-2", "line-b-a-3", "line-b-a-4", "line-b-a-5",
+                  "line-b-a-6", "line-b-a-7", "line-b-a-8", "line-b-a-9",
+                ]
+
+                lines.forEach(function(id) {
+                  document.write('<animate xlink:href="#' + id + '" attributeName="opacity" from="0" to="0" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+
+              <animateTransform xlink:href="#task-manager-actions" attributeName="transform" type="translate" from="10, 120" to="10, 120" fill="freeze" />
+              <animateTransform xlink:href="#task-manager-actions" attributeName="transform" additive="sum" type="skewY" from="-30" to="-30" fill="freeze" />
+              <animateTransform xlink:href="#checkpoint-responder" attributeName="transform" type="translate" from="320, 120" to="320, 120" fill="freeze" />
+              <animateTransform xlink:href="#checkpoint-responder" attributeName="transform" additive="sum" type="skewY" from="-10" to="-10" fill="freeze" />
+              <animateTransform xlink:href="#kv-state-registry-listener" attributeName="transform" type="translate" from="80, 120" to="80, 120" fill="freeze" />
+              <animateTransform xlink:href="#kv-state-registry-listener" attributeName="transform" additive="sum" type="skewY" from="10" to="10" fill="freeze" />
+
+              <animateTransform xlink:href="#job-manager" class="fragment" data-fragment-index="0" attributeName="transform" type="translate" from="5, 5" to="5, 20" dur="0.5s" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />
+              <animateTransform xlink:href="#task-manager" class="fragment" data-fragment-index="0" attributeName="transform" type="translate" from="200, 5" to="200, 20" dur="0.5s" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />
+              <animateTransform xlink:href="#task-manager" class="fragment" data-fragment-index="0" attributeName="transform" additive="sum" type="skewY" from="0" to="30" dur="0.5s" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />
+              <animate xlink:href="#task-manager-actions" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze" />
+              <animate xlink:href="#checkpoint-responder" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze" />
+              <animate xlink:href="#kv-state-registry-listener" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze" />
+            </svg>
+          </object>
+
+          <img src="confused.svg" width="38" height="92" />
+        </section>
+
+        <section id="scala-loci" data-transition="convex-in convex-out">
+          <h2>ScalaLoci</h2>
+
+          <ul>
+            <li class="solution">Generic Distributed Architectures
+              <ul>
+                <li class="fragment solution" data-fragment-index="1">Placement Types</li>
+              </ul>
+            </li>
+            <li class="fragment solution" data-fragment-index="0">Multitier Event Streams</li>
+          </ul>
+        </section>
+
+        <section id="placement-types" data-transition="convex-in fade-out">
+          <h2>Placement Types</h2>
+
+          <pre class="fragment" data-fragment-index="3"><code class="scala" data-trim data-noescape>
+          trait Registry extends Peer
+          trait Node extends Peer
+          </code></pre>
+
+          <div class="fragment solution" data-fragment-index="3">Peers</div>
+
+          <pre><code class="scala" data-trim data-noescape>
+          val message: <span class="fragment highlight-visible" data-fragment-index="1">Event[String]<span class="fragment" data-fragment-index="0"> on Registry</span></span>
+            <span class="fragment" data-fragment-index="2">= placed { getMessageStream() }</span>
+          </code></pre>
+
+          <div class="fragment solution" data-fragment-index="0">Placement Types</div>
+        </section>
+
+        <section id="architecture" data-transition="none-in fade-out">
+          <h2>Architecture</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          trait Registry extends Peer<span class="fragment" data-fragment-index="1"> { type Tie &lt;: Multiple[Node] }</span>
+          trait Node extends Peer<span class="fragment" data-fragment-index="1"> { type Tie &lt;: Single[Registry]<span class="fragment" data-fragment-index="3"> with Multiple[Node]</span> }</span>
+          </code></pre>
+
+          <div class="fragment solution" data-fragment-index="0">Architecture Specification through Peer Types</div>
+
+          <div class="fragment solution" data-fragment-index="5">Architecture-Based Remote Access</div>
+
+          <object class="animate-svg" data="architecture-p2p.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var nodes = [
+                  [ "registry", 250, 100 ],
+                  [ "node-0", 35, 35 ],
+                  [ "node-1", 100, 175 ],
+                  [ "node-2", 415, 195 ],
+                  [ "node-3", 470, 40 ],
+                  [ "node-4", 605, 120 ]
+                ]
+
+                nodes.forEach(function(node, index) {
+                  var id = node[0], x = node[1], y = node[2]
+                  var begin = 0.05 * index
+
+                  document.write('<animateTransform xlink:href="#' + id + '" class="fragment" data-fragment-index="2" attributeName="transform"" type="translate" from="' + x + ', ' + y + '" to="' + x + ', ' + y + '" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                  document.write('<animateTransform xlink:href="#' + id + '" class="fragment" data-fragment-index="2" attributeName="transform" additive="sum" type="scale" from="0" to="1" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                })
+
+                var registryLines = [
+                  [ "line-registry-0", 35, 35 ],
+                  [ "line-registry-1", 100, 175 ],
+                  [ "line-registry-2", 415, 195 ],
+                  [ "line-registry-3", 470, 40 ],
+                  [ "line-registry-4", 605, 120 ],
+                ]
+
+                registryLines.forEach(function(line, index) {
+                  var id = line[0], x = line[1], y = line[2]
+                  var begin = 0.05 * (index + 1)
+
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="2" attributeName="stroke-width" from="0" to="10" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                })
+
+                var nodeLines = [
+                  "line-node-0",
+                  "line-node-1",
+                  "line-node-2"
+                ]
+
+                nodeLines.forEach(function(id) {
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="4" attributeName="stroke-width" from="0" to="10" dur="0.1s" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+        </section>
+
+        <section id="remote-access" data-transition="convex-in fade-out">
+          <h2>Remote Access</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          trait Registry extends Peer { type Tie &lt;: Single[Node] }
+          trait Node extends Peer { type Tie &lt;: Single[Registry] }
+
+          val message: Event[String] on Node
+
+          <span class="fragment" data-fragment-index="0">placed[Registry] {
+            message.asLocal<span class="fragment" data-fragment-index="1">: Event[String]</span>
+          }</span>
+          </code></pre>
+
+          <object class="animate-svg" data="architecture-cs.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#client-1" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#client-2" attributeName="opacity" from="0" to="0" fill="freeze" />
+            </svg>
+          </object>
+        </section>
+
+        <section id="aggregation" class="load-first-fragment" data-transition="none-in fade-out">
+          <h2>Aggregation</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          trait Registry extends Peer { type Tie &lt;: Multiple[Node] }
+          trait Node extends Peer { type Tie &lt;: Single[Registry] }
+
+          val message: Event[String] on Node
+
+          placed[Registry] {
+            message.asLocal<span class="fragment" data-fragment-index="1">FromAll: Map[Remote[Node], Event[String]]</span>
+          }
+          </code></pre>
+
+          <object class="animate-svg" data="architecture-cs.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#client-1" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#client-2" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+            </svg>
+          </object>
+        </section>
+
+        <section id="communication" data-transition="convex-in fade-out">
+          <h2>Communication</h2>
+
+          <object data="communication.svg"></object>
+        </section>
+
+        <section id="data-flow" data-transition="none-in fade-out">
+          <h2>Data Flow</h2>
+
+          <pre class="fragment" data-fragment-index="3"><code class="scala" data-trim data-noescape>
+          val message = Event[String]()
+          val result = message map processMessage
+          val ui = new UI(result)
+          </code></pre>
+
+          <object class="animate-svg" data="reactivity.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var lines = [ [ "reactivity-path-0", 190 ], [ "reactivity-path-1", 410 ], [ "reactivity-path-2", 190 ] ]
+
+                lines.forEach(function(line, index) {
+                  var id = line[0], dash = line[1]
+
+                  document.write('<animate xlink:href="#' + id + '" attributeName="stroke-dasharray" from="' + dash + '" to="' + dash + '" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + index + '" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.1s" data-begin="0.2" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + index + '" attributeName="stroke-dashoffset" from="' + dash + '" to="0" dur="0.3s" fill="freeze" />')
+                })
+
+                var texts = [ "reactivity-text-0", "reactivity-text-1", "reactivity-text-2" ]
+
+                texts.forEach(function(id, index) {
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + index + '" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+        </section>
+
+        <section id="distributed-data-flow" class="load-first-fragment" data-transition="none-in convex-out">
+          <h2>Distributed Data Flow</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          val message<span class="fragment extend" data-fragment-index="0"><span class="fragment" data-fragment-index="2">: Event[String] on Node</span></span> = <span class="fragment extend" data-fragment-index="0"><span class="fragment" data-fragment-index="1">placed[Node] { </span></span>Event[String]()<span class="fragment" data-fragment-index="1"> }</span>
+          val result = <span class="fragment extend" data-fragment-index="0"><span class="fragment" data-fragment-index="3">placed[Registry] { </span></span>message<span class="fragment" data-fragment-index="4">.asLocal</span> map processMessage<span class="fragment" data-fragment-index="3"> }</span>
+          val ui = <span class="fragment extend" data-fragment-index="0"><span class="fragment" data-fragment-index="3">placed[Node] { </span></span>new UI(result<span class="fragment" data-fragment-index="4">.asLocal</span>)<span class="fragment" data-fragment-index="3"> }</span>
+          </code></pre>
+
+          <object class="animate-svg semi-out" data="reactivity.svg"></object>
+        </section>
+
+        <section id="complete-distributed-chat" data-transition="convex-in convex-out">
+          <h2>Complete Distributed Chat</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          @multitier object Chat {
+            <span class="fragment highlight" data-fragment-index="0">trait Registry extends Peer { type Tie &lt;: Multiple[Node] }</span>
+            <span class="fragment highlight" data-fragment-index="1">trait Node extends Peer { type Tie &lt;: Single[Registry] }</span>
+
+            <span class="fragment highlight" data-fragment-index="2">val message = placed[Node] { Event[String]() }</span>
+
+            <span class="fragment highlight" data-fragment-index="4">val publicMessage = placed[Registry] {</span>
+            <span class="fragment highlight" data-fragment-index="4">  message.asLocalFromAllSeq map { case (_, msg) => msg }</span>
+            <span class="fragment highlight" data-fragment-index="4">}</span>
+
+            <span class="fragment" data-fragment-index="3">placed[Node].main {
+              <span class="fragment highlight" data-fragment-index="5">publicMessage.asLocal observe println</span>
+              for (line &lt;- io.Source.stdin.getLines)
+                <span class="fragment highlight" data-fragment-index="3">message.fire(line)</span>
+            }</span>
+          }
+          </code></pre>
+
+          <span class="fragment" data-fragment-index="6"></span>
+
+          <object class="animate-svg" data="chat.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var elements = [
+                  [ [ 0 ], [ "chat-server" ], [] ],
+                  [ [ 1 ], [ "chat-client-top", "chat-client-bottom" ], [] ],
+                  [ [ 2, 3 ], [ "chat-client-top-message", "chat-client-bottom-message"], [] ],
+                  [ [ 4 ], [ "chat-server-message" ], [ [ "chat-client-top-server", 80 ], [ "chat-client-bottom-server", 80 ] ] ],
+                  [ [ 5 ], [ "chat-client-top-println", "chat-client-bottom-println" ], [ [ "chat-server-client-top", 50 ], [ "chat-server-client-bottom", 50 ] ] ]
+                ]
+
+                elements.forEach(function(element) {
+                  var indices = element[0], nodes = element[1], lines = element[2]
+
+                  nodes.forEach(function(id) {
+                    document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + indices[0] + '" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />')
+
+                    indices.forEach(function(index) {
+                      document.write('<animate xlink:href="#' + id + '" class="fragment current-fragment-only" data-fragment-index="' + index + '" attributeName="filter" from="url(#dropshadow)" to="url(#dropshadow)" dur="0.3s" fill="freeze" />')
+                      document.write('<animate xlink:href="#' + id + '" class="fragment current-fragment-only" data-fragment-index="' + (index + 1) + '" attributeName="filter" from="none" to="none" dur="0.3s" fill="freeze" />')
+                    })
+                  })
+
+                  lines.forEach(function(line) {
+                    var id = line[0], dash = line[1]
+
+                    document.write('<animate xlink:href="#' + id + '" attributeName="stroke-dasharray" from="' + dash + '" to="' + dash + '" fill="freeze" />')
+                    document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + indices[0] + '" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.1s" data-begin="0.2" fill="freeze" />')
+                    document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + indices[0] + '" attributeName="stroke-dashoffset" from="' + dash + '" to="0" dur="0.3s" fill="freeze" />')
+                  })
+                })
+
+                var nodes = [
+                  [ [ 0 ], [ "chat-server-node" ] ],
+                  [ [ 1 ], [ "chat-client-top-node", "chat-client-bottom-node" ] ],
+                  [ [ 2, 3 ], [ "chat-client-top-message-node", "chat-client-bottom-message-node" ] ],
+                  [ [ 4 ], [ "chat-server-message-node" ] ],
+                  [ [ 5 ], [ "chat-client-top-println-node", "chat-client-bottom-println-node" ] ]
+                ]
+
+                nodes.forEach(function(node) {
+                  var indices = node[0], nodes = node[1]
+
+                  nodes.forEach(function(id) {
+                    document.write('<animate xlink:href="#' + id + '" attributeName="stroke" from="#66f" to="#66f" fill="freeze" />')
+                    document.write('<animate xlink:href="#' + id + '" attributeName="stroke-width" from="0" to="0" fill="freeze" />')
+
+                    indices.forEach(function(index) {
+                      document.write('<animate xlink:href="#' + id + '" class="fragment current-fragment-only" data-fragment-index="' + index + '" attributeName="stroke-width" from="0" to="1.5" dur="0.3s" fill="freeze" />')
+                      document.write('<animate xlink:href="#' + id + '" class="fragment current-fragment-only" data-fragment-index="' + (index + 1) + '" attributeName="stroke-width" from="1.5" to="0" dur="0.3s" fill="freeze" />')
+                    })
+                  })
+                })
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+        </section>
+
+        <section id="evaluation" data-transition="convex-in convex-out">
+          <h2>Evaluation</h2>
+
+          <h4 class="fragment" data-fragment-index="0">Two <strong>existing</strong> systems</h4>
+          <img class="fragment" data-fragment-index="0" src="flink.svg" width="218" height="220" />
+          <img class="fragment" data-fragment-index="0" src="application-flink.png" width="1185" height="901" />
+          <img class="fragment" data-fragment-index="0" src="gearpump.svg" width="70" height="70" />
+          <img class="fragment" data-fragment-index="0" src="application-gearpump.png" width="1846" height="739" />
+
+          <h4 class="fragment" data-fragment-index="1">Case studies: <strong>22 variants</strong></h4>
+          <img class="fragment" data-fragment-index="1" src="application-pong.png" width="800" height="400" />
+          <img class="fragment" data-fragment-index="1" src="application-shapes.png" width="800" height="400" />
+          <img class="fragment" data-fragment-index="1" src="application-chat.png" width="800" height="400" />
+          <img class="fragment" data-fragment-index="1" src="application-playjs-chat.png" width="800" height="400" />
+          <img class="fragment" data-fragment-index="1" src="application-playjs-hangman.png" width="800" height="400" />
+          <img class="fragment" data-fragment-index="1" src="application-playjs-todo.png" width="800" height="400" />
+        </section>
+
+        <section id="side-by-side" data-transition="convex-in fade-out">
+          <h2>Porting to Distribution</h2>
+
+          <ol>
+            <li>Local</li>
+            <li class="fragment" data-fragment-index="0">ScalaLoci</li>
+            <li class="fragment" data-fragment-index="1">Akka</li>
+            <li class="fragment" data-fragment-index="2">RMI</li>
+          </ol>
+
+          <object class="animate-svg" data="pong.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#scala-loci" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#akka" class="fragment" data-fragment-index="1" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#rmi" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+            </svg>
+          </object>
+
+          <ul class="fragment legend" data-fragment-index="0">
+            <li data-color="ffff00">multi-user support</li>
+            <li data-color="ffa500">distribution</li>
+          </ul>
+        </section>
+
+        <section id="gearpump" data-transition="convex-in convex-out">
+          <h2>Gearpump Real-Time Streaming Engine</h2>
+
+          <img src="gearpump.svg" width="626" height="626" />
+
+          <img src="intel.svg" width="300" height="199" />
+
+          <img src="apache.svg" width="939" height="459" />
+
+          <object class="animate-svg fragment" data-fragment-index="0" data="architecture-mw.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var lines = [
+                  [ "proxy-master-0", 2, 285, 35, 50, 210 ],
+                  [ "proxy-master-1", 2, 290, 60, 65, 225 ],
+                  [ "master-proxy-0", 3, 90, 250, 300, 100 ],
+                  [ "master-proxy-1", 3, 103, 267, 315, 115 ],
+                  [ "proxy-worker-0", 2, 415, 35, 650, 210 ],
+                  [ "proxy-worker-1", 2, 410, 60, 635, 225 ],
+                  [ "worker-proxy", 4, 610, 250, 400, 100 ],
+                  [ "master-worker-0", 3, 120, 280, 580, 280 ],
+                  [ "master-worker-1", 3, 120, 300, 580, 300 ],
+                  [ "worker-master", 4, 580, 340, 120, 340 ]
+                ]
+
+                lines.forEach(function(line) {
+                  var id = line[0], index = line[1], x1 = line[2], y1 = line[3], x2 = line[4], y2 = line[5]
+
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + index + '" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.3s" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + index + '" attributeName="x2" from="' + x1 + '" to="' + x2 + '" dur="0.3s" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + index + '" attributeName="y2" from="' + y1 + '" to="' + y2 + '" dur="0.3s" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+
+          <div class="fragment info" data-fragment-index="1">components with placement types</div>
+
+          <div class="fragment info" data-fragment-index="5">no need to manually maintain architecture</div>
+
+          <pre class="fragment" data-fragment-index="1"><code class="scala" data-trim data-noescape>
+          trait MasterProxy extends Peer<span class="fragment" data-fragment-index="6"> { type Tie &lt;: Multiple[Master] with Multiple[Worker] }</span>
+          trait Worker extends Peer<span class="fragment" data-fragment-index="6"> { type Tie &lt;: Single[MasterProxy] with Optional[Master] }</span>
+          trait Master extends Peer<span class="fragment" data-fragment-index="6"> { type Tie &lt;: Multiple[MasterProxy] with Multiple[Worker] }</span>
+          </code></pre>
+        </section>
+
+        <section id="flink" data-transition="convex-in fade-out">
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <object class="animate-svg" data="flink-original.svg"></object>
+
+          <object class="animate-svg fragment" data-fragment-index="0" data="flink-scalaloci.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var lines = [ "line-0", "line-1", "line-2", "line-3", "line-4", "line-5", "line-6", "line-7", "line-8", "line-9", "line-10" ]
+
+                lines.forEach(function(id, index) {
+                  var begin = 0.1 * index
+                  document.write('<animate xlink:href="#' + id + '" attributeName="stroke-dasharray" from="45" to="45" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.1s" data-begin="' + begin + '" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="stroke-dashoffset" from="45" to="0" dur="0.1s" data-begin="' + begin + '" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+
+          <div class="fragment info" data-fragment-index="2">
+            <strong>Multiple modules</strong>
+            <ul>
+              <li>CheckpointResponder</li>
+              <li>KvStateRegistryListener</li>
+              <li>PartitionProducerStateChecker</li>
+              <li>ResultPartitionConsumableNotifier</li>
+              <li>TaskManager</li>
+              <li>TaskManagerActions</li>
+            </ul>
+          </div>
+
+          <div class="fragment solution" data-fragment-index="3">Eliminated <strong>23</strong> non-exhaustive pattern matches and <strong>8</strong> type casts</div>
+        </section>
+
+        <section id="flink-performance" data-transition="none-in convex-out">
+          <h2>Apache Flink Stream Processor</h2>
+
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <img class="fragment" data-fragment-index="2" src="ec2.svg" width="70" height="84" />
+
+          <ul>
+            <li class="fragment" data-fragment-index="2">Cloud Deployment <strong>Amazon EC2</strong></li>
+            <li class="fragment" data-fragment-index="2">Yahoo Streaming Benchmark</li>
+          </ul>
+
+          <figure class="fragment" data-fragment-index="3">
+            <figcaption>Latency</figcaption>
+            <canvas data-chart="boxplot">
+              <!--
+              {
+                "data": {
+                  "labels": [ "4", "6", "8" ],
+                  "datasets": [{
+                    "backgroundColor": "#b08000",
+                    "borderColor": "#402000",
+                    "data": [
+                      { "min": 538, "q1": 656, "median": 675, "q3": 697, "max": 753 },
+                      { "min": 510, "q1": 547, "median": 743, "q3": 781, "max": 864 },
+                      { "min": 666, "q1": 689, "median": 732, "q3": 808, "max": 858 }
+                    ]
+                  }, {
+                    "backgroundColor": "#b0b000",
+                    "borderColor": "#404000",
+                    "data": [
+                      { "min": 606, "q1": 619, "median": 666, "q3": 691, "max": 707 },
+                      { "min": 560, "q1": 571, "median": 643, "q3": 702, "max": 743 },
+                      { "min": 573, "q1": 616, "median": 703, "q3": 780, "max": 804 }
+                    ]
+                  }]
+                },
+                "options": {
+                  "scales": {
+                    "xAxes": [{
+                      "scaleLabel": { "display": true, "labelString": "Number of workers" },
+                      "gridLines": { "display": false }
+                    }],
+                    "yAxes": [{
+                      "scaleLabel": { "display": true, "labelString": "Latency [ms]" },
+                      "ticks": { "min": 0, "max": 1000, "stepSize": 200 }
+                    }]
+                  }
+                }
+
+              }
+              -->
+            </canvas>
+            <ul class="legend">
+              <li data-color="b08000">Flink</li>
+              <li data-color="b0b000">ScalaLoci Flink</li>
+            </ul>
+          </figure>
+
+          <figure class="fragment" data-fragment-index="3">
+            <figcaption >Cumulative Distribution</figcaption>
+            <canvas data-chart="line">
+              <!--
+              {
+                "data": {
+                  "datasets": [{
+                    "borderColor": "#b0b000",
+                    "backgroundColor": "#b0b000",
+                    "fill": false,
+                    "pointStyle": "circle",
+                    "pointRadius": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0 ],
+                    "data": [
+                      { "x": 0, "y": 0 }, { "x": 0.01, "y": 100 }, { "x": 0.05, "y": 225 }, { "x": 0.1, "y": 321 }, { "x": 0.15, "y": 409 }, { "x": 0.2, "y": 485 }, { "x": 0.25, "y": 533 }, { "x": 0.3, "y": 573 }, { "x": 0.35, "y": 617 }, { "x": 0.4, "y": 649 }, { "x": 0.45, "y": 689 }, { "x": 0.5, "y": 729 }, { "x": 0.55, "y": 769 }, { "x": 0.6, "y": 809 }, { "x": 0.65, "y": 841 }, { "x": 0.7, "y": 881 }, { "x": 0.75, "y": 921 }, { "x": 0.8, "y": 973 }, { "x": 0.85, "y": 1017 }, { "x": 0.9, "y": 1077 }, { "x": 0.95, "y": 1173 }, { "x": 1, "y": 1550 }
+                    ]
+                  }, {
+                    "borderColor": "#b0b000",
+                    "backgroundColor": "#b0b000",
+                    "fill": false,
+                    "pointStyle": "triangle",
+                    "pointRadius": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    "data": [
+                      { "x": 0, "y": 0 }, { "x": 0.01, "y": 100 }, { "x": 0.05, "y": 225 }, { "x": 0.1, "y": 317 }, { "x": 0.15, "y": 389 }, { "x": 0.2, "y": 465 }, { "x": 0.25, "y": 521 }, { "x": 0.3, "y": 565 }, { "x": 0.35, "y": 617 }, { "x": 0.4, "y": 661 }, { "x": 0.45, "y": 713 }, { "x": 0.5, "y": 757 }, { "x": 0.55, "y": 801 }, { "x": 0.6, "y": 841 }, { "x": 0.65, "y": 873 }, { "x": 0.7, "y": 913 }, { "x": 0.75, "y": 953 }, { "x": 0.8, "y": 1005 }, { "x": 0.85, "y": 1069 }, { "x": 0.9, "y": 1133 }, { "x": 0.95, "y": 1377 }, { "x": 1, "y": 1550 }
+                    ]
+                  }, {
+                    "borderColor": "#b0b000",
+                    "backgroundColor": "#b0b000",
+                    "fill": false,
+                    "pointStyle": "rect",
+                    "pointRadius": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    "data": [
+                      { "x": 0, "y": 0 }, { "x": 0.01, "y": 100 }, { "x": 0.05, "y": 181 }, { "x": 0.1, "y": 225 }, { "x": 0.15, "y": 265 }, { "x": 0.2, "y": 313 }, { "x": 0.25, "y": 361 }, { "x": 0.3, "y": 425 }, { "x": 0.35, "y": 533 }, { "x": 0.4, "y": 737 }, { "x": 0.45, "y": 809 }, { "x": 0.5, "y": 853 }, { "x": 0.55, "y": 889 }, { "x": 0.6, "y": 925 }, { "x": 0.65, "y": 961 }, { "x": 0.7, "y": 997 }, { "x": 0.75, "y": 1029 }, { "x": 0.8, "y": 1061 }, { "x": 0.85, "y": 1097 }, { "x": 0.9, "y": 1129 }, { "x": 0.95, "y": 1169 }, { "x": 1, "y": 1550 }
+                    ]
+                  }, {
+                    "borderColor": "#b08000",
+                    "backgroundColor": "#b08000",
+                    "fill": false,
+                    "pointStyle": "circle",
+                    "pointRadius": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    "data": [
+                      { "x": 0, "y": 0 }, { "x": 0.01, "y": 100 }, { "x": 0.05, "y": 169 }, { "x": 0.1, "y": 217 }, { "x": 0.15, "y": 261 }, { "x": 0.2, "y": 305 }, { "x": 0.25, "y": 357 }, { "x": 0.3, "y": 393 }, { "x": 0.35, "y": 449 }, { "x": 0.4, "y": 497 }, { "x": 0.45, "y": 545 }, { "x": 0.5, "y": 601 }, { "x": 0.55, "y": 669 }, { "x": 0.6, "y": 713 }, { "x": 0.65, "y": 781 }, { "x": 0.7, "y": 845 }, { "x": 0.75, "y": 941 }, { "x": 0.8, "y": 993 }, { "x": 0.85, "y": 1057 }, { "x": 0.9, "y": 1097 }, { "x": 0.95, "y": 1249 }, { "x": 1, "y": 1550 }
+                    ]
+                  }, {
+                    "borderColor": "#b08000",
+                    "backgroundColor": "#b08000",
+                    "fill": false,
+                    "pointStyle": "triangle",
+                    "pointRadius": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    "data": [
+                      { "x": 0, "y": 0 }, { "x": 0.01, "y": 100 }, { "x": 0.05, "y": 185 }, { "x": 0.1, "y": 237 }, { "x": 0.15, "y": 285 }, { "x": 0.2, "y": 333 }, { "x": 0.25, "y": 385 }, { "x": 0.3, "y": 441 }, { "x": 0.35, "y": 497 }, { "x": 0.4, "y": 553 }, { "x": 0.45, "y": 621 }, { "x": 0.5, "y": 693 }, { "x": 0.55, "y": 757 }, { "x": 0.6, "y": 809 }, { "x": 0.65, "y": 865 }, { "x": 0.7, "y": 921 }, { "x": 0.75, "y": 969 }, { "x": 0.8, "y": 1009 }, { "x": 0.85, "y": 1053 }, { "x": 0.9, "y": 1097 }, { "x": 0.95, "y": 1169 }, { "x": 1, "y": 1550 }
+                    ]
+                  }, {
+                    "borderColor": "#b08000",
+                    "backgroundColor": "#b08000",
+                    "fill": false,
+                    "pointStyle": "rect",
+                    "pointRadius": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    "data": [
+                      { "x": 0, "y": 0 }, { "x": 0.01, "y": 100 }, { "x": 0.05, "y": 229 }, { "x": 0.1, "y": 317 }, { "x": 0.15, "y": 385 }, { "x": 0.2, "y": 433 }, { "x": 0.25, "y": 493 }, { "x": 0.3, "y": 561 }, { "x": 0.35, "y": 629 }, { "x": 0.4, "y": 693 }, { "x": 0.45, "y": 753 }, { "x": 0.5, "y": 797 }, { "x": 0.55, "y": 841 }, { "x": 0.6, "y": 873 }, { "x": 0.65, "y": 909 }, { "x": 0.7, "y": 941 }, { "x": 0.75, "y": 981 }, { "x": 0.8, "y": 1025 }, { "x": 0.85, "y": 1073 }, { "x": 0.9, "y": 1129 }, { "x": 0.95, "y": 1277 }, { "x": 1, "y": 1550 }
+                    ]
+                  }]
+                },
+                "options": {
+                  "scales": {
+                    "xAxes": [{
+                      "type": "linear",
+                      "scaleLabel": { "display": true, "labelString": "Fraction of tuples complete" },
+                      "gridLines": { "display": false },
+                      "ticks": { "maxRotation": 0, "min": 0, "max": 1, "stepSize": 0.2 }
+                    }],
+                    "yAxes": [{
+                      "scaleLabel": { "display": true, "labelString (disabled)": "Latency [ms]" },
+                      "ticks": { "min": 0, "max": 1500, "stepSize": 500 }
+                    }]
+                  }
+                }
+
+              }
+              -->
+            </canvas>
+            <ul class="legend">
+              <li data-color="b08000" data-symbol="circle">Flink, 4 workers</li>
+              <li data-color="b08000" data-symbol="triangle">Flink, 6 workers</li>
+              <li data-color="b08000" data-symbol="rect">Flink, 8 workers</li>
+              <li data-color="b0b000" data-symbol="circle">ScalaLoci Flink, 4 workers</li>
+              <li data-color="b0b000" data-symbol="triangle">ScalaLoci Flink, 6 workers</li>
+              <li data-color="b0b000" data-symbol="rect">ScalaLoci Flink, 8 workers</li>
+            </ul>
+          </figure>
+        </section>
+
+        <section id="paper" data-transition="convex-in convex-out">
+          <img src="paper.png" width="2543" height="3767" />
+
+          <ul class="fragment" data-fragment-index="0">
+            <li class="info">Fault Tolerance</li>
+            <li class="info">Dynamic Topologies</li>
+            <li class="info">Design Metrics</li>
+            <li class="info">Microbenchmarks</li>
+            <li class="info">Multiple Backends</li>
+            <li class="info">Formalization</li>
+          </ul>
+        </section>
+
+        <section id="website" data-transition="convex-in convex-out">
+          <h2>scala-loci.github.io</h2>
+          <img src="website.png" width="1920" height="1080" />
+        </section>
+
+        <section id="conclusion" data-transition="convex-in none-out">
+          <h2>Conclusion</h2>
+          <ul>
+            <li class="fragment solution" data-fragment-index="0">
+                Generic Distributed Architectures
+                <img src="architecture-p2p.svg" width="640" height="230" />
+              <ul>
+                <li class="fragment solution" data-fragment-index="1">
+                  Placement Types
+                  <pre><code class="scala">Value on Peer</code></pre>
+                </li>
+              </ul>
+            </li>
+            <li class="fragment solution" data-fragment-index="2">
+              Multitier Event Streams
+              <img src="reactivity.svg" width="700" height="250" />
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="../../../presentation/reveal.js/lib/js/head.min.js"></script>
+    <script src="../../../presentation/reveal.js/js/reveal.js"></script>
+
+    <script>
+      //<![CDATA[
+
+      //
+      // setup presentation
+      //
+      Reveal.initialize({
+        width: 1280,
+        height: 720,
+        transition: "none",
+        center: false,
+        slideNumber: true,
+        controls: false,
+        pdfSeparateFragments: false,
+        pdfMaxPagesPerSlide: 1,
+        chart: {
+          defaults: {
+            global: {
+              animation: false,
+              responsive: false,
+              maintainAspectRatio: false,
+              title: { fontColor: "black" },
+              legend: {
+                display: false
+              },
+              tooltips: {
+                labels: { fontColor: "black" }
+              }
+            },
+            scale: {
+              scaleLabel: {
+                fontColor: "black",
+                fontSize: 18,
+                fontFamily: "'Lato', sans-serif",
+              },
+              ticks: {
+                fontColor: "black",
+                fontSize: 18,
+                fontFamily: "'Lato', sans-serif",
+                padding: 5,
+                autoSkip: false,
+                beginAtZero: true
+              },
+              gridLines: {
+                color: "gray",
+                zeroLineColor: "gray"
+              }
+            }
+          }
+        },
+        dependencies: [
+          { src: "../../../presentation/reveal.js/lib/js/classList.js", condition: function() { return !document.body.classList } },
+          { src: "../../../presentation/reveal.js-plugins/chart/Chart.min.js" },
+          { src: "../../../presentation/reveal.js-plugins/chart/Chart.BoxPlot.min.js" },
+          { src: "../../../presentation/reveal.js-plugins/chart/csv2chart.js" },
+          { src: "../../../presentation/reveal.js-plugins/chart/canvas2svg.js" },
+          { src: "../../../presentation/reveal.js/plugin/markdown/marked.js" },
+          { src: "../../../presentation/reveal.js/plugin/markdown/markdown.js" },
+          { src: "../../../presentation/reveal.js/plugin/notes/notes.js" },
+          { src: "../../../presentation/reveal.js/plugin/highlight/highlight.js",
+            callback: function() {
+              hljs.getLanguage("scala").k.symbol = "on from placed sbj remote asLocal asLocalFromAll asLocalFromAllSeq Tie Single Optional Multiple"
+
+              hljs.initHighlightingOnLoad()
+
+              var styles = document.querySelectorAll("link[rel='stylesheet']")
+
+              document.querySelectorAll("object.animate-svg").forEach(function(object) {
+                object.addEventListener("load", function(event) {
+                  var root = object.contentDocument.documentElement
+
+                  root.querySelectorAll("pre code").forEach(function(code) {
+                    hljs.highlightBlock(code)
+                  })
+
+                  styles.forEach(function(style) {
+                    root.appendChild(style.cloneNode(true))
+                  })
+                })
+              })
+            }
+          }
+        ]
+      })
+
+
+      //
+      // replace canvas raster graphics with SVG vector graphics for rendered charts
+      //
+      {(function () {
+        function charts2svg(canvas) {
+          canvas.chart.config.options.responsive = false
+
+          var ctx = C2S(canvas.width, canvas.height)
+
+          var createElement = ctx.__createElement
+          ctx.__createElement = function(elementName, properties, resetFill) {
+            if (elementName === "rect" && properties.height < 0) {
+              properties.height = -properties.height
+              properties.y -= properties.height
+            }
+            return createElement.apply(this, [ elementName, properties, resetFill ])
+          }
+
+          var beginPath = ctx.beginPath
+          ctx.beginPath = function() {
+            if (!this.lineWidth)
+                this.lineWidth = 1
+            return beginPath.apply(this)
+          }
+
+          var chart = new Chart(ctx, canvas.chart.config)
+          canvas.parentElement.replaceChild(ctx.getSvg(), canvas)
+        }
+
+        if (window.location.search.match(/print-pdf/gi))
+          Reveal.addEventListener("ready", function(event) {
+            window.setTimeout(function() { document.querySelectorAll("canvas[data-chart]").forEach(charts2svg) }, 100)
+          })
+        else
+          Reveal.addEventListener("slidechanged", function(event) {
+            window.setTimeout(function() { event.currentSlide.querySelectorAll("canvas[data-chart]").forEach(charts2svg) }, 100)
+          })
+      })()}
+
+
+      //
+      // retrieving the slide on which a given element is placed
+      //
+      function enclosingSlide(slide) {
+        while (true) {
+          if (!slide)
+            return null
+
+          if (slide.nodeName.toLowerCase() == "section" &&
+              slide.parentElement.classList.contains("slides") &&
+              slide.parentElement.parentElement.classList.contains("reveal") ||
+              slide.nodeName.toLowerCase() == "section" &&
+              slide.parentElement.nodeName.toLowerCase() == "section" &&
+              slide.parentElement.parentElement.classList.contains("slides") &&
+              slide.parentElement.parentElement.parentElement.classList.contains("reveal"))
+            return slide
+
+          slide = slide.parentElement
+        }
+      }
+
+
+      //
+      // checking whether the current document is shown in the speaker window
+      //
+      function inSpeakerWindow() {
+        var frameElement = window.frameElement
+        var section = frameElement && frameElement.parentElement
+        var id = section && section.id
+        return id === "current-slide" || id === "upcoming-slide"
+      }
+
+
+      //
+      // deactivate slide transitions in speaker window
+      //
+      if (inSpeakerWindow()) {
+        document.documentElement.classList.add("speaker-view")
+        document.querySelectorAll("section").forEach(function(section) {
+          section.removeAttribute("data-transition")
+        })
+      }
+
+
+      //
+      // enable adding SVG animations as fragments by placing them in an SVG element
+      // inside the object element that references the SVG (unanimated) image
+      //
+      Reveal.addEventListener("ready", function(event) {
+        function getSvgRoot(element) {
+          var object = element.parentElement.parentElement
+          var animateSvgRoot =
+            (element.nodeName.toLowerCase() == "animate" ||
+             element.nodeName.toLowerCase() == "animatetransform") &&
+            object.nodeName.toLowerCase() == "object" &&
+            object.classList.contains("animate-svg")
+          return animateSvgRoot && object.contentDocument && object.contentDocument.documentElement
+        }
+
+        function setupSvgObject(object) {
+          var root = object.contentDocument && object.contentDocument.documentElement
+          if (root) {
+            var elements = Array.from(object.querySelectorAll("animate, animateTransform"))
+            var sorted = []
+            elements.forEach(function(element) {
+              var string = element.getAttribute("data-fragment-index")
+              var number = +string
+              var index = string && (number === 0 || number) ? number + 1 : 0
+              var array
+              if (index) {
+                (array = (sorted[index] && sorted[index][0])) || (sorted[index] = [ array = [] ])
+                array.push(element)
+              }
+              else {
+                (array = sorted[index]) || (sorted[index] = (array = []))
+                array.push([ element ])
+              }
+            })
+
+            var steps = [].concat.apply([], sorted).filter(function (step) { return step })
+            var forward = [].concat.apply([], steps)
+            steps.reverse()
+            var backward = [].concat.apply([], steps)
+
+            forward.forEach(function(element) {
+              if (!element.classList.contains("fragment")) {
+                var animation = element.cloneNode(true)
+                root.appendChild(animation)
+                animation.beginElement()
+              }
+            })
+
+            backward.forEach(function(element) {
+              if (element.classList.contains("fragment") && !element.classList.contains("visible")) {
+                var animation = element.cloneNode(true)
+
+                var values = animation.getAttribute("values")
+                if (values) {
+                  values = values.split(";")
+                  for (var i = values.length - 1; i >= 0; i--)
+                    values[i] = values[0]
+                  animation.setAttribute("values", values.join(";"))
+                }
+
+                animation.setAttribute("to", animation.getAttribute("from"))
+                animation.setAttribute("dur", "0s")
+                animation.setAttribute("begin", "indefinite")
+
+                root.appendChild(animation)
+                animation.beginElement()
+              }
+            })
+
+            forward.forEach(function(element) {
+              if (element.classList.contains("fragment") && element.classList.contains("visible")) {
+                var animation = element.cloneNode(true)
+
+                var values = animation.getAttribute("values")
+                if (values) {
+                  values = values.split(";")
+                  for (var i = values.length - 1; i >= 0; i--)
+                    values[i] = values[values.length - 1]
+                  animation.setAttribute("values", values.join(";"))
+                }
+
+                animation.setAttribute("from", animation.getAttribute("to"))
+                animation.setAttribute("dur", "0s")
+                animation.setAttribute("begin", "indefinite")
+
+                root.appendChild(animation)
+                animation.beginElement()
+              }
+            })
+          }
+        }
+
+        document.querySelectorAll("object.animate-svg").forEach(function(object) {
+          var visibility = object.style.visibility
+          object.style.visibility = "hidden"
+          object.addEventListener("load", function(event) {
+            setupSvgObject(object)
+            object.style.visibility = visibility
+          })
+        })
+
+        function setupCurrentFragment(slide) {
+          slide.querySelectorAll("object.animate-svg").forEach(function(object) {
+            var root = object.contentDocument && object.contentDocument.documentElement
+            if (root) {
+              root.querySelectorAll("animate.current-fragment-only, animateTransform.current-fragment-only").forEach(function(element) {
+                element.parentElement.removeChild(element)
+              })
+
+              object.querySelectorAll(
+                  "animate.current-fragment.current-fragment-only," +
+                  "animateTransform.current-fragment.current-fragment-only").forEach(function(element) {
+                var animation = element.cloneNode(true)
+                root.appendChild(animation)
+                animation.beginElement()
+              })
+            }
+          })
+        }
+
+        Reveal.addEventListener("slidechanged", function(event) {
+          setupCurrentFragment(event.currentSlide)
+          event.currentSlide.querySelectorAll("object.animate-svg").forEach(setupSvgObject)
+        })
+
+        Reveal.addEventListener("fragmentshown", function(event) {
+          setupCurrentFragment(enclosingSlide(event.fragment))
+
+          event.fragments.forEach(function(fragment) {
+            var root = getSvgRoot(fragment)
+            if (root) {
+              var animation = fragment.cloneNode(true)
+
+              var begin = +animation.getAttribute("data-begin") || 0
+              animation.setAttribute("begin", "indefinite")
+
+              if (inSpeakerWindow()) {
+                animation.setAttribute("from", animation.getAttribute("to"))
+                animation.setAttribute("dur", "0s")
+                begin = 0
+              }
+
+              root.appendChild(animation)
+              animation.beginElementAt(begin)
+            }
+          })
+        })
+
+        Reveal.addEventListener("fragmenthidden", function(event) {
+          setupCurrentFragment(enclosingSlide(event.fragment))
+
+          event.fragments.forEach(function(fragment) {
+            var root = getSvgRoot(fragment)
+            if (root) {
+              var animation = fragment.cloneNode(true)
+
+              var from = animation.getAttribute("from")
+              animation.setAttribute("from", animation.getAttribute("to"))
+              animation.setAttribute("to", from)
+
+              var values = animation.getAttribute("values")
+              if (values) {
+                values = values.split(";")
+                values.reverse()
+                animation.setAttribute("values", values.join(";"))
+              }
+
+              var keySplines = animation.getAttribute("keySplines")
+              if (keySplines) {
+                keySplines = keySplines.split(";")
+                keySplines.reverse()
+                animation.setAttribute("keySplines", keySplines.join(";"))
+              }
+
+              var keyTimes = animation.getAttribute("keyTimes")
+              if (keyTimes) {
+                keyTimes = keyTimes.split(";").map(function(keyTime) { return 1 - keyTime })
+                keyTimes.reverse()
+                animation.setAttribute("keyTimes", keyTimes.join(";"))
+              }
+
+              Array.prototype.forEach.call(animation.attributes, function(attribute) {
+                if (attribute.name.startsWith("data-reverse-")) {
+                  var name = attribute.name.substring(13)
+                  if (name)
+                    animation.setAttribute(name, attribute.value)
+                }
+              })
+
+              var begin = +animation.getAttribute("data-reverse-begin") || 0
+              animation.setAttribute("begin", "indefinite")
+
+              if (inSpeakerWindow()) {
+                animation.setAttribute("from", animation.getAttribute("to"))
+                animation.setAttribute("dur", "0s")
+                begin = 0
+              }
+
+              root.appendChild(animation)
+              animation.beginElementAt(begin)
+            }
+          })
+        })
+      })
+
+
+      //
+      // add possibility to immediately show the first fragment when entering a slide
+      //
+      if (!inSpeakerWindow())
+        {(function () {
+          Reveal.addEventListener("slidechanged", function(event) {
+            if (event.currentSlide.classList.contains("load-first-fragment") && Reveal.availableFragments().next)
+              setTimeout(Reveal.nextFragment, 1)
+          })
+
+          Reveal.addEventListener("fragmenthidden", function(event) {
+            if (enclosingSlide(event.fragment).classList.contains("load-first-fragment") && !Reveal.availableFragments().prev)
+              setTimeout(Reveal.prev, 1)
+          })
+        })()}
+
+      //]]>
+    </script>
+  </body>
+  </html>

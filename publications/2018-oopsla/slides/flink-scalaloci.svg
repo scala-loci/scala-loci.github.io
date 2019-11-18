@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 470" width="300" height="705" version="1.1">
+  <style>
+    foreignObject.text pre,
+    foreignObject.text pre code {
+      margin: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
+      max-height: none;
+      max-width: none;
+      position: static;
+      background: none;
+      box-shadow: none;
+      white-space: pre;
+      text-align: left;
+      font-family: monospace;
+      font-size: 15px;
+      line-height: 15px;
+      overflow: visible;
+      color: black;
+    }
+    foreignObject.text pre {
+      opacity: 0.7;
+    }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 18 10" refY="5" refX="10" orient="auto" markerWidth="5" markerHeight="9">
+      <path d="M 5,5 L 0,0 L 18,5 L 0,10 L 5,5 z" fill="#800" />
+    </marker>
+  </defs>
+
+  <g transform="translate(5, 5)">
+    <rect id="job-manager-0" rx="4" ry="4" width="160" height="215" fill="#fdd" stroke="#faa" stroke-width="3" />
+    <rect id="job-manager-1" rx="4" ry="4" y="225" width="160" height="230" fill="#fdd" stroke="#faa" stroke-width="3" />
+    <rect id="task-manager-0" rx="4" ry="4" x="8" y="22" width="144" height="30" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-1" rx="4" ry="4" x="8" y="64" width="144" height="15" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-2" rx="4" ry="4" x="8" y="87" width="144" height="5" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-3" rx="4" ry="4" x="8" y="102" width="144" height="5" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-4" rx="4" ry="4" x="8" y="118" width="144" height="46" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-5" rx="4" ry="4" x="8" y="175" width="144" height="31" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-6" rx="4" ry="4" x="8" y="253" width="144" height="10" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-7" rx="4" ry="4" x="8" y="274" width="144" height="27" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-8" rx="4" ry="4" x="8" y="316" width="144" height="36" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-9" rx="4" ry="4" x="8" y="367" width="144" height="39" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <rect id="task-manager-10" rx="4" ry="4" x="8" y="418" width="144" height="28" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <foreignObject class="text" width="740" height="1035" transform="translate(4, 4) scale(0.2)">
+      <pre xmlns="http://www.w3.org/1999/xhtml"><code class="scala">@multitier trait TaskManagerGatewayClusterTask {
+  trait JobManager extends Peer { type Tie &lt;: Multiple[TaskManager] }
+  trait TaskManager extends Peer { type Tie &lt;: Single[JobManager] }
+
+  def disconnectFromJobManager(instanceId: InstanceID, cause: Exception,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(instanceId, cause){
+      if (instanceId.equals(instanceID)) {
+        handleJobManagerDisconnect(s"JobManager requested disconnect: " +
+          cause.getMessage())
+        triggerTaskManagerRegistration()
+      } else {
+        log.debug(s"Received disconnect message for wrong instance id " +
+          instanceId)
+      }
+    }
+  }
+
+  def stopCluster(applicationStatus: ApplicationStatus, message: String,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(applicationStatus, message){
+      log.info(s"Stopping TaskManager with final application status " +
+        s"$applicationStatus and diagnostics: $message")
+      shutdown()
+    }
+  }
+
+  def requestStackTrace(mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(tdd){ sendStackTrace() }.asLocal.map(_.left.get)
+  }
+
+  def submitTask(tdd: TaskDeploymentDescriptor,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(tdd){ submitTask(tdd) }.asLocal.map(_.left.get)
+  }
+
+  def stopTask(executionAttemptID: ExecutionAttemptID,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(executionAttemptID){
+      val task = runningTasks.get(executionAttemptID)
+      if (task != null) {
+        try {
+          task.stopExecution()
+          Left(Acknowledge.get())
+        } catch {
+          case t: Throwable =>
+            Right(Status.Failure(t))
+        }
+      } else {
+        log.debug(s"Cannot find task to stop for execution $executionAttemptID)")
+        Left(Acknowledge.get())
+      }
+    }.asLocal.map(_.left.get)
+  }
+
+  def cancelTask(executionAttemptID: ExecutionAttemptID,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(executionAttemptID){
+      val task = runningTasks.get(executionAttemptID)
+      if (task != null) {
+        task.cancelExecution()
+        Acknowledge.get()
+      } else {
+        log.debug(s"Cannot find task to cancel for execution $executionAttemptID")
+        Acknowledge.get()
+      }
+    }.asLocal
+  }
+}</code></pre>
+    </foreignObject>
+    <foreignObject class="text" width="740" height="1110" transform="translate(4, 229) scale(0.2)">
+      <pre xmlns="http://www.w3.org/1999/xhtml"><code class="scala">@multitier trait TaskManagerGatewayPartitionCheckLog {
+  trait JobManager extends Peer { type Tie &lt;: Multiple[TaskManager] }
+  trait TaskManager extends Peer { type Tie &lt;: Single[JobManager] }
+
+  def updatePartitions(
+      executionAttemptID: ExecutionAttemptID,
+      partitionInfos: java.lang.Iterable[PartitionInfo],
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(executionAttemptID, partitionInfos){
+      updateTaskInputPartitions(executionAttemptID, partitionInfos)
+    }.asLocal.map(_.left.get)
+  }
+
+  def failPartition(executionAttemptID: ExecutionAttemptID,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(executionAttemptID){
+      log.info(s"Discarding the results produced by task execution $executionID")
+      try {
+        network.getResultPartitionManager.releasePartitionsProducedBy(executionID)
+      } catch {
+        case t: Throwable => killTaskManagerFatal(
+          "Fatal leak: Unable to release intermediate result partition data", t)
+      }
+    }
+  }
+
+  def notifyCheckpointComplete(executionAttemptID: ExecutionAttemptID,
+      jobId: JobID, checkpointId: Long, timestamp: Long,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(executionAttemptID, jobId, checkpointId, timestamp){
+      log.debug(s"Receiver ConfirmCheckpoint $checkpointId@$timestamp " +
+        s"for $executionAttemptID.")
+
+      val task = runningTasks.get(executionAttemptID)
+      if (task != null) {
+        task.notifyCheckpointComplete(checkpointId)
+      } else {
+        log.debug(s"TaskManager received a checkpoint confirmation " +
+          s"for unknown task $taskExecutionId.")
+      }
+    }
+  }
+
+  def triggerCheckpoint(executionAttemptID: ExecutionAttemptID, jobId: JobID,
+      checkpointId: Long, timestamp: Long, checkpointOptions: CheckpointOptions,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(executionAttemptID, jobId, checkpointId, timestamp,
+        checkpointOptions){
+      log.debug(s"Receiver TriggerCheckpoint $checkpointId@$timestamp " +
+        s"for $executionAttemptID.")
+
+      val task = runningTasks.get(executionAttemptID)
+      if (task != null) {
+        task.triggerCheckpointBarrier(checkpointId, timestamp, checkpointOptions)
+      } else {
+        log.debug(s"TaskManager received a checkpoint request " +
+          s"for unknown task $executionAttemptID.")
+      }
+    }
+  }
+
+  def requestTaskManagerLog(logTypeRequest: LogTypeRequest,
+      mgr: Remote[TaskManager]) = placed[JobManagerPeer] {
+    remote.on(mgr).capture(logTypeRequest){
+      blobService match {
+        case Some(_) =>
+          handleRequestTaskManagerLog(logTypeRequest, currentJobManager.get)
+        case None =>
+          Right(akka.actor.Status.Failure(new IOException(
+            "BlobService not available. Cannot upload TaskManager logs.")))
+      }
+    }.asLocal.map(_.left.get)
+  }
+}</code></pre>
+    </foreignObject>
+  </g>
+
+  <path id="line-0" d="M 16,27 q 10,14 0,28" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-1" d="M 16,69 q 10,7 0,14" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-2" d="M 16,90 q 10,4 0,8" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-3" d="M 16,105 q 10,4 0,8" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-4" d="M 16,123 q 10,22 0,44" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-5" d="M 16,180 q 10,15 0,30" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-6" d="M 16,258 q 10,4 0,8" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-7" d="M 16,279 q 10,13 0,26" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-8" d="M 16,321 q 10,17 0,34" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-9" d="M 16,372 q 10,19 0,38" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+  <path id="line-10" d="M 16,423 q 10,13 0,26" stroke="#800" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+</svg>

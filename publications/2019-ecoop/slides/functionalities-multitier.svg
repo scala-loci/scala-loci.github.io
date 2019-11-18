@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 80" width="570" height="240" version="1.1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 18 10" refY="5" refX="5" orient="auto" markerWidth="5" markerHeight="9">
+      <path d="M 5,5 L 0,0 L 18,5 L 0,10 L 5,5 z" fill="#800" />
+    </marker>
+  </defs>
+
+  <ellipse id="module" cx="95" cy="40" rx="94.5" ry="39.5" stroke-width="1" stroke="#77f" fill="#99f" />
+
+  <text id="task" x="95" y="14" text-anchor="middle" dominant-baseline="central" font-size="7">task</text>
+  <text id="result" x="95" y="66" text-anchor="middle" dominant-baseline="central" font-size="7">result</text>
+
+  <rect id="master-box" opacity="0" x="20" y="19.5" width="58" height="40" rx="4" ry="4" stroke-width="1" stroke="#faa" fill="#fdd" />
+  <rect id="worker-box" opacity="0" x="111" y="19.5" width="58" height="40" rx="4" ry="4" stroke-width="1" stroke="#aaf" fill="#ddf" />
+
+  <path id="path" fill="none" stroke="#800" stroke-width="2.4" marker-end="url(#arrow)" d="m 64.34,27.58 c 28.15,-14.31 64.43,-2.40 64.39,14.11 -0.04,15.97 -38.24,25.80 -60.78,12.05" />
+
+  <ellipse cx="49" cy="40" rx="20" ry="8" fill="#55f" />
+  <text x="49" y="40" text-anchor="middle" dominant-baseline="central" font-size="7" fill="#ffffff">Master</text>
+
+  <ellipse cx="141" cy="40" rx="20" ry="8" fill="#55f" />
+  <text x="141" y="40" text-anchor="middle" dominant-baseline="central" font-size="7" fill="#ffffff">Worker</text>
+</svg>

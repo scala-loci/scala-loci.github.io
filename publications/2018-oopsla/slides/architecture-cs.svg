@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 300" width="550" height="300" version="1.1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+  <g id="client-0">
+    <line id="client-0-line" x1="50" y1="120" x2="300" y2="120" stroke="#7070ff" stroke-width="10" />
+    <g transform="translate(50, 120)">
+      <circle id="client-0-node" r="50" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Node</text>
+    </g>
+  </g>
+  <g id="client-1">
+    <line id="client-1-line" x1="500" y1="50" x2="300" y2="120" stroke="#7070ff" stroke-width="10" />
+    <g transform="translate(500, 50)">
+      <circle id="client-1-node" r="50" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Node</text>
+    </g>
+  </g>
+  <g id="client-2">
+    <line id="client-2-line" x1="430" y1="250" x2="300" y2="120" stroke="#7070ff" stroke-width="10" />
+    <g transform="translate(430, 250)">
+      <circle id="client-2-node" r="50" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Node</text>
+    </g>
+  </g>
+  <g transform="translate(300, 120)">
+    <circle id="server-node" r="50" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Registry</text>
+  </g>
+</svg>

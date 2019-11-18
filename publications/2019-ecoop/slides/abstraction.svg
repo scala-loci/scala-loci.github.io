@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 110" width="600" height="330" version="1.1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+  <g id="file-backup">
+    <ellipse cx="100" cy="84.5" rx="80" ry="25" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="100" y="70" font-size="7" text-anchor="middle" fill="white">FileBackup</text>
+    <ellipse cx="65" cy="90" rx="25" ry="10" fill="#55f" />
+    <text x="65" y="92" font-size="7" text-anchor="middle" fill="white">Processor</text>
+    <ellipse cx="140" cy="83" rx="25" ry="10" fill="#55f" />
+    <text x="140" y="85" font-size="7" text-anchor="middle" fill="white">Storage</text>
+  </g>
+  <g id="backup-service">
+    <ellipse cx="100" cy="25.5" rx="80" ry="25" fill="#99f" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+    <text x="100" y="10" font-size="7" text-anchor="middle" fill="white">BackupService</text>
+    <ellipse cx="65" cy="30" rx="25" ry="10" fill="#55f" />
+    <text x="65" y="32" font-size="7" text-anchor="middle" fill="white">Processor</text>
+    <ellipse cx="140" cy="23" rx="25" ry="10" fill="#55f" />
+    <text x="140" y="25" font-size="7" text-anchor="middle" fill="white">Storage</text>
+  </g>
+  <line id="processor" x1="65" y1="40" x2="65" y2="80" stroke-width="2" stroke="#55f" />
+  <line id="storage" x1="140" y1="33" x2="140" y2="73" stroke-width="2" stroke="#55f" />
+  <line id="abstraction-0" x1="20" y1="25.5" x2="20" y2="84.5" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+  <line id="abstraction-1" x1="180" y1="25.5" x2="180" y2="84.5" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+</svg>

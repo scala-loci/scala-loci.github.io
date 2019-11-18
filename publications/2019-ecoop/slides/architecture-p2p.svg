@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="640" height="230" version="1.1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+
+  <line id="line-master-0" x1="38" y1="38" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+  <line id="line-master-1" x1="100" y1="175" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+  <line id="line-master-2" x1="415" y1="192" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+  <line id="line-master-3" x1="470" y1="40" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+  <line id="line-master-4" x1="602" y1="120" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+
+  <line id="line-worker-0" x1="38" y1="38" x2="100" y2="175" stroke="#7070ff" stroke-width="10" />
+  <line id="line-worker-1" x1="100" y1="175" x2="415" y2="192" stroke="#7070ff" stroke-width="10" />
+  <line id="line-worker-2" x1="415" y1="192" x2="602" y2="120" stroke="#7070ff" stroke-width="10" />
+
+  <g id="worker-0" transform="translate(38, 38)">
+    <circle r="38" fill="#7070ff" /><text font-size="20" text-anchor="middle" dominant-baseline="central" fill="white">Worker</text>
+  </g>
+  <g id="worker-1" transform="translate(100, 175)">
+    <circle r="38" fill="#7070ff" /><text font-size="20" text-anchor="middle" dominant-baseline="central" fill="white">Worker</text>
+  </g>
+  <g id="worker-2" transform="translate(415, 192)">
+    <circle r="38" fill="#7070ff" /><text font-size="20" text-anchor="middle" dominant-baseline="central" fill="white">Worker</text>
+  </g>
+  <g id="worker-3" transform="translate(470, 40)">
+    <circle r="38" fill="#7070ff" /><text font-size="20" text-anchor="middle" dominant-baseline="central" fill="white">Worker</text>
+  </g>
+  <g id="worker-4" transform="translate(602, 120)">
+    <circle r="38" fill="#7070ff" /><text font-size="20" text-anchor="middle" dominant-baseline="central" fill="white">Worker</text>
+  </g>
+  <g id="master" transform="translate(250, 100)">
+    <circle r="46" fill="#7070ff" /><text font-size="20" text-anchor="middle" dominant-baseline="central" fill="white">Master</text>
+  </g>
+</svg>

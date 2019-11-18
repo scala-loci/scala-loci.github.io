@@ -1,0 +1,476 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 620 325" width="1240" height="650" version="1.1">
+  <style>
+    foreignObject.text pre,
+    foreignObject.text pre code {
+      margin: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
+      max-height: none;
+      max-width: none;
+      position: static;
+      background: none;
+      box-shadow: none;
+      white-space: pre;
+      text-align: left;
+      font-family: monospace;
+      font-size: 15px;
+      line-height: 15px;
+      overflow: visible;
+      color: black;
+    }
+    foreignObject.text pre {
+      padding: 5px;
+    }
+    foreignObject.text pre code span.distribution-code {
+      position: relative;
+      background: orange;
+      box-shadow: 0 0 5px 3px orange;
+    }
+    foreignObject.text pre code span.multiuser-code {
+      position: relative;
+      background: yellow;
+      box-shadow: 0 0 5px 3px yellow;
+    }
+  </style>
+
+  <foreignObject id="local" class="text" width="700" height="1610" transform="scale(0.2)">
+    <pre xmlns="http://www.w3.org/1999/xhtml"><code class="scala">
+
+
+val ballSize = 20
+val maxX = 800
+val maxY = 400
+val leftPos = 30
+val rightPos = 770
+val initPosition = Point(400, 200)
+val initSpeed = Point(10, 8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+val ball: Signal[Point] = tick.fold(initPosition) {
+  (ball, _) => ball + speed.get }
+
+
+
+
+
+
+
+
+
+
+val areas = {
+  val racketY = Seq(
+    Signal { UI.mousePosition().y },
+    Signal { ball().y })
+  val leftRacket = Racket(leftRacketPos, racketY(0))
+  val rightRacket = Racket(rightRacketPos, racketY(1))
+  val rackets = List(leftRacket, rightRacket)
+  Signal { rackets map { _.area() } } }
+
+val leftWall = ball.changed &amp;&amp; { _.x &lt; 0 }
+val rightWall = ball.changed &amp;&amp; { _.x &gt; maxX }
+
+val xBounce = {
+  val ballInRacket = Signal { areas() exists { _ contains ball() } }
+  val collisionRacket = ballInRacket changedTo true
+  leftWall || rightWall || collisionRacket }
+val yBounce = ball.changed &amp;&amp;
+  { ball => ball.y &lt; 0 || ball.y &gt; maxY }
+
+val speed = {
+  val x = xBounce toggle (initSpeed.x, -initSpeed.x)
+  val y = yBounce toggle (initSpeed.y, -initSpeed.y)
+  Signal { Point(x(), y()) } }
+
+val score = {
+  val leftPoints = rightWall.iterate(0) { _ + 1 }
+  val rightPoints = leftWall.iterate(0) { _ + 1 }
+  Signal { leftPoints() + " : " + rightPoints() } }
+
+val ui = new UI(areas, ball, score)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+  </foreignObject>
+
+  <foreignObject id="scala-loci" class="text" width="700" height="1610" transform="translate(150, 0) scale(0.2)">
+    <pre xmlns="http://www.w3.org/1999/xhtml"><code class="scala"><span class="distribution-code">trait Server extends ServerPeer[Client]</span>
+<span class="distribution-code">trait Client extends ClientPeer[Server]</span>
+
+val ballSize = 20
+val maxX = 800
+val maxY = 400
+val leftPos = 30
+val rightPos = 770
+val initPosition = Point(400, 200)
+val initSpeed = Point(10, 8)
+
+
+
+
+
+
+
+
+
+
+<span class="distribution-code">val clientMouseY = placed[Client] {
+  Signal { UI.mousePosition().y } }</span>
+
+<span class="multiuser-code">val isPlaying = <span class="distribution-code">placed[Server].local</span> {
+  Signal { <span class="distribution-code">remote[Client].connected()</span>.size > 2 } }</span>
+
+val ball: Signal[Point] <span class="distribution-code">on Server</span> = <span class="distribution-code">placed</span> {
+  tick.fold(initPosition) { (ball, _) =>
+    <span class="distribution-code">if (isPlaying.get)</span> ball + speed.get <span class="distribution-code">else pos</span> } }
+
+
+
+
+<span class="multiuser-code">val players = <span class="distribution-code">placed[Server].local</span> { Signal {
+  <span class="distribution-code">remote[Client].connected()</span> match {
+    case left :: right :: _ => Seq(Some(left), Some(right))
+    case _ => Seq(None, None) } } }</span>
+
+val areas = <span class="distribution-code">placed[Server]</span> {
+  val racketY = Signal { <span class="multiuser-code">players() map { _ map {</span>
+<span class="multiuser-code">    client => <span class="distribution-code">(clientMouseY from client).asLocal()</span> } getOrElse
+    initPosition.y } }</span>
+  val leftRacket = Racket(leftPos, <span class="distribution-code">Signal { racketY()(0) }</span>)
+  val rightRacket = Racket(rightPos, <span class="distribution-code">Signal { racketY()(1) }</span>)
+  val rackets = List(leftRacket, rightRacket)
+  Signal { rackets map { _.area() } } }
+
+val leftWall = <span class="distribution-code">placed[Server].local</span> { ball.changed &amp;&amp; { _.x &lt; 0 } }
+val rightWall = <span class="distribution-code">placed[Server].local</span> { ball.changed &amp;&amp; { _.x &gt; maxX } }
+
+val xBounce = <span class="distribution-code">placed[Server].local</span> {
+  val ballInRacket = Signal { areas() exists { _ contains ball() } }
+  val collisionRacket = ballInRacket changedTo true
+  leftWall || rightWall || collisionRacket }
+val yBounce = <span class="distribution-code">placed[Server].local</span> { ball.changed &amp;&amp;
+  { ball => ball.y &lt; 0 || ball.y &gt; maxY } }
+
+val speed = <span class="distribution-code">placed[Server].local</span> {
+  val x = xBounce toggle (initSpeed.x, - initSpeed.x)
+  val y = yBounce toggle (initSpeed.y, - initSpeed.y)
+  Signal { Point(x(), y()) } }
+
+val score = <span class="distribution-code">placed[Server]</span> {
+  val leftPoints = rightWall.iterate(0) { _ + 1 }
+  val rightPoints = leftWall.iterate(0) { _ + 1 }
+  Signal { leftPoints() + " : " + rightPoints() } }
+
+val ui = <span class="distribution-code">placed[Client]</span> {
+  new UI(areas<span class="distribution-code">.asLocal</span>, ball<span class="distribution-code">.asLocal</span>, score<span class="distribution-code">.asLocal</span>) }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+  </foreignObject>
+
+  <foreignObject id="akka" class="text" width="700" height="1610" transform="translate(310, 0) scale(0.2)">
+    <pre xmlns="http://www.w3.org/1999/xhtml"><code class="scala">
+
+
+val ballSize = 20
+val maxX = 800
+val maxY = 400
+val leftPos = 30
+val rightPos = 770
+val initPosition = Point(400, 200)
+val initSpeed = Point(10, 8)
+
+
+
+class Server extends Actor {
+<span class="distribution-code">  def receive = addPlayer orElse mouseYChanged</span>
+
+<span class="distribution-code">  val clients = Var(Seq.empty[ActorRef])</span>
+
+<span class="distribution-code">  val mousePositions = Var(Map.empty[ActorRef, Int])</span>
+
+<span class="distribution-code">  def mouseYChanged: Receive = { case MouseYChanged(y) =>
+    mousePositions transform { _ + (sender -> y) } }</span>
+
+<span class="multiuser-code">  val isPlaying = Signal { <span class="distribution-code">clients()</span>.size >= 2 }</span>
+
+
+  val ball: Signal[Point] =
+    tick.fold(initPosition) { (ball, _) =>
+      <span class="distribution-code">if (isPlaying.get)</span> ball + speed.get <span class="distribution-code">else ball</span> }
+
+<span class="multiuser-code">  def addPlayer: Receive = { case AddPlayer =>
+    <span class="distribution-code">clients transform { _ :+ sender }</span> }</span>
+
+<span class="multiuser-code">  val players = Signal {
+    <span class="distribution-code">clients()</span> match {
+      case left :: right :: _ => Seq(Some(left), Some(right))
+      case _ => Seq(None, None) } }</span>
+
+  val areas = {
+    val racketY = Signal {
+<span class="multiuser-code">      players() map {
+        _ flatMap { <span class="distribution-code">mousePositions() get _</span> } getOrElse initPosition.y } }</span>
+    val leftRacket = new Racket(leftRacketPos, Signal { racketY()(0) })
+    val rightRacket = new Racket(rightRacketPos, Signal { racketY()(1) })
+    val rackets = List(leftRacket, rightRacket)
+    Signal { rackets map { _.area() } } }
+
+  val leftWall = ball.changed &amp;&amp; { _.x &lt; 0 }
+  val rightWall = ball.changed &amp;&amp; { _.x &gt; maxX }
+
+  val xBounce = {
+    val ballInRacket = Signal { areas() exists { _ contains ball() } }
+    val collisionRacket = ballInRacket changedTo true
+    leftWall || rightWall || collisionRacket }
+  val yBounce = ball.changed &amp;&amp;
+    { ball => ball.y &lt; 0 || ball.y &gt; maxY }
+
+  val speed = {
+    val x = xBounce toggle (Signal { initSpeed.x }, Signal { -initSpeed.x })
+    val y = yBounce toggle (Signal { initSpeed.y }, Signal { -initSpeed.y })
+    Signal { Point(x(), y()) } }
+
+  val score = {
+    val leftPlayerPoints = rightWall.iterate(0) { _ + 1 }
+    val rightPlayerPoints = leftWall.iterate(0) { _ + 1 }
+    Signal { leftPlayerPoints() + " : " + rightPlayerPoints() } }
+
+<span class="distribution-code">  areas observe { areas => clients.now foreach { _ ! UpdateAreas(areas) } }
+  ball observe { ball => clients.now foreach { _ ! UpdateBall(ball) } }
+  score observe { score => clients.now foreach { _ ! UpdateScore(score) } }</span>
+
+<span class="distribution-code">  clients observe { _ foreach { client =>
+    client ! UpdateAreas(areas.now)
+    client ! UpdateBall(ball.now)
+    client ! UpdateScore(score.now) } }</span>
+}
+
+abstract class Client(server: ActorSelection) extends Actor {
+<span class="distribution-code">  val areas = Var(List.empty[Area])
+  val ball = Var(Point(0, 0))
+  val score = Var("0 : 0")</span>
+
+  mousePosition observe { pos =>
+    <span class="distribution-code">server ! MouseYChanged(pos.y)</span> }
+
+  val ui = new UI(areas, ball, score)
+
+<span class="distribution-code">  def receive = {
+    case UpdateAreas(areas) => this.areas set areas
+    case UpdateBall(ball) => this.ball set ball
+    case UpdateScore(score) => this.score set score }</span>
+
+<span class="distribution-code">  server ! AddPlayer</span>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+  </foreignObject>
+
+  <foreignObject id="rmi" class="text" width="700" height="1610" transform="translate(480, 0) scale(0.2)">
+    <pre xmlns="http://www.w3.org/1999/xhtml"><code class="scala">
+
+
+val ballSize = 20
+val maxX = 800
+val maxY = 400
+val leftPos = 30
+val rightPos = 770
+val initPosition = Point(400, 200)
+val initSpeed = Point(10, 8)
+
+<span class="distribution-code">@remote trait Server {
+  def addPlayer(client: Client): Unit
+  def mouseYChanged(client: Client, y: Int): Unit }</span>
+
+class ServerImpl extends Server {
+<span class="distribution-code">  val clients = Var(Seq.empty[Client])</span>
+
+<span class="distribution-code">  val mousePositions = Var(Map.empty[Client, Int])</span>
+
+<span class="distribution-code">  def mouseYChanged(client: Client, y: Int) = synchronized {
+    mousePositions() = mousePositions.get + (client -> y) }</span>
+
+<span class="multiuser-code">  val isPlaying = Signal { <span class="distribution-code">clients()</span>.size >= 2 }</span>
+
+
+  val ball: Signal[Point] =
+    tick.fold(initPosition) { (ball, _) =>
+      <span class="distribution-code">if (isPlaying.get)</span> ball + speed.get <span class="distribution-code">else ball</span> }
+
+<span class="multiuser-code">  def addPlayer(client: Client) = synchronized {
+    <span class="distribution-code">clients transform { _ :+ client }</span> }</span>
+
+<span class="multiuser-code">  val players = Signal {
+    <span class="distribution-code">clients()</span> match {
+      case left :: right :: _ => Seq(Some(left), Some(right))
+      case _ => Seq(None, None) } }</span>
+
+  val areas = {
+    val racketY = Signal {
+<span class="multiuser-code">      players() map {
+        _ flatMap { <span class="distribution-code">mousePositions() get _</span> } getOrElse initPosition.y } }</span>
+    val leftRacket = new Racket(leftRacketPos, Signal { racketY()(0) })
+    val rightRacket = new Racket(rightRacketPos, Signal { racketY()(1) })
+    val rackets = List(leftRacket, rightRacket)
+    Signal { rackets map { _.area() } } }
+
+  val leftWall = ball.changed &amp;&amp; { _.x &lt; 0 }
+  val rightWall = ball.changed &amp;&amp; { _.x &gt; maxX }
+
+  val xBounce = {
+    val ballInRacket = Signal { areas() exists { _ contains ball() } }
+    val collisionRacket = ballInRacket changedTo true
+    leftWall || rightWall || collisionRacket }
+  val yBounce = ball.changed &amp;&amp;
+    { ball => ball.y &lt; 0 || ball.y &gt; maxY }
+
+  val speed = {
+    val x = xBounce toggle (initSpeed.x, -initSpeed.x)
+    val y = yBounce toggle (initSpeed.y, -initSpeed.y)
+    Signal { Point(x(), y()) } }
+
+  val score = {
+    val leftPoints = rightWall.iterate(0) { _ + 1 }
+    val righrPoints = leftWall.iterate(0) { _ + 1 }
+    Signal { leftPoints() + " : " + righrPoints() } }
+
+<span class="distribution-code">  areas observe { updateAreasClients(clients.get, _) }
+  ball observe { updateBallClients(clients.get, _) }
+  score observe { updateScoreClients(clients.get, _) }</span>
+
+<span class="distribution-code">  clients observe { clients =>
+    updateAreasClients(clients, areas.get)
+    updateBallClients(clients, ball.get)
+    updateScoreClients(clients, score.get) }</span>
+
+<span class="distribution-code">  def updateAreasClients(clients: Seq[Client], areas: List[Area]) =
+    clients foreach { _ updateAreas areas }
+  def updateBallClients(clients: Seq[Client], ball: Point) =
+    clients foreach { _ updateBall ball }
+  def updateScoreClients(clients: Seq[Client], score: String) =
+    clients foreach { _ updateScore score }</span>
+}
+
+<span class="distribution-code">@remote trait Client {
+  def updateAreas(areas: List[Area]): Unit
+  def updateBall(ball: Point): Unit
+  def updateScore(score: String): Unit }</span>
+
+class ClientImpl(server: Server) extends Client {
+  val self = makeStub[Client](this)
+
+<span class="distribution-code">  val areas = Var(List.empty[Area])
+  val ball = Var(Point(0, 0))
+  val score = Var("0 : 0")</span>
+
+  UI.mousePosition observe { pos =>
+    <span class="distribution-code">server mouseYChanged (self, pos.y)</span> }
+
+  val ui = new UI(areas, ball, score)
+
+<span class="distribution-code">  def updateAreas(areas: List[Area]) = synchronized { this.areas() = areas }
+  def updateBall(ball: Point) = synchronized { this.ball() = ball }
+  def updateScore(score: String) = synchronized { this.score() = score }</span>
+
+<span class="distribution-code">  server addPlayer self</span>
+}</code></pre>
+  </foreignObject>
+</svg>

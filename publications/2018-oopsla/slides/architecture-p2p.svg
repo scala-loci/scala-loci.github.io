@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="640" height="230" version="1.1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+
+  <line id="line-registry-0" x1="35" y1="35" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+  <line id="line-registry-1" x1="100" y1="175" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+  <line id="line-registry-2" x1="415" y1="195" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+  <line id="line-registry-3" x1="470" y1="40" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+  <line id="line-registry-4" x1="605" y1="120" x2="250" y2="100" stroke="#7070ff" stroke-width="10" />
+
+  <line id="line-node-0" x1="35" y1="35" x2="100" y2="175" stroke="#7070ff" stroke-width="10" />
+  <line id="line-node-1" x1="100" y1="175" x2="415" y2="195" stroke="#7070ff" stroke-width="10" />
+  <line id="line-node-2" x1="415" y1="195" x2="605" y2="120" stroke="#7070ff" stroke-width="10" />
+
+  <g id="node-0" transform="translate(35, 35)">
+    <circle r="35" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Node</text>
+  </g>
+  <g id="node-1" transform="translate(100, 175)">
+    <circle r="35" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Node</text>
+  </g>
+  <g id="node-2" transform="translate(415, 195)">
+    <circle r="35" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Node</text>
+  </g>
+  <g id="node-3" transform="translate(470, 40)">
+    <circle r="35" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Node</text>
+  </g>
+  <g id="node-4" transform="translate(605, 120)">
+    <circle r="35" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Node</text>
+  </g>
+  <g id="registry" transform="translate(250, 100)">
+    <circle r="50" fill="#7070ff" /><text font-size="25" text-anchor="middle" dominant-baseline="central" fill="white">Registry</text>
+  </g>
+</svg>

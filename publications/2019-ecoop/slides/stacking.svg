@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 170" width="600" height="510" version="1.1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+  <g id="master-worker">
+    <ellipse cx="100" cy="25.5" rx="80" ry="25" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="100" y="10" font-size="7" text-anchor="middle" fill="white">Offloading</text>
+    <ellipse cx="65" cy="30" rx="25" ry="10" fill="#55f" />
+    <text x="65" y="32" font-size="7" text-anchor="middle" fill="white">Master</text>
+    <ellipse cx="140" cy="23" rx="25" ry="10" fill="#55f" />
+    <text x="140" y="25" font-size="7" text-anchor="middle" fill="white">Worker</text>
+  </g>
+  <g id="monitoring">
+    <ellipse cx="100" cy="85" rx="80" ry="25" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="100" y="70" font-size="7" text-anchor="middle" fill="white">Monitoring</text>
+    <ellipse cx="65" cy="90" rx="25" ry="10" fill="#55f" />
+    <text x="65" y="92" font-size="7" text-anchor="middle" fill="white">Master</text>
+    <ellipse cx="140" cy="83" rx="25" ry="10" fill="#55f" />
+    <text x="140" y="85" font-size="7" text-anchor="middle" fill="white">Worker</text>
+  </g>
+  <g id="task-scheduler">
+    <ellipse cx="100" cy="144.5" rx="80" ry="25" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="100" y="130" font-size="7" text-anchor="middle" fill="white">TaskScheduler</text>
+    <ellipse cx="65" cy="150" rx="25" ry="10" fill="#55f" />
+    <text x="65" y="152" font-size="7" text-anchor="middle" fill="white">Master</text>
+    <ellipse cx="140" cy="143" rx="25" ry="10" fill="#55f" />
+    <text x="140" y="145" font-size="7" text-anchor="middle" fill="white">Worker</text>
+  </g>
+  <line id="master-0" x1="65" y1="40" x2="65" y2="80" stroke-width="2" stroke="#55f" />
+  <line id="master-1" x1="65" y1="100" x2="65" y2="140" stroke-width="2" stroke="#55f" />
+  <line id="worker-0" x1="140" y1="33" x2="140" y2="73" stroke-width="2" stroke="#55f" />
+  <line id="worker-1" x1="140" y1="93" x2="140" y2="133" stroke-width="2" stroke="#55f" />
+  <line id="stacking-0" x1="20" y1="25.5" x2="20" y2="144.5" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+  <line id="stacking-1" x1="180" y1="25.5" x2="180" y2="144.5" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+</svg>

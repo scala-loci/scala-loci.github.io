@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 270" width="420" height="270" version="1.1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+  <rect x="10" y="10" width="400" height="50" fill="white" fill-opacity="0.2" stroke="white" />
+  <text x="210" y="35" font-size="35" text-anchor="middle" dominant-baseline="central" fill="white">Single Compilation Unit</text>
+  <path d="M 70,70 l 20,0 0,50 10,0 -20,20 -20,-20 10,0 z" fill="white" fill-opacity="0.2" stroke="white" />
+  <path d="M 350,70 l 20,0 0,50 10,0 -20,20 -20,-20 10,0 z" fill="white" fill-opacity="0.2" stroke="white" />
+  <line x1="50" y1="210" x2="360" y2="210" stroke="#ddf" stroke-width="10" />
+  <image xlink:href="notebook.png" x="10" y="160" height="100" width="100" />
+  <image xlink:href="server.png" x="290" y="150" height="120" width="120" />
+</svg>

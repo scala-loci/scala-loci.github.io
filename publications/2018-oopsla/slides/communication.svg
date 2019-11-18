@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 944 420" width="944" height="420" version="1.1">
+  <defs> 
+    <radialGradient id="exampleGradient"> 
+      <stop offset="0.5" stop-color="#7070ff" stop-opacity="1" /> 
+      <stop offset="1" stop-color="#7070ff" stop-opacity="0" /> 
+    </radialGradient>
+  </defs>
+
+  <circle cx="244" cy="110" r="18" fill="url(#exampleGradient)">
+    <animate attributeName="cx" from="244" to="40" dur="0.4s" begin="0s;circle0f.end+0.5s" id="circle0a" />
+    <animate attributeName="cy" from="110" to="40" dur="0.4s" begin="0s;circle0f.end+0.5s" />
+    <animate attributeName="cx" from="412" to="604" dur="0.4s" begin="circle0a.end+0.8s" id="circle0b" />
+    <animate attributeName="cy" from="210" to="110" dur="0.4s" begin="circle0a.end+0.8s" />
+    <animate attributeName="cx" from="700" to="904" dur="0.4s" begin="circle0b.end+0.7s" id="circle0c" />
+    <animate attributeName="cy" from="270" to="360" dur="0.4s" begin="circle0b.end+0.7s" />
+    <animate attributeName="cx" from="184" to="244" dur="0.4s" begin="circle0c.end+0.4s" id="circle0d" />
+    <animate attributeName="cy" from="300" to="110" dur="0.4s" begin="circle0c.end+0.4s" />
+    <animate attributeName="cx" from="412" to="244" dur="0.4s" begin="circle0d.end+0.9s" id="circle0e" />
+    <animate attributeName="cy" from="210" to="110" dur="0.4s" begin="circle0d.end+0.9s" />
+    <animate attributeName="cx" from="604" to="856" dur="0.4s" begin="circle0e.end+0.6s" id="circle0f" />
+    <animate attributeName="cy" from="110" to="60" dur="0.4s" begin="circle0e.end+0.6s" />
+  </circle>
+
+  <circle cx="244" cy="110" r="18" fill="url(#exampleGradient)">
+    <animate attributeName="cx" from="184" to="244" dur="0.4s" begin="0.2s;circle0f.end+0.4s" id="circle0a" />
+    <animate attributeName="cy" from="300" to="110" dur="0.4s" begin="0.2s;circle0f.end+0.4s" />
+    <animate attributeName="cx" from="412" to="244" dur="0.4s" begin="circle0a.end+0.6s" id="circle0b" />
+    <animate attributeName="cy" from="210" to="110" dur="0.4s" begin="circle0a.end+0.6s" />
+    <animate attributeName="cx" from="244" to="604" dur="0.4s" begin="circle0b.end+0.9s" id="circle0c" />
+    <animate attributeName="cy" from="110" to="110" dur="0.4s" begin="circle0b.end+0.9s" />
+    <animate attributeName="cx" from="244" to="40" dur="0.4s" begin="circle0c.end+0.5s" id="circle0d" />
+    <animate attributeName="cy" from="110" to="40" dur="0.4s" begin="circle0c.end+0.5s" />
+    <animate attributeName="cx" from="700" to="604" dur="0.4s" begin="circle0d.end+0.8s" id="circle0e" />
+    <animate attributeName="cy" from="270" to="110" dur="0.4s" begin="circle0d.end+0.8s" />
+    <animate attributeName="cx" from="412" to="604" dur="0.4s" begin="circle0e.end+0.7s" id="circle0f" />
+    <animate attributeName="cy" from="210" to="110" dur="0.4s" begin="circle0e.end+0.7s" />
+  </circle>
+
+  <circle cx="244" cy="110" r="18" fill="url(#exampleGradient)">
+    <animate attributeName="cx" from="244" to="604" dur="0.4s" begin="0.4s;circle0f.end+0.9s" id="circle0a" />
+    <animate attributeName="cy" from="110" to="110" dur="0.4s" begin="0.4s;circle0f.end+0.9s" />
+    <animate attributeName="cx" from="244" to="184" dur="0.4s" begin="circle0a.end+0.5s" id="circle0b" />
+    <animate attributeName="cy" from="110" to="300" dur="0.4s" begin="circle0a.end+0.5s" />
+    <animate attributeName="cx" from="604" to="412" dur="0.4s" begin="circle0b.end+0.7s" id="circle0c" />
+    <animate attributeName="cy" from="110" to="210" dur="0.4s" begin="circle0b.end+0.7s" />
+    <animate attributeName="cx" from="856" to="604" dur="0.4s" begin="circle0c.end+0.4s" id="circle0d" />
+    <animate attributeName="cy" from="60" to="110" dur="0.4s" begin="circle0c.end+0.4s" />
+    <animate attributeName="cx" from="700" to="904" dur="0.4s" begin="circle0d.end+0.6s" id="circle0e" />
+    <animate attributeName="cy" from="270" to="360" dur="0.4s" begin="circle0d.end+0.6s" />
+    <animate attributeName="cx" from="520" to="700" dur="0.4s" begin="circle0e.end+0.8s" id="circle0f" />
+    <animate attributeName="cy" from="380" to="270" dur="0.4s" begin="circle0e.end+0.8s" />
+  </circle>
+
+  <line x1="40" y1="40" x2="244" y2="110" stroke="#7070ff" stroke-width="10" />
+  <line x1="244" y1="110" x2="412" y2="210" stroke="#7070ff" stroke-width="10" />
+  <line x1="244" y1="110" x2="604" y2="110" stroke="#7070ff" stroke-width="10" />
+  <line x1="244" y1="110" x2="184" y2="300" stroke="#7070ff" stroke-width="10" />
+  <line x1="412" y1="210" x2="604" y2="110" stroke="#7070ff" stroke-width="10" />
+  <line x1="604" y1="110" x2="856" y2="60" stroke="#7070ff" stroke-width="10" />
+  <line x1="604" y1="110" x2="700" y2="270" stroke="#7070ff" stroke-width="10" />
+  <line x1="700" y1="270" x2="904" y2="360" stroke="#7070ff" stroke-width="10" />
+  <line x1="700" y1="270" x2="520" y2="380" stroke="#7070ff" stroke-width="10" />
+
+  <image xlink:href="smartphone.png" x="0" y="0" height="80" width="80" />
+  <image xlink:href="smartphone.png" x="816" y="20" height="80" width="80" />
+  <image xlink:href="smartphone.png" x="864" y="320" height="80" width="80" />
+  <image xlink:href="smartphone.png" x="480" y="340" height="80" width="80" />
+  <image xlink:href="smartphone.png" x="144" y="260" height="80" width="80" />
+  <image xlink:href="notebook.png" x="182" y="60" height="100" width="100" />
+  <image xlink:href="notebook.png" x="350" y="160" height="100" width="100" />
+  <image xlink:href="notebook.png" x="638" y="220" height="100" width="100" />
+  <image xlink:href="server.png" x="520" y="50" height="120" width="120" />
+</svg>
+
+
+
+
+
+
+
+
+
+
+
+

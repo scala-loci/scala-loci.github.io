@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 470" width="600" height="705" version="1.1">
+  <style>
+    foreignObject.text pre,
+    foreignObject.text pre code {
+      margin: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
+      max-height: none;
+      max-width: none;
+      position: static;
+      background: none;
+      box-shadow: none;
+      white-space: pre;
+      text-align: left;
+      font-family: monospace;
+      font-size: 15px;
+      line-height: 15px;
+      overflow: visible;
+      color: black;
+    }
+    foreignObject.text pre {
+      opacity: 0.7;
+    }
+  </style>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 18 10" refY="5" refX="5" orient="auto" markerWidth="5" markerHeight="9">
+      <path d="M 5,5 L 0,0 L 18,5 L 0,10 L 5,5 z" fill="#800" />
+    </marker>
+    <marker id="circle" viewBox="0 0 6 6" refY="3" refX="5.5" orient="auto" markerWidth="6" markerHeight="6">
+      <circle cx="3" cy="3" r="2.5" fill="none" stroke="#800" stroke-width="1" />
+    </marker>
+  </defs>
+
+  <g id="job-manager" transform="translate(5, 5)">
+    <rect rx="4" ry="4" width="170" height="170" fill="#fdd" stroke="#faa" stroke-width="3" />
+    <foreignObject class="text" width="800" height="815" transform="translate(4, 4) scale(0.2)">
+      <pre xmlns="http://www.w3.org/1999/xhtml"><code class="scala">class TaskManagerGateway {
+  def disconnectFromJobManager(instanceId: InstanceID, cause: Exception,
+      mgr: ActorRef) = {
+    mgr ! Disconnect(instanceId, cause)
+  }
+ 
+  def stopCluster(applicationStatus: ApplicationStatus, message: String,
+      mgr: ActorRef) = {
+    mgr ! StopCluster(applicationStatus, message)
+  }
+ 
+  def requestStackTrace(mgr: ActorRef) = {
+    (mgr ? SendStackTrace).mapTo[StackTrace]
+  }
+ 
+  def submitTask(tdd: TaskDeploymentDescriptor, mgr: ActorRef) = {
+    (mgr ? SubmitTask(tdd)).mapTo[Acknowledge]
+  }
+ 
+  def stopTask(executionAttemptID: ExecutionAttemptID, mgr: ActorRef) = {
+    (mgr ? StopTask(executionAttemptID)).mapTo[Acknowledge]
+  }
+ 
+  def cancelTask(executionAttemptID: ExecutionAttemptID, mgr: ActorRef) = {
+    (mgr ? CancelTask(executionAttemptID).mapTo[Acknowledge]
+  }
+ 
+  def updatePartitions(executionAttemptID: ExecutionAttemptID,
+      partitionInfos: Iterable[PartitionInfo], mgr: ActorRef) = {
+    (mgr ? UpdateTaskMultiplePartitionInfos(executionAttemptID, partitionInfos))
+      .mapTo[Acknowledge]
+  }
+ 
+  def failPartition(executionAttemptID: ExecutionAttemptID, mgr: ActorRef) = {
+    mgr ! FailIntermediateResultPartitions(executionAttemptID)
+  }
+ 
+  def notifyCheckpointComplete(executionAttemptID: ExecutionAttemptID,
+      jobId: JobID, checkpointId: long, timestamp: long, mgr: ActorRef) = {
+    mgr ! NotifyCheckpointComplete(jobId, executionAttemptID, checkpointId,
+      timestamp)
+  }
+ 
+  def triggerCheckpoint(executionAttemptID: ExecutionAttemptID, jobId: JobID,
+      checkpointId: long, timestamp: long, checkpointOptions: CheckpointOptions,
+      mgr: ActorRef) = {
+    mgr ! TriggerCheckpoint(jobId, executionAttemptID, checkpointId, timestamp,
+      checkpointOptions)
+  }
+ 
+  def requestTaskManagerLog(logTypeRequest: LogTypeRequest, mgr: ActorRef) = {
+    (mgr ? RequestTaskManagerLog(logTypeRequest)).mapTo[BlobKey]
+  }
+}</code></pre>
+    </foreignObject>
+  </g>
+
+  <g id="task-manager" transform="translate(200, 5)">
+    <rect rx="4" ry="4" width="170" height="305" fill="#ddf" stroke="#aaf" stroke-width="3" />
+    <foreignObject class="text" width="800" height="1495" transform="translate(4, 4) scale(0.2)">
+      <pre xmlns="http://www.w3.org/1999/xhtml"><code class="scala">class TaskManager extends Actor {
+  def receive = {
+    case SendStackTrace => sendStackTrace() foreach { message =>
+      sender ! decorateMessage(message)
+    }
+ 
+    case Disconnect(instanceIdToDisconnect, cause) =>
+      if (instanceIdToDisconnect.equals(instanceID)) {
+        handleJobManagerDisconnect("JobManager requested disconnect: " +
+          cause.getMessage())
+        triggerTaskManagerRegistration()
+      } else {
+        log.debug("Received disconnect message for wrong instance id " +
+          instanceIdToDisconnect)
+      }
+ 
+    case StopCluster(applicationStatus, message) =>
+      log.info(s"Stopping TaskManager with final application status " +
+        s"$applicationStatus and diagnostics: $message")
+      shutdown()
+ 
+    case RequestTaskManagerLog(requestType) =>
+      blobService match {
+        case Some(_) =>
+          handleRequestTaskManagerLog(requestType, currentJobManager.get) match {
+            case Left(message) => sender() ! message
+            case Right(message) => sender() ! message
+          }
+        case None =>
+          sender() ! akka.actor.Status.Failure(new IOException(
+            "BlobService not available. Cannot upload TaskManager logs."))
+      }
+ 
+    case UpdateTaskMultiplePartitionInfos(executionID, partitionInfos) =>
+      sender ! decorateMessage(updateTaskInputPartitions(executionID, partitionInfos))
+ 
+    case FailIntermediateResultPartitions(executionID) =>
+      log.info(s"Discarding the results produced by task execution $executionID")
+      try {
+        network.getResultPartitionManager.releasePartitionsProducedBy(executionID)
+      } catch {
+        case t: Throwable => killTaskManagerFatal(
+          "Fatal leak: Unable to release intermediate result partition data", t)
+      }
+ 
+    case SubmitTask(tdd) =>
+      sender ! decorateMessage(submitTask(tdd))
+
+    case StopTask(executionID) =>
+      val task = runningTasks.get(executionID)
+      if (task != null) {
+        try {
+          task.stopExecution()
+          sender ! decorateMessage(Acknowledge.get())
+        } catch {
+          case t: Throwable =>
+            sender ! decorateMessage(Status.Failure(t))
+        }
+      } else {
+        log.debug(s"Cannot find task to stop for execution $executionID)")
+        sender ! decorateMessage(Acknowledge.get())
+      }
+ 
+    case CancelTask(executionID) =>
+      val task = runningTasks.get(executionID)
+      if (task != null) {
+        task.cancelExecution()
+        sender ! decorateMessage(Acknowledge.get())
+      } else {
+        log.debug(s"Cannot find task to cancel for execution $executionID)")
+        sender ! decorateMessage(Acknowledge.get())
+      }
+ 
+    case TriggerCheckpoint(jobId, taskExecutionId, checkpointId, timestamp,
+        checkpointOptions) =>
+      log.debug(s"Receiver TriggerCheckpoint $checkpointId@$timestamp " +
+        s"for $taskExecutionId.")
+ 
+      val task = runningTasks.get(taskExecutionId)
+      if (task != null) {
+        task.triggerCheckpointBarrier(checkpointId, timestamp, checkpointOptions)
+      } else {
+        log.debug(s"TaskManager received a checkpoint request " +
+          s"for unknown task $taskExecutionId.")
+      }
+ 
+    case NotifyCheckpointComplete(jobId, taskExecutionId, checkpointId, timestamp) =>
+      log.debug(s"Receiver ConfirmCheckpoint $checkpointId@$timestamp " +
+        s"for $taskExecutionId.")
+ 
+      val task = runningTasks.get(taskExecutionId)
+      if (task != null) {
+        task.notifyCheckpointComplete(checkpointId)
+      } else {
+        log.debug(s"TaskManager received a checkpoint confirmation " +
+          s"for unknown task $taskExecutionId.")
+      }
+  }
+}</code></pre>
+    </foreignObject>
+  </g>
+
+  <line id="line-a-b-0" x1="30" y1="20" x2="204" y2="28" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-1" x1="30" y1="35" x2="204" y2="57" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-2" x1="31" y1="46" x2="204" y2="18" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-3" x1="31" y1="60" x2="204" y2="142" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-4" x1="31" y1="72" x2="204" y2="150" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-5" x1="31" y1="85" x2="204" y2="194" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-6" x1="31" y1="97" x2="204" y2="109" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-7" x1="30" y1="113" x2="204" y2="118" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-8" x1="29" y1="130" x2="204" y2="262" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-9" x1="29" y1="150" x2="204" y2="226" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-a-b-10" x1="31" y1="161" x2="204" y2="77" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+
+  <line id="line-b-a-0" x1="223" y1="20" x2="98" y2="45" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-1" x1="278" y1="85" x2="136" y2="160" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-2" x1="280" y1="90" x2="136" y2="160" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-3" x1="235" y1="100" x2="136" y2="160" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-4" x1="224" y1="112" x2="65" y2="101" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-5" x1="224" y1="146" x2="101" y2="63" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-6" x1="232" y1="166" x2="125" y2="76" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-7" x1="235" y1="175" x2="125" y2="76" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-8" x1="229" y1="207" x2="125" y2="88" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+  <line id="line-b-a-9" x1="229" y1="217" x2="125" y2="88" stroke="#800" stroke-width="2" marker-start="url(#circle)" marker-end="url(#arrow)" />
+</svg>

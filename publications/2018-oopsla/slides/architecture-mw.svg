@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 700 380"
+   width="700"
+   height="380"
+   version="1.1"
+   sodipodi:docname="architecture-mw.svg"
+   inkscape:version="0.92.3pre0 (0ab9bec, 2018-03-03)">
+  <defs>
+    <marker id="arrow" viewBox="0 0 5 5" refY="2.5" refX="3.5" orient="auto" markerWidth="5" markerHeight="5">
+      <path d="M 0.5,4.5 L 3.5,2.5 L 0.5,0.5" fill="none" stroke="#7070ff" stroke-width="1" stroke-linecap="round" />
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+  <g id="proxy" transform="translate(350,50)">
+    <circle r="50" cx="0" cy="0" fill="#7070ff" />
+    <text font-size="25" dominant-baseline="central" text-anchor="middle" fill="white"><tspan dy="-12">Master</tspan><tspan x="0" dy="24">Proxy</tspan></text>
+  </g>
+  <g id="master" transform="translate(50,300)">
+    <circle r="50" cx="0" cy="0" fill="#7070ff" />
+    <text font-size="25" dominant-baseline="central" text-anchor="middle" fill="white">Master</text>
+  </g>
+  <g id="worker" transform="translate(650,300)">
+    <circle r="50" cx="0" cy="0" fill="#7070ff" />
+    <text font-size="25" dominant-baseline="central" id="text39-0-1" text-anchor="middle" fill="#ffffff">Worker</text>
+  </g>
+  <line id="proxy-master-0" x1="285" y1="35" x2="50" y2="210" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="proxy-master-1" x1="290" y1="60" x2="65" y2="225" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="master-proxy-0" x1="90" y1="250" x2="300" y2="100" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="master-proxy-1" x1="103" y1="267" x2="315" y2="115" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="proxy-worker-0" x1="415" y1="35" x2="650" y2="210" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="proxy-worker-1" x1="410" y1="60" x2="635" y2="225" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="worker-proxy" x1="610" y1="250" x2="400" y2="100" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="master-worker-0" x1="120" y1="280" x2="580" y2="280" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="master-worker-1" x1="120" y1="300" x2="580" y2="300" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" />
+  <line id="worker-master" x1="580" y1="340" x2="120" y2="340" stroke="#7070ff" stroke-width="10" marker-end="url(#arrow)" stroke-dasharray="40, 10" />
+</svg>

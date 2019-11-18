@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 170 190" width="510" height="570" version="1.1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+    ellipse:first-child + text { font-weight: bold }
+    ellipse:first-child + text + text { font-style: italic }
+  </style>
+  <g id="architecture" transform="translate(0, 0.5)">
+    <ellipse cx="85" cy="20" rx="84.5" ry="20" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="20" y="15" font-size="8" fill="white">Ring</text>
+    <ellipse cx="135" cy="20" rx="25" ry="10" fill="#55f" />
+    <text x="135" y="23" font-size="8" text-anchor="middle" fill="white">Node</text>
+  </g>
+  <g id="id" transform="translate(0, 50)">
+    <ellipse cx="85" cy="20" rx="84.5" ry="20" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="20" y="15" font-size="8" fill="white">RandomIntId</text>
+    <ellipse cx="135" cy="20" rx="25" ry="10" fill="#55f" />
+    <text x="135" y="23" font-size="8" text-anchor="middle" fill="white">Node</text>
+  </g>
+  <g id="leader-election" transform="translate(0, 100)">
+    <ellipse cx="85" cy="20" rx="84.5" ry="20" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="20" y="15" font-size="8" fill="white">HirschbergSinclair</text>
+    <text x="20" y="25" font-size="8" fill="white">requires</text>
+    <text x="54" y="25" font-size="8" fill="white">Id</text>
+    <text x="54" y="35" font-size="8" fill="white">Ring</text>
+    <ellipse cx="135" cy="20" rx="25" ry="10" fill="#55f" />
+    <text x="135" y="23" font-size="8" text-anchor="middle" fill="white">Node</text>
+  </g>
+  <g id="mutual-exclusion" transform="translate(0, 149.5)">
+    <ellipse cx="85" cy="20" rx="84.5" ry="20" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="20" y="15" font-size="8" fill="white">MutualExclusion</text>
+    <text x="20" y="25" font-size="8" fill="white">requires</text>
+    <text x="54" y="25" font-size="8" fill="white">LeaderElection</text>
+    <text x="54" y="35" font-size="8" fill="white">Architecture</text>
+    <ellipse cx="135" cy="20" rx="25" ry="10" fill="#55f" />
+    <text x="135" y="23" font-size="8" text-anchor="middle" fill="white">Node</text>
+  </g>
+  <line id="node-mixing-architecture" x1="135" y1="30.5" x2="135" y2="60" stroke-width="2" stroke="#55f" />
+  <line id="node-mixing-id" x1="135" y1="80" x2="135" y2="110" stroke-width="2" stroke="#55f" />
+  <line id="node-mixing-leader-election" x1="135" y1="130" x2="135" y2="159.5" stroke-width="2" stroke="#55f" />
+  <line id="mixing-architecture-0" x1="0.5" y1="20.5" x2="0.5" y2="70" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+  <line id="mixing-architecture-1" x1="169.5" y1="20.5" x2="169.5" y2="70" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+  <line id="mixing-id-0" x1="0.5" y1="70" x2="0.5" y2="120" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+  <line id="mixing-id-1" x1="169.5" y1="70" x2="169.5" y2="120" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+  <line id="mixing-leader-election-0" x1="0.5" y1="120" x2="0.5" y2="169.5" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+  <line id="mixing-leader-election-1" x1="169.5" y1="120" x2="169.5" y2="169.5" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+</svg>

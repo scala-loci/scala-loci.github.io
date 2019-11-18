@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Multitier Modules</title>
+
+    <link rel="stylesheet" href="../../../presentation/reveal.js/css/reveal.css" />
+    <link rel="stylesheet" href="../../../presentation/reveal.js/css/theme/white.css" />
+
+    <link rel="stylesheet" href="../../../presentation/highlight.js/styles/atom-one-light.css" />
+
+    <style>
+      @import url('http://fontlibrary.org/face/linux-biolinum');
+      @import url('http://fonts.googleapis.com/css?family=Lato:400,400i,700|Oxygen+Mono');
+
+      body,
+      body > .reveal > .slides > .pdf-page {
+        background:
+          linear-gradient(rgba(0, 0, 48, 0.1), rgba(0, 0, 48, 0)) repeat-x,
+          url(simple-network.svg) no-repeat,
+          linear-gradient(160deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0) 50%) no-repeat,
+          linear-gradient(rgb(224, 224, 255), white) repeat-x,
+          white;
+      }
+      @media (min-width: 2000px), (min-height: 2000px) {
+        body,
+        body > .reveal > .slides > .pdf-page {
+          background-size:
+            auto,
+            cover,
+            auto,
+            auto;
+        }
+      }
+      @media print {
+        body {
+          background: none;
+        }
+      }
+      .reveal,
+      .reveal .slide-number {
+        font-family: 'Lato', sans-serif;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .revealx figcaption {
+        font-family: 'Linux Biolinum', sans-serif;
+        font-weight: normal;
+        text-transform: none;
+      }
+      .reveal .slide-number {
+        display: block;
+        margin: 0 40%;
+        width: 20%;
+        text-align: center;
+        background: none;
+      }
+      .reveal .slide-number a {
+        background: none;
+        color: black;
+      }
+      .reveal table th,
+      .reveal table td {
+        border: none;
+      }
+      .reveal .slides > section[data-transition=none].past,
+      .reveal .slides > section[data-transition~=none-out].past,
+      .reveal.none .slides > section:not([data-transition]).past,
+      .reveal .slides > section > section[data-transition=none].past,
+      .reveal .slides > section > section[data-transition~=none-out].past,
+      .reveal.none .slides > section > section:not([data-transition]).past,
+      .reveal .slides > section[data-transition=none].present,
+      .reveal .slides > section[data-transition~=none-in].present,
+      .reveal.none .slides > section:not([data-transition]).present,
+      .reveal .slides > section section[data-transition=none].present,
+      .reveal .slides > section section[data-transition~=none-in].present,
+      .reveal.none .slides > section section:not([data-transition]).present {
+        -webkit-transform: none;
+        transform: none;
+        transition: none;
+      }
+      .reveal .slides > section.present,
+      .reveal .slides > section > section.present {
+        z-index: 9;
+      }
+      .reveal h2 {
+        font-size: 1.2em;
+        width: 80%;
+        margin: 1em auto 0.5em;
+        border-bottom: 0.02em solid #555;
+        line-height: 0.8em;
+      }
+      .reveal .slides pre {
+        background: #efefef;
+        font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Oxygen Mono', monospace !important;
+      }
+      .reveal .slides pre code {
+        padding: 10px;
+        line-height: 1.6em;
+        max-height: none;
+        background: none;
+        font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Oxygen Mono', monospace !important;
+      }
+      .reveal section img {
+        background: none;
+        border: none;
+        box-shadow: none;
+      }
+      .reveal .slides section .semi-out {
+        opacity: 0.5;
+      }
+      .reveal .slides section .fragment.highlight.current-fragment,
+      .reveal .slides section .fragment.highlight-visible.current-fragment,
+      .reveal .slides section .fragment.highlight-persistent.visible {
+        background: #c8c8ff;
+        box-shadow: 0 0 5px 5px #c8c8ff;
+      }
+      .reveal .slides section .fragment.highlight-visible,
+      .reveal .slides section .fragment.highlight-persistent {
+        visibility: inherit;
+        opacity: 1;
+      }
+      .reveal .slides section .fragment.extend {
+        display: inline-block;
+        max-width: 0;
+        transition: all 3s ease;
+      }
+      .reveal .slides section .fragment.extend.visible {
+        max-width: 100em;
+      }
+      .reveal figcaption {
+        margin: 0 0.3em 0.5em 0.3em;
+        line-height: 1.2em;
+        min-height: 2.4em;
+        font-size: 0.8em;
+        color: #666;
+        text-align: left;
+      }
+      .reveal .hint,
+      .reveal .info,
+      .reveal .solution {
+        position: relative;
+        padding: 5px;
+        font-size: 0.7em;
+        border-radius: 5px;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+        color: white;
+      }
+      .reveal .hint {
+        background: #8181ff;
+      }
+      .reveal .info {
+        background: #bd582c;
+      }
+      .reveal .solution {
+        background: #309030;
+      }
+      .reveal ul.bulleted-list {
+        list-style: none;
+      }
+      .reveal ul.bulleted-list li::before {
+        content: "\25AA";
+        color: #e48312;
+        font-weight: bold;
+        display: inline-block;
+        width: 0.7em;
+        margin-left: -0.7em;
+      }
+      section#cover::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 12em;
+        height: 12em;
+        left: 50%;
+        margin-top: -2em;
+        margin-left: -6em;
+        background: url(logo.svg) no-repeat center center;
+        background-size: contain;
+        opacity: 0.2;
+      }
+      section#cover h1 {
+        position: relative;
+        margin-top: 3em;
+        font-size: 1.25em;
+        line-height: 0.8em;
+        color: black;
+      }
+      section#cover h1 em {
+        display: block;
+        margin: 0.2em auto;
+        padding-top: 0.2em;
+        width: 80%;
+        font-style: normal;
+        border-top: 0.05em solid #555;
+        font-size: 1em;
+        color: #333;
+      }
+      section#cover p {
+        position: relative;
+        margin-top: 5.5em;
+        margin-bottom: 0;
+        font-size: 0.7em;
+        color: #555;
+      }
+      section#cover p + p {
+        position: relative;
+        margin-top: 0.2em;
+        font-size: 0.7em;
+        color: #555;
+      }
+      section#programming-distributed-systems {
+        font-size: 32px;
+      }
+      section#programming-distributed-systems p {
+        text-align: left;
+        margin-top: 2em;
+        margin-left: 9.2em;
+      }
+      section#programming-distributed-systems ul {
+        display: block;
+        margin-left: 10em;
+      }
+      section#programming-distributed-systems li {
+        margin-top: 0.5em;
+      }
+      section#problem {
+        width: 1280px;
+        height: 720px;
+      }
+      section#problem object {
+        position: absolute;
+        top: 20px;
+        left: 50px;
+        width: 1080px;
+        height: 856px;
+      }
+      section#problem img {
+        position: absolute;
+        top: 20px;
+        left: 150px;
+        width: 202px;
+        height: 204px;
+      }
+      section#problem object + img {
+        top: auto;
+        bottom: 50px;
+        left: 200px;
+        width: 152px;
+        height: 368px;
+      }
+      section#multitier {
+        width: 1280px;
+        height: 720px;
+      }
+      section#multitier > object {
+        position: absolute;
+        top: 20px;
+        left: 50px;
+        width: 1080px;
+        height: 856px;
+        transition: transform .5s ease;
+        transform: perspective(1000px);
+      }
+      section#multitier .fragment.visible ~ object {
+        transform: perspective(1000px) rotateX(-10deg);
+      }
+      @media print {
+        section#multitier .fragment.visible ~ object {
+          transform: rotateX(-10deg);
+        }
+      }
+      .speaker-view section#multitier object {
+        transition: none;
+      }
+      section#multitier img {
+        position: absolute;
+        top: 20px;
+        left: 150px;
+        width: 202px;
+        height: 204px;
+      }
+      section#multitier object + img {
+        top: auto;
+        bottom: 50px;
+        left: 200px;
+        width: 152px;
+        height: 368px;
+      }
+      section#multitier div {
+        position: absolute;
+        top: 2em;
+        left: 230px;
+        padding: 0 0.5em 0.5em 0.5em;
+        line-height: 2em;
+        width: 15em;
+        font-size: 1em;
+        z-index: 1;
+      }
+      section#multitier div object {
+        display: block;
+        margin: 0.5em auto 0 auto
+      }
+      section#scala-loci ul {
+        list-style: none;
+        margin-right: 1.5em;
+      }
+      section#scala-loci li {
+        margin: 3em auto;
+        padding: 1em 0.1em 1em 3em;
+        list-style: none;
+        text-align: center;
+        font-size: 0.8em;
+        width: 17em;
+        background: url(architecture.svg) #309030 no-repeat 0.5em 0.25em;
+        background-size: 91px 77px;
+      }
+      section#scala-loci li + li {
+        background-image: url(placement.svg);
+      }
+      section#placement-types pre {
+        float: left;
+        width: 60%;
+        margin: 25px 0 25px 15%;
+      }
+      section#placement-types div:first-of-type {
+        line-height: 2.8em;
+      }
+      section#placement-types div {
+        float: left;
+        width: 15%;
+        min-height: 2.8em;
+        margin: 25px 0 25px 1%;
+      }
+      section#architecture pre {
+        margin: 25px 5%;
+        width: 90%;
+        float: left;
+      }
+      section#architecture div {
+        position: absolute;
+        box-sizing: border-box;
+        right: 5%;
+        width: 13em;
+        top: 10em;
+      }
+      section#architecture div + div {
+        top: 14em;
+        padding: 5px 20px;
+      }
+      section#architecture object {
+        display: block;
+        margin: 4.5em 0 0 3em;
+      }
+      section#placing-code pre {
+        margin: 25px 5%;
+        width: 90%;
+        float: left;
+        padding-bottom: 3em;
+      }
+      section#placing-code div {
+        position: absolute;
+        left: 21em;
+        top: 11.1em;
+        padding: 5px 2em;
+        line-height: 1.2em;
+      }
+      section#placing-code div ~ div {
+        left: 5em;
+        top: 17.1em;
+      }
+      section#placing-code img {
+        position: absolute;
+        width: 53px;
+        height: 56px;
+        margin: -0.2em 0 0 -3em;
+      }
+      section#placing-code img ~ img {
+        width: 47px;
+        height: 56px;
+      }
+      section#complete-distributed-chat pre {
+        font-size: 0.47em;
+      }
+      section#complete-distributed-chat object {
+        position: absolute;
+        top: 5em;
+        right: 1.4em;
+      }
+      section#flink {
+        width: 1280px;
+        height: 720px;
+      }
+      section#flink img {
+        position: absolute;
+        top: 390px;
+        left: 100px;
+        width: 109px;
+        height: 143px;
+      }
+      section#flink object {
+        position: absolute;
+        top: 100px;
+        left: 90px;
+      }
+      section#flink object ~ object {
+        position: absolute;
+        top: 100px;
+        left: 900px;
+      }
+      section#flink div {
+        position: absolute;
+        top: 600px;
+        left: 90px;
+        width: 550px;
+        font-size: 0.6em;
+        text-align: left;
+      }
+      section#flink-problem {
+        width: 1280px;
+        height: 720px;
+      }
+      section#flink-problem img {
+        position: absolute;
+        top: 390px;
+        left: 100px;
+        width: 109px;
+        height: 143px;
+      }
+      section#flink-problem img ~ img {
+        top: 13px;
+        left: 670px;
+        width: 56px;
+        height: 56px;
+      }
+      section#flink-problem object {
+        position: absolute;
+        top: 100px;
+        left: 90px;
+      }
+      section#flink-problem object ~ object {
+        position: absolute;
+        top: 100px;
+        left: 900px;
+      }
+      section#flink-problem div {
+        position: absolute;
+        top: 13px;
+        left: 140px;
+        width: 500px;
+        font-size: 0.6em;
+        text-align: left;
+      }
+      section#flink-problem div:nth-of-type(-n+2) p {
+        line-height: 1em;
+      }
+      section#flink-problem div:nth-of-type(3) p {
+        margin-left: 80px;
+      }
+      section#flink-problem div ~ div {
+        left: 770px;
+      }
+      section#flink-problem div ~ div ~ div {
+        top: 300px;
+      }
+      section#flink-problem div img {
+        position: static;
+        float: left;
+        width: 53px;
+        height: 56px;
+        margin-right: 0.5em;
+      }
+      section#flink-problem div ~ div img {
+        width: 47px;
+        height: 56px;
+      }
+      section#flink-problem div ~ div ~ div img {
+        width: 64px;
+        height: 64px;
+        margin: 10px 0 0 10px;
+      }
+      section#multitier-modules ul {
+        display: block;
+        margin-left: 5.3em;
+        font-size: 29px;
+      }
+      section#multitier-modules li {
+        margin-top: 0.2em;
+      }
+      section#multitier-modules div {
+        position: absolute;
+        padding: 1em 0.2em;
+        width: 18em;
+        top: 11em;
+        left: 5em;
+      }
+      section#multitier-modules div + div {
+        position: absolute;
+        padding: 2em 3em;
+        width: 6.8em;
+        top: 11em;
+        left: 25.5em;
+      }
+      section#multitier-modules div + div img {
+        position: absolute;
+        margin-top: -28px;
+        top: 50%;
+        left: 30px;
+        width: 56px;
+        height: 56px;
+      }
+      section#abstract-peer-types ul {
+        display: block;
+        margin-left: 5.3em;
+        font-size: 29px;
+      }
+      section#abstract-peer-types li {
+        margin-top: 0.2em;
+      }
+      section#abstract-peer-types div {
+        position: absolute;
+        padding: 1em 0.2em;
+        width: 18em;
+        top: 11em;
+        left: 5em;
+      }
+      section#abstract-peer-types div + div {
+        top: 18.2em;
+      }
+      section#abstract-peer-types div + div + div {
+        position: absolute;
+        padding: 2em 3em;
+        width: 6.8em;
+        top: 11em;
+        left: 25.5em;
+      }
+      section#abstract-peer-types div + div + div img {
+        position: absolute;
+        margin-top: -28px;
+        top: 50%;
+        left: 30px;
+        width: 56px;
+        height: 56px;
+      }
+      section#stacking-multitier-modules pre {
+        position: absolute;
+        width: 42em;
+        top: 7em;
+        left: 550px;
+        font-size: 0.4em;
+      }
+      section#stacking-multitier-modules object {
+        position: absolute;
+        left: 350px;
+        transition: left 0.6s ease;
+      }
+      section#stacking-multitier-modules pre.visible + object {
+        left: -20px;
+      }
+      section#abstract-multitier-modules object {
+        position: absolute;
+        margin-left: -300px;
+        top: 200px;
+        left: 50%;
+        height: 330px;
+        width: 600px;
+        transition: all 1s ease;
+      }
+      section#abstract-multitier-modules.past object {
+        display: none;
+      }
+      section#interfaces-for-subsystems img {
+        position: absolute;
+        top: 11.5em;
+        left: 19.5em;
+        width: 56px;
+        height: 56px;
+      }
+      @media print {
+        section#interfaces-for-subsystems img {
+          top: 11em;
+        }
+      }
+      section#interfaces-for-subsystems div {
+        margin: -7em 22em 0 5em;
+        line-height: 1.2em;
+      }
+      section#interfaces-for-subsystems div ~ div {
+        margin: -4.3em 3em 0 31.5em;
+        line-height: 1.4em;
+      }
+      section#interfaces-for-subsystems div ~ div ~ div {
+        margin-top: 1.8em;
+        line-height: 2.8em;
+      }
+      section#interfaces-for-subsystems div ~ div ~ div ~ div {
+        margin-top: 2em;
+        line-height: 1.4em;
+      }
+      section#interfaces-for-subsystems object {
+        position: absolute;
+        margin-left: -300px;
+        top: 200px;
+        left: 50%;
+        height: 330px;
+        width: 600px;
+        transition: all 1s ease;
+      }
+      section#interfaces-for-subsystems .fragment.visible ~ object {
+        margin-left: 0;
+        top: 565px;
+        left: 100px;
+        height: 132px;
+        width: 240px;
+      }
+      section#implementations-for-subsystems div {
+        margin: -13em 3em 0 31.5em;
+        padding: 1em 0.2em;
+        line-height: 1.4em;
+      }
+      section#implementations-for-subsystems div ~ div {
+        margin-top: 1.3em;
+        line-height: 2.8em;
+      }
+      section#implementations-for-subsystems object {
+        position: absolute;
+        top: 565px;
+        left: 100px;
+        height: 132px;
+        width: 240px;
+      }
+      section#references-to-multitier-modules object {
+        position: absolute;
+        margin-left: -510px;
+        top: 200px;
+        left: 50%;
+        height: 360px;
+        width: 1020px;
+      }
+      section#references-to-multitier-modules.past object {
+        display: none;
+      }
+      section#composing-multitier-modules-by-references div {
+        margin: -17.7em 24em 0 5em;
+        line-height: 1.2em;
+      }
+      section#composing-multitier-modules-by-references div ~ div {
+        margin: 2.1em 25em 0 9em;
+      }
+      section#composing-multitier-modules-by-references div ~ div ~ div {
+        margin: -5.2em 2.5em 0 33em;
+        padding: 1em 0.2em;
+        line-height: 1.4em;
+      }
+      section#composing-multitier-modules-by-references div ~ div ~ div ~ div {
+        margin: 1em 2.5em 0 33em;
+      }
+      section#composing-multitier-modules-by-references div ~ div ~ div ~ div ~ div {
+        line-height: 2.8em;
+      }
+      @media print {
+        section#composing-multitier-modules-by-references div {
+          margin-top: -17.3em;
+        }
+      }
+      section#composing-multitier-modules-by-references object {
+        position: absolute;
+        margin-left: -510px;
+        top: 200px;
+        left: 50%;
+        height: 360px;
+        width: 1020px;
+        transition: all 1s ease;
+      }
+      section#composing-multitier-modules-by-references .fragment.visible ~ object {
+        margin-left: 0;
+        top: 180px;
+        left: 590px;
+        height: 198px;
+        width: 360px;
+      }
+      section#distributed-mutual-exclusion-algorithm ul {
+        display: block;
+        float: left;
+        margin: 1em 0 0 5em;
+        font-size: 32px;
+      }
+      section#distributed-mutual-exclusion-algorithm li {
+        margin-top: 1em;
+      }
+      section#distributed-mutual-exclusion-algorithm object {
+        margin-top: 1em;
+      }
+      section#mixing-constrained-modules object {
+        position: absolute;
+        width: 510px;
+        height: 570px;
+        top: 130px;
+        left: 50px;
+      }
+      section#mixing-constrained-modules object + object {
+        width: 585px;
+        height: 405px;
+        top: 220px;
+        left: 620px;
+      }
+      section#mixing-constrained-modules.past object:first-of-type {
+        display: none;
+      }
+      section#leader-election-case-study pre {
+        font-size: 0.45em;
+        width: 47%;
+        float:left;
+        min-height: 28em;
+      }
+      section#leader-election-case-study pre + pre {
+        width: 52%;
+        margin-left: 1%;
+      }
+      section#leader-election-case-study object {
+        position: absolute;
+        width: 510px;
+        height: 570px;
+        top: 130px;
+        left: 50px;
+        transition: all 1s ease;
+      }
+      section#leader-election-case-study .fragment.visible ~ object {
+        position: absolute;
+        width: 204px;
+        height: 228px;
+        top: 440px;
+        left: 1050px;
+      }
+      @media print {
+        section#leader-election-case-study .fragment.visible ~ object {
+          top: 425px;
+        }
+      }
+      section#flink-modularization {
+        width: 1280px;
+        height: 720px;
+      }
+      section#flink-modularization img {
+        position: absolute;
+        top: 390px;
+        left: 100px;
+        width: 109px;
+        height: 143px;
+        transition: all 1s ease;
+      }
+      section#flink-modularization img ~ img {
+        position: absolute;
+        top: 500px;
+        left: 1100px;
+        width: 109px;
+        height: 143px;
+        opacity: 0;
+        transition: opacity 1s ease;
+        transition-delay: 0.5s
+      }
+      section#flink-modularization object {
+        position: absolute;
+        top: 50px;
+        left: 90px;
+        transition: all 1s ease;
+      }
+      section#flink-modularization object ~ object {
+        position: absolute;
+        top: 50px;
+        left: 900px;
+      }
+      section#flink-modularization object ~ object ~ object {
+        position: absolute;
+        top: 0;
+        left: 245px;
+        opacity: 0;
+        transition-delay: 0.5s
+      }
+      section#flink-modularization .fragment.visible ~ img,
+      section#flink-modularization .fragment.visible ~ object,
+      section#flink-modularization .fragment.visible ~ object ~ object ~ object {
+        opacity: 0;
+      }
+      section#flink-modularization .fragment.visible ~ object ~ object {
+        opacity: 1;
+      }
+      section#flink-modularization span ~ .fragment.visible ~ img,
+      section#flink-modularization span ~ .fragment.visible ~ object {
+        margin-left: -918px;
+      }
+      section#flink-modularization span ~ .fragment.visible ~ object ~ object ~ object,
+      section#flink-modularization span ~ .fragment.visible ~ img ~ img {
+        margin-left: 0;
+        opacity: 1;
+      }
+      section#flink-modularization.past object ~ object ~ object {
+        display: none;
+      }
+      section#flink-case-study pre code {
+        overflow: hidden;
+      }
+      section#flink-case-study pre {
+        margin: 0;
+        font-size: 0.41em;
+        width: 56.5%;
+        float:left;
+        min-height: 33em;
+      }
+      section#flink-case-study pre + pre {
+        width: 42.5%;
+        margin-left: 1%;
+      }
+      section#flink-case-study object {
+        position: absolute;
+        width: 1050px;
+        height: 705px;
+        top: 0px;
+        left: 245px;
+        transition: all 1s ease;
+      }
+      section#flink-case-study .fragment.visible ~ object {
+        position: absolute;
+        width: 525px;
+        height: 353px;
+        top: 345px;
+        left: 745px;
+      }
+      @media print {
+        section#flink-case-study .fragment.visible ~ object {
+          top: 320px;
+        }
+      }
+      section#website img {
+        width: 960px;
+        height: 540px;
+      }
+      section#conclusion::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 5em;
+        height: 5em;
+        left: 6em;
+        margin-top: -0.4em;
+        background: url(logo.svg) no-repeat center center;
+        background-size: contain;
+      }
+      section#conclusion h2::before {
+        content: "\0A";
+        white-space: pre-wrap;
+      }
+      section#conclusion h2::after {
+        content: "ScalaLoci";
+        display: block;
+        position: absolute;
+        margin-left: 7.85em;
+        margin-top: -1.6em;
+        color: #222;
+      }
+      section#conclusion .fragment.visible ~ h2::after {
+        content: "ScalaLoci: scala-loci.github.io";
+      }
+      section#conclusion h2 {
+        height: 0.8em;
+        text-align: left;
+        overflow: hidden;
+      }
+      section#conclusion h2 + ul,
+      section#conclusion h2 + ul li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      section#conclusion h2 + ul {
+        margin: 1em 50% 0 2em;
+      }
+      section#conclusion h2 + ul li {
+        margin-top: 1.6em;
+        padding: 1em 0.1em 1em 3em;
+        list-style: none;
+        text-align: center;
+        font-size: 0.8em;
+        width: 14em;
+        background: url(modules.svg) #309030 no-repeat 0.5em 0.25em;
+        background-size: 91px 77px;
+      }
+      section#conclusion  h2 + ul li + li {
+        background-image: url(abstract-peer-types.svg);
+      }
+      section#conclusion img {
+        position: absolute;
+        top: 5.25em;
+        left: 58%;
+        width: 480px;
+        height: 270px;
+      }
+      @media print {
+        section#conclusion img {
+          top: 4.8em;
+        }
+      }
+      section#conclusion img + ul {
+        margin-top: 1em;
+        font-size: 0.6em;
+      }
+      section#conclusion img + ul li {
+        margin: 0.5em 3em;
+      }
+    </style>
+
+    <script>
+      var link = document.createElement("link")
+      link.rel = "stylesheet"
+      link.type = "text/css"
+      link.href = window.location.search.match(/print-pdf/gi) ? "../../../presentation/reveal.js/css/print/pdf.css" : "../../../presentation/reveal.js/css/print/paper.css"
+      document.getElementsByTagName("head")[0].appendChild(link)
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section id="cover" class="center" data-transition="convex">
+          <h1>Multitier Modules<em>in ScalaLoci</em></h1>
+          <p>Pascal Weisenburger, Guido Salvaneschi</p>
+          <p>TU Darmstadt, Germany</p>
+        </section>
+
+        <section id="programming-distributed-systems" data-transition="convex">
+          <h2>Programming Distributed Systems</h2>
+
+          <p>Developing distributed systems is <em>hard</em></p>
+          <ul class="bulleted-list">
+            <li class="fragment semi-fade-out" data-fragment-index="0">Consistency</li>
+            <li class="fragment semi-fade-out" data-fragment-index="0">Replication</li>
+            <li class="fragment semi-fade-out" data-fragment-index="0">Fault Tolerance</li>
+            <li><span class="fragment highlight-visible" data-fragment-index="0">Distributed functionalities and communication</span></li>
+          </ul>
+        </section>
+
+        <section id="problem" data-transition="convex-in none-out">
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <object class="animate-svg" data="flink-original-extended.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var lines = [
+                  [ "line-a-b-0", 33, 20, 205, 28 ],
+                  [ "line-a-b-1", 33, 35, 205, 57 ],
+                  [ "line-a-b-2", 34, 46, 205, 18 ],
+                  [ "line-a-b-3", 34, 60, 205, 142 ],
+                  [ "line-a-b-4", 34, 72, 205, 150 ],
+                  [ "line-a-b-5", 34, 85, 205, 194 ],
+                  [ "line-a-b-6", 34, 97, 205, 109 ],
+                  [ "line-a-b-7", 33, 113, 205, 118 ],
+                  [ "line-a-b-8", 32, 130, 205, 262 ],
+                  [ "line-a-b-9", 32, 150, 205, 226 ],
+                  [ "line-a-b-10", 34, 161, 205, 77 ],
+                  [ "line-b-a-0", 226, 20, 101, 45 ],
+                  [ "line-b-a-1", 281, 85, 139, 160 ],
+                  [ "line-b-a-2", 283, 90, 139, 160 ],
+                  [ "line-b-a-3", 238, 100, 139, 160 ],
+                  [ "line-b-a-4", 227, 112, 68, 101 ],
+                  [ "line-b-a-5", 227, 146, 104, 63 ],
+                  [ "line-b-a-6", 235, 166, 128, 76 ],
+                  [ "line-b-a-7", 238, 175, 128, 76 ],
+                  [ "line-b-a-8", 232, 207, 128, 88 ],
+                  [ "line-b-a-9", 232, 217, 128, 88 ]
+                ]
+
+                lines.forEach(function(line, index) {
+                  var id = line[0], x1 = line[1], y1 = line[2], x2 = line[3], y2 = line[4]
+                  x1 = 0.999 * x1 + 0.001 * x2
+                  y1 = 0.999 * y1 + 0.001 * y2
+                  begin = (index % 4) / 8
+
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />')
+
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="marker-end" from="none" to="url(#arrow)" data-begin="' + begin + '" dur="0.5s" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="x2" from="' + x1 + '" to="' + x2 + '" data-begin="' + begin + '" dur="0.5s" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="y2" from="' + y1 + '" to="' + y2 + '" data-begin="' + begin + '" dur="0.5s" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+
+              <animate xlink:href="#task-manager-actions" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#task-manager-actions" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#checkpoint-responder" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#checkpoint-responder" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#kv-state-registry-listener" attributeName="opacity" from="0" to="0" fill="freeze" />
+              <animate xlink:href="#kv-state-registry-listener" attributeName="opacity" from="0" to="0" fill="freeze" />
+            </svg>
+          </object>
+
+          <img class="fragment" data-fragment-index="2" src="confused.svg" width="38" height="92" />
+        </section>
+
+        <section id="multitier" class="load-first-fragment" data-transition="none-in convex-out">
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <span class="fragment" data-fragment-index="0"></span>
+
+          <div class="fragment info" data-fragment-index="1">Multitier Languages <object class="fragment" data-fragment-index="2" data="multitier.svg"></object></div>
+
+          <object class="animate-svg" data="flink-original-extended.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var lines = [
+                  "line-a-b-0", "line-a-b-1", "line-a-b-2", "line-a-b-3", "line-a-b-4", "line-a-b-5",
+                  "line-a-b-6", "line-a-b-7", "line-a-b-8", "line-a-b-9", "line-a-b-10",
+                  "line-b-a-0", "line-b-a-1", "line-b-a-2", "line-b-a-3", "line-b-a-4", "line-b-a-5",
+                  "line-b-a-6", "line-b-a-7", "line-b-a-8", "line-b-a-9",
+                ]
+
+                lines.forEach(function(id) {
+                  document.write('<animate xlink:href="#' + id + '" attributeName="opacity" from="0" to="0" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+
+              <animateTransform xlink:href="#task-manager-actions" attributeName="transform" type="translate" from="10, 120" to="10, 120" fill="freeze" />
+              <animateTransform xlink:href="#task-manager-actions" attributeName="transform" additive="sum" type="skewY" from="-30" to="-30" fill="freeze" />
+              <animateTransform xlink:href="#checkpoint-responder" attributeName="transform" type="translate" from="320, 120" to="320, 120" fill="freeze" />
+              <animateTransform xlink:href="#checkpoint-responder" attributeName="transform" additive="sum" type="skewY" from="-10" to="-10" fill="freeze" />
+              <animateTransform xlink:href="#kv-state-registry-listener" attributeName="transform" type="translate" from="80, 120" to="80, 120" fill="freeze" />
+              <animateTransform xlink:href="#kv-state-registry-listener" attributeName="transform" additive="sum" type="skewY" from="10" to="10" fill="freeze" />
+
+              <animateTransform xlink:href="#job-manager" class="fragment" data-fragment-index="0" attributeName="transform" type="translate" from="5, 5" to="5, 20" dur="0.5s" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />
+              <animateTransform xlink:href="#task-manager" class="fragment" data-fragment-index="0" attributeName="transform" type="translate" from="200, 5" to="200, 20" dur="0.5s" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />
+              <animateTransform xlink:href="#task-manager" class="fragment" data-fragment-index="0" attributeName="transform" additive="sum" type="skewY" from="0" to="30" dur="0.5s" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />
+              <animate xlink:href="#task-manager-actions" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze" />
+              <animate xlink:href="#checkpoint-responder" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze" />
+              <animate xlink:href="#kv-state-registry-listener" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze" />
+            </svg>
+          </object>
+
+          <img src="confused.svg" width="38" height="92" />
+        </section>
+
+        <section id="scala-loci" data-transition="convex-in convex-out">
+          <h2>ScalaLoci</h2>
+
+          <ul>
+            <li class="solution">Generic Distributed Architectures</li>
+            <li class="fragment solution" data-fragment-index="1">Placement Types</li>
+          </ul>
+        </section>
+
+        <section id="placement-types" data-transition="convex-in fade-out">
+          <h2>Placement Types</h2>
+
+          <pre class="fragment" data-fragment-index="3"><code class="scala" data-trim data-noescape>
+          @peer type Master
+          @peer type Worker
+          </code></pre>
+
+          <div class="fragment solution" data-fragment-index="3">Peers</div>
+
+          <pre><code class="scala" data-trim data-noescape>
+          val tasks: <span class="fragment highlight-visible" data-fragment-index="1">List[Task]<span class="fragment" data-fragment-index="0"> on Master</span></span>
+            <span class="fragment" data-fragment-index="2">= placed { getTaskList() }</span>
+          </code></pre>
+
+          <div class="fragment solution" data-fragment-index="0">Placement Types</div>
+        </section>
+
+        <section id="architecture" data-transition="none-in fade-out">
+          <h2>Architecture</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          @peer type Master<span class="fragment" data-fragment-index="1"> { type Tie &lt;: Multiple[Worker] }</span>
+          @peer type Worker<span class="fragment" data-fragment-index="1"> { type Tie &lt;: Single[Master]<span class="fragment" data-fragment-index="3"> with Multiple[Worker]</span> }</span>
+          </code></pre>
+
+          <div class="fragment solution" data-fragment-index="0">Architecture Specification through Peer Types</div>
+
+          <object class="animate-svg" data="architecture-p2p.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var workers = [
+                  [ "master", 250, 100 ],
+                  [ "worker-0", 38, 38 ],
+                  [ "worker-1", 100, 175 ],
+                  [ "worker-2", 415, 192 ],
+                  [ "worker-3", 470, 40 ],
+                  [ "worker-4", 602, 120 ]
+                ]
+
+                workers.forEach(function(worker, index) {
+                  var id = worker[0], x = worker[1], y = worker[2]
+                  var begin = 0.05 * index
+
+                  document.write('<animateTransform xlink:href="#' + id + '" class="fragment" data-fragment-index="2" attributeName="transform"" type="translate" from="' + x + ', ' + y + '" to="' + x + ', ' + y + '" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                  document.write('<animateTransform xlink:href="#' + id + '" class="fragment" data-fragment-index="2" attributeName="transform" additive="sum" type="scale" from="0" to="1" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                })
+
+                var masterLines = [
+                  "line-master-0",
+                  "line-master-1",
+                  "line-master-2",
+                  "line-master-3",
+                  "line-master-4"
+                ]
+
+                masterLines.forEach(function(id, index) {
+                  var begin = 0.05 * (index + 1)
+
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="2" attributeName="stroke-width" from="0" to="10" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                })
+
+                var workerLines = [
+                  "line-worker-0",
+                  "line-worker-1",
+                  "line-worker-2"
+                ]
+
+                workerLines.forEach(function(id) {
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="4" attributeName="stroke-width" from="0" to="10" dur="0.1s" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+        </section>
+
+        <section id="flink" data-transition="convex-in fade-out">
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <object class="animate-svg" data="flink-original.svg"></object>
+
+          <object class="animate-svg fragment" data-fragment-index="0" data="flink-scalaloci.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var lines = [ "line-0", "line-1", "line-2", "line-3", "line-4", "line-5", "line-6", "line-7", "line-8", "line-9", "line-10" ]
+
+                lines.forEach(function(id, index) {
+                  var begin = 0.1 * index
+                  document.write('<animate xlink:href="#' + id + '" attributeName="stroke-dasharray" from="45" to="45" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.1s" data-begin="' + begin + '" fill="freeze" />')
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="1" attributeName="stroke-dashoffset" from="45" to="0" dur="0.1s" data-begin="' + begin + '" fill="freeze" />')
+                })
+
+                if (window.location.search.match(/print-pdf/gi)) {
+                  document.write('<animate xlink:href="#image-fade" attributeName="mask" from="none" to="none" fill="freeze" />')
+                  document.write('<animate xlink:href="#image-fade" attributeName="clip-path" from="url(#cut)" to="url(#cut)" fill="freeze" />')
+                }
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+
+          <div class="fragment solution" data-fragment-index="3">Eliminated <strong>23</strong> non-exhaustive pattern matches and <strong>8</strong> type casts</div>
+        </section>
+
+        <section id="flink-problem" data-transition="none-in convex-out">
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <div>
+            <img src="cross.svg" width="522" height="621" />
+            <p>Crosscutting functionality separated among compilation units</p>
+          </div>
+
+          <object class="animate-svg" data="flink-original.svg"></object>
+
+          <img src="arrow.svg" width="700" height="700" />
+
+          <div>
+            <img src="check.svg" width="345" height="362" />
+            <p>Developers are <strong>not</strong> forced to modularize <strong>along network boundaries</strong></p>
+          </div>
+
+          <object class="animate-svg" data="flink-scalaloci.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                if (window.location.search.match(/print-pdf/gi)) {
+                  document.write('<animate xlink:href="#image-fade" attributeName="mask" from="none" to="none" fill="freeze" />')
+                  document.write('<animate xlink:href="#image-fade" attributeName="clip-path" from="url(#cut)" to="url(#cut)" fill="freeze" />')
+                }
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+
+          <div class="fragment info" data-fragment-index="0">
+            <img src="frowning-face.svg" width="128" height="128" />
+            <p>That's only half the battle!</p>
+            <p>How to modularize code into  (distributed) system functionalities?</p>
+          </div>
+        </section>
+
+        <section id="distributed-functionalities" data-transition="convex-in fade-out">
+          <h2>Distributed Functionalities</h2>
+
+          <object class="animate-svg" data="functionalities.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#task" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#task-path" attributeName="stroke-dasharray" from="60" to="60" fill="freeze" />
+              <animate xlink:href="#task-path" class="fragment" data-fragment-index="0" attributeName="stroke-dashoffset" from="60" to="0" dur="0.2s" fill="freeze" />
+              <animate xlink:href="#task-path" class="fragment" data-fragment-index="0" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.2s" data-begin="0.1" fill="freeze" />
+
+              <animate xlink:href="#result" class="fragment" data-fragment-index="1" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#result-path" attributeName="stroke-dasharray" from="60" to="60" fill="freeze" />
+              <animate xlink:href="#result-path" class="fragment" data-fragment-index="1" attributeName="stroke-dashoffset" from="60" to="0" dur="0.2s" fill="freeze" />
+              <animate xlink:href="#result-path" class="fragment" data-fragment-index="1" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.2s" data-begin="0.1" fill="freeze" />
+
+              <animate xlink:href="#master-box" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#worker-box" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+            </svg>
+          </object>
+        </section>
+
+        <section id="distributed-multitier-functionalities" class="load-first-fragment" data-transition="none-in convex-out">
+          <h2>Distributed Multitier Functionalities</h2>
+
+          <object class="animate-svg" data="functionalities-multitier.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#path" attributeName="stroke-dasharray" from="150" to="150" fill="freeze" />
+              <animate xlink:href="#path" class="fragment" data-fragment-index="0" attributeName="stroke-dashoffset" from="150" to="0" dur="0.4s" data-begin="1.0" fill="freeze" />
+              <animate xlink:href="#path" class="fragment" data-fragment-index="0" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.2s" data-begin="1.3" fill="freeze" />
+
+              <animate xlink:href="#master-box" class="fragment" data-fragment-index="1" attributeName="opacity" from="1" to="0" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#worker-box" class="fragment" data-fragment-index="1" attributeName="opacity" from="1" to="0" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#module" class="fragment" data-fragment-index="1" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+            </svg>
+          </object>
+        </section>
+
+        <section id="multitier-modules" data-transition="convex-in fade-out">
+          <h2>Multitier Modules</h2>
+          <ul class="bulleted-list">
+            <li>Handle large code bases</li>
+            <li>Modularize distributed system functionalities</li>
+            <li>Compose subsystems</li>
+          </ul>
+
+          <div class="fragment solution" data-fragment-index="1">
+            Abstract Peer Types
+          </div>
+
+          <div class="fragment solution" data-fragment-index="0">
+            <img src="arrow.svg" width="700" height="700" />
+            <p>disentangle distribution and modularization</p>
+          </div>
+        </section>
+
+        <section id="abstract-peer-types" data-transition="none-in convex-out">
+          <h2>Abstract Peer Types</h2>
+          <ul class="bulleted-list">
+            <li>Define multitier modules on abstract peer types</li>
+            <li class="fragment" data-fragment-index="1">Compose functionality of different modules by identifying abstract peer types</li>
+          </ul>
+
+          <div class="solution" data-fragment-index="0">
+            Abstract Peer Types
+          </div>
+
+          <div class="fragment solution" data-fragment-index="0">
+            Scala Traits and Objects
+          </div>
+
+          <div class="solution" data-fragment-index="0">
+            <img src="arrow.svg" width="700" height="700" />
+            <p>disentangle distribution and modularization</p>
+          </div>
+        </section>
+
+        <section id="stacking-multitier-modules" data-transition="convex">
+          <h2>Stacking Multitier Modules</h2>
+
+          <pre class="fragment" data-fragment-index="3"><code class="scala" data-trim data-noescape>
+          @multitier trait Offloading[T] {
+            @peer type Master &lt;: { type Tie &lt;: Multiple[Worker] }
+            @peer type Worker &lt;: { type Tie &lt;: Single[Master] }
+            <span class="fragment" data-fragment-index="4">def run(task: Task[T]): Future[T] on Master =
+              placed { (<span class="fragment highlight-visible" data-fragment-index="6">remote(selectWorker()) call execute(task)</span>).asLocal }</span>
+            <span class="fragment" data-fragment-index="5">private def execute(task: Task[T]): T on Worker =
+              placed { task.process() }</span>
+          }
+
+          <span class="fragment" data-fragment-index="7">@multitier trait Monitoring {
+            @peer type Master &lt;: { type Tie &lt;: Multiple[Worker] }
+            @peer type Worker &lt;: { type Tie &lt;: Single[Master] }
+            <span class="fragment highlight-visible" data-fragment-index="8">def monitoredTimedOut(monitored: Remote[Worker]): Unit on Master</span>
+          }</span>
+
+          <span class="fragment" data-fragment-index="9">@multitier trait TaskScheduler[T] extends
+            Offloading[T] with
+            Monitoring</span>
+          </code></pre>
+
+          <object class="animate-svg" data="stacking.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#monitoring" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#task-scheduler" class="fragment" data-fragment-index="1" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animateTransform xlink:href="#master-worker" class="fragment" data-fragment-index="2" attributeName="transform" type="translate" from="-19.5, 0" to="0, 0" dur="0.5s" fill="freeze" />
+              <animateTransform xlink:href="#monitoring" class="fragment" data-fragment-index="2" attributeName="transform" type="translate" from="19.5, 0" to="0, 0" dur="0.5s" fill="freeze" />
+              <animateTransform xlink:href="#task-scheduler" class="fragment" data-fragment-index="2" attributeName="transform" type="translate" from="-10, 0" to="0, 0" dur="0.5s" fill="freeze" />
+              <animate xlink:href="#master-0" class="fragment" data-fragment-index="2" attributeName="y2" from="40" to="80" data-begin="0.5" dur="0.15s" fill="freeze" />
+              <animate xlink:href="#master-1" class="fragment" data-fragment-index="2" attributeName="y2" from="100" to="140" data-begin="0.65" dur="0.15s" fill="freeze" />
+              <animate xlink:href="#worker-0" class="fragment" data-fragment-index="2" attributeName="y2" from="33" to="73" data-begin="0.5" dur="0.15s" fill="freeze" />
+              <animate xlink:href="#worker-1" class="fragment" data-fragment-index="2" attributeName="y2" from="93" to="133" data-begin="0.65" dur="0.15s" fill="freeze" />
+              <animate xlink:href="#stacking-0" class="fragment" data-fragment-index="2" attributeName="y2" from="25.5" to="144.5" data-begin="0.5" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#stacking-1" class="fragment" data-fragment-index="2" attributeName="y2" from="25.5" to="144.5" data-begin="0.5" dur="0.3s" fill="freeze" />
+            </svg>
+          </object>
+        </section>
+
+        <section id="abstract-multitier-modules" data-transition="convex-in fade-out">
+          <h2>Abstract Multitier Modules</h2>
+
+          <object class="animate-svg" data="abstraction.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#file-backup" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+              <animateTransform xlink:href="#file-backup" class="fragment" data-fragment-index="0" attributeName="transform" type="translate" from="0, -59" to="0, 0" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#processor" class="fragment" data-fragment-index="0" attributeName="y2" from="40" to="80" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#storage" class="fragment" data-fragment-index="0" attributeName="y2" from="33" to="73" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#abstraction-0" class="fragment" data-fragment-index="0" attributeName="y2" from="25.5" to="84.5" dur="0.3s" fill="freeze" />
+              <animate xlink:href="#abstraction-1" class="fragment" data-fragment-index="0" attributeName="y2" from="25.5" to="84.5" dur="0.3s" fill="freeze" />
+            </svg>
+          </object>
+        </section>
+
+        <section id="interfaces-for-subsystems" class="load-first-fragment" data-transition="none-in fade-out">
+          <h2>Interfaces for Subsystems</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          @multitier trait BackupService {
+            <span class="fragment" data-fragment-index="1">@peer type Processor &lt;: { type Tie &lt;: Single[Storage] }</span>
+            <span class="fragment" data-fragment-index="1">@peer type Storage<span class="fragment highlight-visible" data-fragment-index="2"> &lt;: </span>{ type Tie &lt;: Single[Processor] }</span>
+
+
+            <span class="fragment" data-fragment-index="3">def store(id: Long, data: Data): Unit on Processor</span>
+            <span class="fragment" data-fragment-index="3">def load(id: Long): Future[Data] on Processor</span>
+          }
+          </code></pre>
+
+          <div class="fragment hint" data-fragment-index="2">upper bound allows for refinement</div>
+
+          <div class="fragment solution" data-fragment-index="1">Subsystem Architecture</div>
+
+          <div class="fragment solution" data-fragment-index="3">Placed Methods</div>
+
+          <img class="fragment" data-fragment-index="4" src="arrow.svg" width="700" height="700" />
+
+          <div class="fragment solution" data-fragment-index="4">Modularization Across Peers</div>
+
+          <span class="fragment" data-fragment-index="0"></span>
+
+          <object class="animate-svg" data="abstraction.svg"></object>
+        </section>
+
+        <section id="implementations-for-subsystems" data-transition="none-in convex-out">
+          <h2>Implementations for Subsystems</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          @multitier trait FileBackup extends BackupService {
+            <span class="fragment" data-fragment-index="2">def store(id: Long, data: Data): Unit on Processor =
+              <span class="semi-out">placed { <span class="fragment highlight-visible" data-fragment-index="3">remote call write(id, data)</span> }</span>
+            def load(id: Long): Future[Data] on Processor =
+              <span class="semi-out">placed { <span class="fragment highlight-visible" data-fragment-index="3">(remote call read(id)).asLocal</span> }</span></span>
+
+            <span class="fragment" data-fragment-index="0">private def write(id: Long, data: Data): Unit on Storage =
+              <span class="semi-out">placed { writeToFile(data, s"/storage/$id") }</span>
+            private def read(id: Long): Data on Storage =
+              <span class="semi-out">placed { readFromFile[Data](s"/storage/$id") }</span></span>
+          }
+          </code></pre>
+
+          <div class="fragment solution" data-fragment-index="2">Implementation for Abstract Methods</div>
+
+          <div class="fragment solution" data-fragment-index="1">Encapsulation</div>
+
+          <object class="animate-svg" data="abstraction.svg"></object>
+        </section>
+
+        <section id="references-to-multitier-modules" data-transition="convex-in fade-out">
+          <h2>References to Multitier Modules</h2>
+
+          <object class="animate-svg" data="reference.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#reference" attributeName="stroke-dasharray" from="45" to="45" fill="freeze" />
+              <animate xlink:href="#reference" class="fragment" data-fragment-index="0" attributeName="stroke-dashoffset" from="45" to="0" dur="0.2s" fill="freeze" />
+              <animate xlink:href="#reference" class="fragment" data-fragment-index="0" attributeName="marker-end" from="none" to="url(#arrow)" dur="0.2s" data-begin="0.1" fill="freeze" />
+              <animate xlink:href="#backup-service" class="fragment" data-fragment-index="0" attributeName="opacity" from="0" to="1" data-begin="0.1" dur="0.2s" fill="freeze" />
+
+              <animate xlink:href="#subtype-line-0" attributeName="stroke-dasharray" from="140" to="140" fill="freeze" />
+              <animate xlink:href="#subtype-line-0" class="fragment" data-fragment-index="1" attributeName="stroke-dashoffset" from="140" to="0" dur="0.5s" fill="freeze" />
+              <animate xlink:href="#subtype-0" class="fragment" data-fragment-index="1" attributeName="opacity" from="0" to="1" data-begin="0.5" dur="0.1s" fill="freeze" />
+
+              <animate xlink:href="#subtype-line-1" attributeName="stroke-dasharray" from="330" to="330" fill="freeze" />
+              <animate xlink:href="#subtype-line-1" class="fragment" data-fragment-index="1" attributeName="stroke-dashoffset" from="330" to="0" dur="0.5s" fill="freeze" />
+              <animate xlink:href="#subtype-1" class="fragment" data-fragment-index="1" attributeName="opacity" from="0" to="1" data-begin="0.5" dur="0.1s" fill="freeze" />
+            </svg>
+          </object>
+        </section>
+
+        <section id="composing-multitier-modules-by-references" class="load-first-fragment" data-transition="none-in fade-out">
+          <h2>Composing Multitier Modules by References</h2>
+          <pre><code class="scala" data-trim data-noescape>
+          @multitier trait Editor {
+
+
+            <span class="fragment" data-fragment-index="1">val backup: BackupService</span>
+
+
+            <span class="fragment" data-fragment-index="3">@peer type Client<span class="fragment" data-fragment-index="4"><span class="fragment highlight-visible" data-fragment-index="4"> &lt;: backup.Processor</span></span> {
+              type Tie &lt;: Single[Server]<span class="fragment" data-fragment-index="4"> with Single[backup.Storage]</span> }
+            @peer type Server<span class="fragment" data-fragment-index="4"><span class="fragment highlight-visible" data-fragment-index="4"> &lt;: backup.Storage</span></span> {
+              type Tie &lt;: Single[Client]<span class="fragment" data-fragment-index="4"> with Single[backup.Processor]</span> }</span>
+          }
+
+          <span class="fragment" data-fragment-index="5">@multitier object editor extends Editor {
+            <span class="fragment highlight-visible" data-fragment-index="6">@multitier object backup extends FileBackup</span>
+          }</span>
+          </code></pre>
+
+          <div class="fragment hint" data-fragment-index="2">abstract module reference</div>
+
+          <div class="fragment hint" data-fragment-index="4">peer refinement</div>
+
+          <div class="fragment solution" data-fragment-index="1">Module Composition</div>
+
+          <div class="fragment solution" data-fragment-index="3">Peer Composition</div>
+
+          <div class="fragment solution" data-fragment-index="5">Instantiation</div>
+
+          <span class="fragment" data-fragment-index="0"></span>
+
+          <object class="animate-svg" data="reference.svg"></object>
+        </section>
+
+        <section id="distributed-mutual-exclusion-algorithm" class="load-first-fragment" data-transition="convex">
+          <h2>Distributed Mutual Exclusion Algorithm</h2>
+          <ul class="bulleted-list">
+            <li>Nodes elect a leader</li>
+            <li class="fragment" data-fragment-index="2">Followers acquire locks</li>
+            <li class="fragment" data-fragment-index="2">Leader grants or denies the lock</li>
+          </ul>
+
+          <object class="animate-svg" data="leader-election.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var nodes = [
+                  [ "node-0", 50, 10 ],
+                  [ "node-1", 10, 50 ],
+                  [ "node-2", 60, 70 ],
+                  [ "node-3", 90, 35 ],
+                  [ "node-4", 140, 60 ],
+                  [ "node-5", 180, 20 ],
+                  [ "node-6", 20, 100 ],
+                  [ "node-7", 110, 110 ]
+                ]
+
+                nodes.forEach(function(node, index) {
+                  var id = node[0], x = node[1], y = node[2]
+                  var begin = 0.7 + 0.05 * index
+
+                  document.write('<animateTransform xlink:href="#' + id + '" class="fragment" data-fragment-index="0" attributeName="transform"" type="translate" from="' + x + ', ' + y + '" to="' + x + ', ' + y + '" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                  document.write('<animateTransform xlink:href="#' + id + '" class="fragment" data-fragment-index="0" attributeName="transform" additive="sum" type="scale" from="0" to="1" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                })
+
+                document.write('<animateTransform xlink:href="#node-leader" class="fragment" data-fragment-index="1" attributeName="transform"" type="translate" from="60, 70" to="60, 70" dur="3s" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                document.write('<animateTransform xlink:href="#node-leader" class="fragment" data-fragment-index="1" attributeName="transform" additive="sum" type="scale" from="0" to="1" dur="3s" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+
+                var lines = [
+                  "line-0",
+                  "line-1",
+                  "line-2",
+                  "line-3",
+                  "line-4",
+                  "line-5",
+                  "line-6",
+                  "line-7",
+                  "line-8",
+                  "line-9"
+                ]
+
+                lines.forEach(function(id, index) {
+                  var begin = 0.7 + 0.05 * (index + 1)
+
+                  document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="0" attributeName="stroke-width" from="0" to="2" dur="0.3s" data-begin="' + begin + '" keySplines="0.1 0.8 0.2 1" keyTimes="0;1" calcMode="spline" fill="freeze" />')
+                })
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+        </section>
+
+        <section id="mixing-constrained-modules" data-transition="convex-in fade-out">
+          <h2>Mixing Constrained Modules</h2>
+
+          <object class="animate-svg" data="mixing.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <script>
+                //<![CDATA[
+
+                var elements = [
+                  [ "leader-election", "node-mixing-leader-election", "mixing-leader-election-0", "mixing-leader-election-1" ],
+                  [ "id", "node-mixing-id", "mixing-id-0", "mixing-id-1" ],
+                  [ "architecture", "node-mixing-architecture", "mixing-architecture-0", "mixing-architecture-1" ]
+                ]
+
+                elements.forEach(function(nodes, index) {
+                  nodes.forEach(function(id) {
+                    document.write('<animate xlink:href="#' + id + '" class="fragment" data-fragment-index="' + index + '" attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />')
+                  })
+                })
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+
+          <object class="animate-svg fragment" data-fragment-index="3" data="algorithms.svg"></object>
+        </section>
+
+        <section id="leader-election-case-study" class="load-first-fragment" data-transition="none-in none-out">
+          <h2>Leader Election Case Study</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          <span class="fragment" data-fragment-index="1">@multitier trait MutualExclusion[T] {
+              <span class="fragment highlight-persistent" data-fragment-index="2">this: Architecture with LeaderElection[T]</span> =>
+            <span class="fragment semi-fade-out" data-fragment-index="2">def lock(id: T): Boolean on Node = { ... }
+            def unlock(id: Id): Unit on Node = { ... }</span>
+          }</span>
+
+          <span class="fragment" data-fragment-index="3">@multitier trait LeaderElection[T] {
+              <span class="fragment highlight-persistent" data-fragment-index="0">this: Architecture with Id[T]</span> =>
+            <span class="semi-out">def electLeader(): Unit on Node
+            def electedAsLeader(): Unit on Node</span>
+          }</span>
+
+          <span class="fragment" data-fragment-index="4">@multitier abstract class Id[T: Ordering] {
+              <span class="fragment highlight-persistent" data-fragment-index="0">this: Architecture</span> =>
+            <span class="semi-out">val id: Local[T] on Node</span>
+          }</span>
+          </code></pre>
+
+          <pre><code class="scala" data-trim data-noescape>
+          <span class="fragment" data-fragment-index="5">@multitier trait HirschbergSinclair[T]
+            extends LeaderElection[T] {
+              <span class="fragment highlight-persistent" data-fragment-index="6">this: Ring with Id[T]</span> =>
+            <span class="semi-out">def electLeader() = on[Node] { elect(0) }
+            private def elect(phase: Int) = on[Node] { /* ... */ }
+            private def propagate(remoteId: T, hops: Int, 
+              direction: Direction) = on[Node] { /* ... */ }</span>
+          }</span>
+
+          <span class="fragment" data-fragment-index="7">@multitier object locking extends
+            MutualExclusion[Int] with
+            HirschbergSinclair[Int] with
+            Ring with
+            RandomIntId</span>
+          </code></pre>
+
+          <span class="fragment" data-fragment-index="0"></span>
+
+          <object class="animate-svg" data="mixing.svg"></object>
+        </section>
+
+        <section id="flink-modularization" data-transition="convex-in fade-out">
+          <span class="fragment" data-fragment-index="0"></span>
+          <span class="fragment" data-fragment-index="1"></span>
+
+          <img src="flink-vert.svg" width="218" height="285" />
+
+          <object class="animate-svg" data="flink-original.svg"></object>
+
+          <object class="animate-svg" data="flink-scalaloci.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#image" class="fragment" data-fragment-index="2" attributeName="opacity" from="1" to="0.3" dur="0.6s" fill="freeze" />
+
+              <script>
+                //<![CDATA[
+
+                if (window.location.search.match(/print-pdf/gi)) {
+                  document.write('<animate xlink:href="#image-fade" attributeName="mask" from="none" to="none" fill="freeze" />')
+                  document.write('<animate xlink:href="#image-fade" attributeName="clip-path" from="url(#cut)" to="url(#cut)" fill="freeze" />')
+                }
+
+                //]]>
+              </script>
+            </svg>
+          </object>
+
+          <object class="animate-svg" data="flink-modularized.svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <animate xlink:href="#module-0" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" dur="0.6s" fill="freeze" />
+              <animate xlink:href="#module-1" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" dur="0.6s" fill="freeze" />
+              <animate xlink:href="#module-2" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" data-begin="0.2" dur="0.6s" fill="freeze" />
+              <animate xlink:href="#module-3" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" data-begin="0.4" dur="0.6s" fill="freeze" />
+              <animate xlink:href="#module-4" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" data-begin="0.4" dur="0.6s" fill="freeze" />
+              <animate xlink:href="#module-5" class="fragment" data-fragment-index="2" attributeName="opacity" from="0" to="1" data-begin="0.6" dur="0.6s" fill="freeze" />
+            </svg>
+          </object>
+
+          <img src="flink-vert.svg" width="218" height="285" />
+        </section>
+
+        <section id="flink-case-study" class="load-first-fragment" data-transition="none-in convex-out">
+          <h2>Flink Case Study</h2>
+
+          <pre><code class="scala" data-trim data-noescape>
+          @multitier object TaskManager {
+            @peer type JobManager &lt;: { type Tie &lt;: Multiple[TaskManager] }
+            @peer type TaskManager &lt;: { type Tie &lt;: Single[JobManager] }
+           
+            def submitTask(td: TaskDeployment, tm: Remote[TaskManager]) =
+              on[JobManager] { (remote(tm) call startTask(td)).asLocal }
+            def startTask(td: TaskDeployment) = on[TaskManager] {
+              val task = new Task(td)
+              task.start()
+              Acknowledge()
+            }
+            ...
+          }
+
+          <span class="fragment" data-fragment-index="1">@multitier object TaskManagerActions { ... }
+          @multitier object CheckpointResponder { ... }
+          @multitier object ResultPartitionConsumableNotifier { ... }
+          @multitier object PartitionProducerStateChecker { ... }
+          @multitier object KvStateRegistryListener { ... }</span>
+          </code></pre>
+
+          <pre><code class="scala" data-trim data-noescape>
+          <span class="fragment" data-fragment-index="2">@multitier object TaskDistributionSystem extends
+            TaskManager with
+            TaskManagerActions with
+            CheckpointResponder with
+            ResultPartitionConsumableNotifier with
+            PartitionProducerStateChecker with
+            KvStateRegistryListener</span>
+          </code></pre>
+
+          <span class="fragment" data-fragment-index="0"></span>
+
+          <object class="animate-svg" data="flink-modularized.svg"></object>
+        </section>
+
+        <section id="website" data-transition="convex-in convex-out">
+          <h2>scala-loci.github.io</h2>
+          <img src="website.png" width="1920" height="1080" />
+        </section>
+
+        <section id="conclusion" data-transition="convex-in none-out">
+          <span class="fragment" data-fragment-index="2"></span>
+
+          <h2>Conclusion</h2>
+
+          <ul>
+            <li class="fragment solution" data-fragment-index="0">Multitier Modules</li>
+            <li class="fragment solution" data-fragment-index="1">Abstract Peer Types</li>
+          </ul>
+
+          <img class="fragment" data-fragment-index="2" src="website.png" width="1920" height="1080" />
+
+          <ul class="bulleted-list fragment" data-fragment-index="3">
+            <li>Pascal Weisenburger, Mirko Köhler, and Guido Salvaneschi. 2018. Distributed System Development with ScalaLoci. <em>Proceedings of the ACM on Programming Languages</em> 2, OOPSLA, Article 129.</li>
+            <li>Pascal Weisenburger and Guido Salvaneschi. 2019. Multitier Modules. In <em>Proceedings of the 33rd European Conference on Object-Oriented Programming</em>, ECOOP.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="../../../presentation/reveal.js/lib/js/head.min.js"></script>
+    <script src="../../../presentation/reveal.js/js/reveal.js"></script>
+
+    <script>
+      //<![CDATA[
+
+      //
+      // setup presentation
+      //
+      Reveal.initialize({
+        width: 1280,
+        height: 720,
+        transition: "none",
+        center: false,
+        slideNumber: true,
+        controls: false,
+        pdfSeparateFragments: false,
+        pdfMaxPagesPerSlide: 1,
+        dependencies: [
+          { src: "../../../presentation/reveal.js/lib/js/classList.js", condition: function() { return !document.body.classList } },
+          { src: "../../../presentation/reveal.js/plugin/markdown/marked.js" },
+          { src: "../../../presentation/reveal.js/plugin/markdown/markdown.js" },
+          { src: "../../../presentation/reveal.js/plugin/notes/notes.js" },
+          { src: "../../../presentation/reveal.js/plugin/highlight/highlight.js",
+            callback: function() {
+              hljs.getLanguage("scala").k.symbol = "on from to placed sbj remote call asLocal asLocalFromAll asLocalFromAllSeq Tie Single Optional Multiple"
+
+              hljs.initHighlightingOnLoad()
+
+              var styles = document.querySelectorAll("link[rel='stylesheet']")
+
+              document.querySelectorAll("object.animate-svg").forEach(function(object) {
+                object.addEventListener("load", function(event) {
+                  var root = object.contentDocument.documentElement
+
+                  root.querySelectorAll("pre code").forEach(function(code) {
+                    hljs.highlightBlock(code)
+                  })
+
+                  styles.forEach(function(style) {
+                    root.appendChild(style.cloneNode(true))
+                  })
+                })
+              })
+            }
+          }
+        ]
+      })
+
+
+      //
+      // retrieving the slide on which a given element is placed
+      //
+      function enclosingSlide(slide) {
+        while (true) {
+          if (!slide)
+            return null
+
+          if (slide.nodeName.toLowerCase() == "section" &&
+              slide.parentElement.classList.contains("slides") &&
+              slide.parentElement.parentElement.classList.contains("reveal") ||
+              slide.nodeName.toLowerCase() == "section" &&
+              slide.parentElement.nodeName.toLowerCase() == "section" &&
+              slide.parentElement.parentElement.classList.contains("slides") &&
+              slide.parentElement.parentElement.parentElement.classList.contains("reveal"))
+            return slide
+
+          slide = slide.parentElement
+        }
+      }
+
+
+      //
+      // checking whether the current document is shown in the speaker window
+      //
+      function inSpeakerWindow() {
+        var frameElement = window.frameElement
+        var section = frameElement && frameElement.parentElement
+        var id = section && section.id
+        return id === "current-slide" || id === "upcoming-slide"
+      }
+
+
+      //
+      // deactivate slide transitions in speaker window
+      //
+      if (inSpeakerWindow()) {
+        document.documentElement.classList.add("speaker-view")
+        document.querySelectorAll("section").forEach(function(section) {
+          section.removeAttribute("data-transition")
+        })
+      }
+
+
+      //
+      // enable adding SVG animations as fragments by placing them in an SVG element
+      // inside the object element that references the SVG (unanimated) image
+      //
+      Reveal.addEventListener("ready", function(event) {
+        function getSvgRoot(element) {
+          var object = element.parentElement.parentElement
+          var animateSvgRoot =
+            (element.nodeName.toLowerCase() == "animate" ||
+             element.nodeName.toLowerCase() == "animatetransform") &&
+            object.nodeName.toLowerCase() == "object" &&
+            object.classList.contains("animate-svg")
+          return animateSvgRoot && object.contentDocument && object.contentDocument.documentElement
+        }
+
+        function setupSvgObject(object) {
+          var root = object.contentDocument && object.contentDocument.documentElement
+          if (root) {
+            var elements = Array.from(object.querySelectorAll("animate, animateTransform"))
+            var sorted = []
+            elements.forEach(function(element) {
+              var string = element.getAttribute("data-fragment-index")
+              var number = +string
+              var index = string && (number === 0 || number) ? number + 1 : 0
+              var array
+              if (index) {
+                (array = (sorted[index] && sorted[index][0])) || (sorted[index] = [ array = [] ])
+                array.push(element)
+              }
+              else {
+                (array = sorted[index]) || (sorted[index] = (array = []))
+                array.push([ element ])
+              }
+            })
+
+            var steps = [].concat.apply([], sorted).filter(function (step) { return step })
+            var forward = [].concat.apply([], steps)
+            steps.reverse()
+            var backward = [].concat.apply([], steps)
+
+            forward.forEach(function(element) {
+              if (!element.classList.contains("fragment")) {
+                var animation = element.cloneNode(true)
+                root.appendChild(animation)
+                animation.beginElement()
+              }
+            })
+
+            backward.forEach(function(element) {
+              if (element.classList.contains("fragment") && !element.classList.contains("visible")) {
+                var animation = element.cloneNode(true)
+
+                var values = animation.getAttribute("values")
+                if (values) {
+                  values = values.split(";")
+                  for (var i = values.length - 1; i >= 0; i--)
+                    values[i] = values[0]
+                  animation.setAttribute("values", values.join(";"))
+                }
+
+                animation.setAttribute("to", animation.getAttribute("from"))
+                animation.setAttribute("dur", "0s")
+                animation.setAttribute("begin", "indefinite")
+
+                root.appendChild(animation)
+                animation.beginElement()
+              }
+            })
+
+            forward.forEach(function(element) {
+              if (element.classList.contains("fragment") && element.classList.contains("visible")) {
+                var animation = element.cloneNode(true)
+
+                var values = animation.getAttribute("values")
+                if (values) {
+                  values = values.split(";")
+                  for (var i = values.length - 1; i >= 0; i--)
+                    values[i] = values[values.length - 1]
+                  animation.setAttribute("values", values.join(";"))
+                }
+
+                animation.setAttribute("from", animation.getAttribute("to"))
+                animation.setAttribute("dur", "0s")
+                animation.setAttribute("begin", "indefinite")
+
+                root.appendChild(animation)
+                animation.beginElement()
+              }
+            })
+          }
+        }
+
+        document.querySelectorAll("object.animate-svg").forEach(function(object) {
+          var visibility = object.style.visibility
+          object.style.visibility = "hidden"
+          object.addEventListener("load", function(event) {
+            setupSvgObject(object)
+            object.style.visibility = visibility
+          })
+        })
+
+        function setupCurrentFragment(slide) {
+          slide.querySelectorAll("object.animate-svg").forEach(function(object) {
+            var root = object.contentDocument && object.contentDocument.documentElement
+            if (root) {
+              root.querySelectorAll("animate.current-fragment-only, animateTransform.current-fragment-only").forEach(function(element) {
+                element.parentElement.removeChild(element)
+              })
+
+              object.querySelectorAll(
+                  "animate.current-fragment.current-fragment-only," +
+                  "animateTransform.current-fragment.current-fragment-only").forEach(function(element) {
+                var animation = element.cloneNode(true)
+                root.appendChild(animation)
+                animation.beginElement()
+              })
+            }
+          })
+        }
+
+        Reveal.addEventListener("slidechanged", function(event) {
+          setupCurrentFragment(event.currentSlide)
+          event.currentSlide.querySelectorAll("object.animate-svg").forEach(setupSvgObject)
+        })
+
+        Reveal.addEventListener("fragmentshown", function(event) {
+          setupCurrentFragment(enclosingSlide(event.fragment))
+
+          event.fragments.forEach(function(fragment) {
+            var root = getSvgRoot(fragment)
+            if (root) {
+              var animation = fragment.cloneNode(true)
+
+              var begin = +animation.getAttribute("data-begin") || 0
+              animation.setAttribute("begin", "indefinite")
+
+              if (inSpeakerWindow()) {
+                animation.setAttribute("from", animation.getAttribute("to"))
+                animation.setAttribute("dur", "0s")
+                begin = 0
+              }
+
+              root.appendChild(animation)
+              animation.beginElementAt(begin)
+            }
+          })
+        })
+
+        Reveal.addEventListener("fragmenthidden", function(event) {
+          setupCurrentFragment(enclosingSlide(event.fragment))
+
+          event.fragments.forEach(function(fragment) {
+            var root = getSvgRoot(fragment)
+            if (root) {
+              var animation = fragment.cloneNode(true)
+
+              var from = animation.getAttribute("from")
+              animation.setAttribute("from", animation.getAttribute("to"))
+              animation.setAttribute("to", from)
+
+              var values = animation.getAttribute("values")
+              if (values) {
+                values = values.split(";")
+                values.reverse()
+                animation.setAttribute("values", values.join(";"))
+              }
+
+              var keySplines = animation.getAttribute("keySplines")
+              if (keySplines) {
+                keySplines = keySplines.split(";")
+                keySplines.reverse()
+                animation.setAttribute("keySplines", keySplines.join(";"))
+              }
+
+              var keyTimes = animation.getAttribute("keyTimes")
+              if (keyTimes) {
+                keyTimes = keyTimes.split(";").map(function(keyTime) { return 1 - keyTime })
+                keyTimes.reverse()
+                animation.setAttribute("keyTimes", keyTimes.join(";"))
+              }
+
+              Array.prototype.forEach.call(animation.attributes, function(attribute) {
+                if (attribute.name.startsWith("data-reverse-")) {
+                  var name = attribute.name.substring(13)
+                  if (name)
+                    animation.setAttribute(name, attribute.value)
+                }
+              })
+
+              var begin = +animation.getAttribute("data-reverse-begin") || 0
+              animation.setAttribute("begin", "indefinite")
+
+              if (inSpeakerWindow()) {
+                animation.setAttribute("from", animation.getAttribute("to"))
+                animation.setAttribute("dur", "0s")
+                begin = 0
+              }
+
+              root.appendChild(animation)
+              animation.beginElementAt(begin)
+            }
+          })
+        })
+      })
+
+
+      //
+      // add possibility to immediately show the first fragment when entering a slide
+      //
+      if (!inSpeakerWindow())
+        {(function () {
+          Reveal.addEventListener("slidechanged", function(event) {
+            if (event.currentSlide.classList.contains("load-first-fragment") && Reveal.availableFragments().next)
+              setTimeout(Reveal.nextFragment, 1)
+          })
+
+          Reveal.addEventListener("fragmenthidden", function(event) {
+            if (enclosingSlide(event.fragment).classList.contains("load-first-fragment") && !Reveal.availableFragments().prev)
+              setTimeout(Reveal.prev, 1)
+          })
+        })()}
+
+      //]]>
+    </script>
+  </body>
+</html>

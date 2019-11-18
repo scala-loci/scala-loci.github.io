@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 340 120" width="1020" height="360" version="1.1">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" fill="#77f" orient="auto">
+      <path d="M 0,0 V 6 L 9,3 Z" />
+    </marker>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+    svg { font-family: Lato, sans-serif }
+  </style>
+  <g id="editor">
+    <ellipse cx="80.5" cy="25.5" rx="80" ry="25" fill="#99f" stroke-width="1" stroke="#77f" />
+    <text x="80" y="10" font-size="7" text-anchor="middle" fill="white">Editor</text>
+    <ellipse cx="45" cy="30" rx="25" ry="10" fill="#55f" />
+    <text x="45" y="32" font-size="7" text-anchor="middle" fill="white">Server</text>
+    <ellipse cx="120" cy="23" rx="25" ry="10" fill="#55f" />
+    <text x="120" y="25" font-size="7" text-anchor="middle" fill="white">Client</text>
+  </g>
+  <g id="backup-service">
+    <ellipse cx="259.5" cy="25.5" rx="80" ry="25" fill="#99f" stroke-width="1" stroke-dasharray="4" stroke="#77f" />
+    <text x="260" y="10" font-size="7" text-anchor="middle" fill="white">BackupService</text>
+    <ellipse cx="225" cy="30" rx="25" ry="10" fill="#55f" />
+    <text x="225" y="32" font-size="7" text-anchor="middle" fill="white">Processor</text>
+    <ellipse cx="300" cy="23" rx="25" ry="10" fill="#55f" />
+    <text x="300" y="25" font-size="7" text-anchor="middle" fill="white">Storage</text>
+  </g>
+  <path id="reference" d="M 144,10 C 158,0 175,1 183,7" fill="none" stroke-width="1" stroke="#77f" marker-end="url(#arrow)" />
+  <polygon id="subtype-0" points="225,41 228,46 222,46" fill="none" stroke-width="1" stroke="#55f" />
+  <polygon id="subtype-1" points="300,34 303,39 297,39" fill="none" stroke-width="1" stroke="#55f" />
+  <path id="subtype-line-0" d="m 119,33 c 8,63 106,41 106,13" fill="none" stroke-width="1" stroke="#55f" />
+  <path id="subtype-line-1" d="M 43,39 C 51,153 301,122 300,39" fill="none" stroke-width="1" stroke="#55f" />
+</svg>
