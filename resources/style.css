@@ -936,6 +936,10 @@ code .string
 {
   content: "3";
 }
+#home #getting-started ul
+{
+  list-style: square;
+}
 #home #getting-started ol ol
 {
   list-style: lower-roman;
