@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="step-by-step-example" xmlns="http://www.w3.org/1999/xhtml">
+<html id="step-by-step-example" xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +24,13 @@
     <link rel="icon" sizes="16x16" href="resources/logo-16.png" />
     <link rel="stylesheet" href="resources/style.css" />
     <title>ScalaLoci: Step-by-Step Example</title>
+    <meta name="description" content="A chat application in five steps example for the ScalaLoci programming language." />
+    <link rel="canonical" href="https://scala-loci.github.io/step-by-step-example.html" />
+    <meta property="og:title" content="ScalaLoci: Step-by-Step Example" />
+    <meta property="og:description" content="A chat application in five steps example for the ScalaLoci programming language." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://scala-loci.github.io/step-by-step-example.html" />
+    <meta property="og:image" content="resources/logo-192.png" />
   </head>
   <body>
     <header>
@@ -68,7 +75,7 @@
 
 
 }</code></pre>
-            <img width="465" height="324" src="resources/chat.svg?segment-0#segment-0" />
+            <img width="465" height="324" src="resources/chat.svg?segment-0#segment-0" alt="A single server" />
             <figcaption><em>Server</em> declaration</figcaption>
           </figure>
 
@@ -90,7 +97,7 @@
 
 
 </code></pre>
-            <img width="465" height="324" src="resources/chat.svg?segment-1#segment-1" />
+            <img width="465" height="324" src="resources/chat.svg?segment-1#segment-1" alt="Two clients" />
             <figcaption><em>Client</em> declaration</figcaption>
           </figure>
 
@@ -112,7 +119,7 @@
   }
 
 </code></pre>
-            <img width="465" height="324" src="resources/chat.svg?segment-2#segment-2" />
+            <img width="465" height="324" src="resources/chat.svg?segment-2#segment-2" alt="A message event, placed on every client" />
             <figcaption>Event <em>message</em> declaration</figcaption>
           </figure>
 
@@ -134,7 +141,7 @@
 
 
 </code></pre>
-            <img width="465" height="324" src="resources/chat.svg?segment-3#segment-3" />
+            <img width="465" height="324" src="resources/chat.svg?segment-3#segment-3" alt="Messages are sent from the clients' message events to the publicMessage event on the server" />
             <figcaption>Event <em>publicMessage</em> declaration</figcaption>
           </figure>
 
@@ -156,7 +163,7 @@
 
 
 </code></pre>
-            <img width="465" height="324" src="resources/chat.svg?segment-4#segment-4" />
+            <img width="465" height="324" src="resources/chat.svg?segment-4#segment-4" alt="Messages are forwarded from the publicMessage event on the server to all clients, which print them to their console" />
             <figcaption>Remote observer for <em>publicMessage</em> declaration</figcaption>
           </figure>
           <figcaption>Incremental <em>Chat</em> example</figcaption>
