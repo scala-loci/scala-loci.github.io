@@ -1,0 +1,20 @@
+url: "https://scala-loci.github.io"
+plugins:
+  - jekyll-sitemap
+
+defaults:
+  -
+    scope:
+      path: "presentation/**"
+    values:
+      sitemap: false
+  -
+    scope:
+      path: "showcases.html"
+    values:
+      sitemap: false
+  -
+    scope:
+      path: "step-by-step-example.html"
+    values:
+      sitemap: false
