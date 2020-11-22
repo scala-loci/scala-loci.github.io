@@ -1064,8 +1064,9 @@ code .string
 }
 #home section + section + section > pre code .highlight[title]::before
 {
-  top: -2.4em;
-  left: 0em;
+  top: -2.3em;
+  left: auto;
+  right: -6.4em;
 }
 #home #concepts section + section + section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::before {
   content: attr(title);
@@ -1091,7 +1092,7 @@ code .string
   height: 7.4em;
   top: 1em;
   left: auto;
-  right: -4em;
+  right: -4.2em;
   background: url(concept-arrow-2.svg) no-repeat;
   background-size: 100% 100%;
 }
@@ -1099,26 +1100,27 @@ code .string
 {
   width: 6.2em;
   height: 7.4em;
+  top: -2.4em;
   left: -5.5em;
   background: url(concept-arrow-3.svg) no-repeat;
   background-size: 100% 100%;
 }
 #home section + section + section > pre code .highlight[title]::after
 {
-  width: 6.8em;
+  width: 12.2em;
   height: 7.4em;
   top: -3.2em;
-  left: -7.5em;
+  left: auto;
+  right: -12.8em;
   background: url(concept-arrow-4.svg) no-repeat;
   background-size: 100% 100%;
 }
 #home #concepts section + section + section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::after
 {
-  width: 11.9em;
+  width: 12.2em;
   height: 3em;
-  top: 0.5em;
-  left: auto;
-  right: -12.5em;
+  top: 0.6em;
+  right: -12.8em;
   background: url(concept-arrow-5.svg) no-repeat;
   background-size: 100% 100%;
 }
