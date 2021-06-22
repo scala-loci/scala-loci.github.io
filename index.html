@@ -262,7 +262,7 @@
             </li>
             <li>
               Add the resolver for the ScalaLoci dependencies to your <em>build.sbt</em>
-              <pre><code>resolvers += Resolver.bintrayRepo(<span class="string">"stg-tud"</span>, <span class="string">"maven"</span>)</code></pre>
+              <pre><code>resolvers += (<span class="string">"STG old bintray repo"</span> at <span class="string">"http://www.st.informatik.tu-darmstadt.de/maven/"</span>).withAllowInsecureProtocol(<span class="keyword">true</span>)</code></pre>
             </li>
             <li>
               Add the ScalaLoci dependencies that you need for your system to your <em>build.sbt</em>
