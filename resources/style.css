@@ -166,6 +166,12 @@ a
   color: lightblue;
 }
 
+section header h3 a
+{
+  display: block;
+  text-decoration: none;
+}
+
 pre, code
 {
   font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Oxygen Mono', monospace;
