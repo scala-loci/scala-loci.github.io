@@ -12,8 +12,15 @@
     <link rel="stylesheet" href="../../../presentation/highlight.js/styles/atom-one-light.css" />
 
     <style>
-      @import url('http://fontlibrary.org/face/linux-biolinum');
-      @import url('http://fonts.googleapis.com/css?family=Lato:400,400i,700|Oxygen+Mono');
+      @import url('https://fontlibrary.org/face/linux-biolinum');
+      @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700|Oxygen+Mono');
+
+      .reveal .slides > section.past,
+      .reveal .slides > section.future,
+      .reveal .slides > section > section.past,
+      .reveal .slides > section > section.future {
+        opacity: 0 !important;
+      }
 
       body,
       body > .reveal > .slides > .pdf-page {
@@ -1867,12 +1874,16 @@
         }
 
         document.querySelectorAll("object.animate-svg").forEach(function(object) {
-          var visibility = object.style.visibility
-          object.style.visibility = "hidden"
-          object.addEventListener("load", function(event) {
+          if (!object.contentDocument || !object.contentDocument.documentElement) {
+            var visibility = object.style.visibility
+            object.style.visibility = "hidden"
+            object.addEventListener("load", function(event) {
+              setupSvgObject(object)
+              object.style.visibility = visibility
+            })
+          }
+          else
             setupSvgObject(object)
-            object.style.visibility = visibility
-          })
         })
 
         function setupCurrentFragment(slide) {
