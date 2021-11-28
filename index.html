@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#424" />
-    <meta name="google-site-verification" content="hPhlgOa-i_VITSyOHYwXB0xF0ZsZa_1K7z4LQc1nTDg" />
     <link rel="apple-touch-icon" sizes="192x192" href="resources/logo-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="resources/logo-180.png" />
     <link rel="apple-touch-icon" sizes="167x167" href="resources/logo-167.png" />
@@ -65,38 +64,38 @@
             <h3>Specify Architecture</h3>
             <p>Define the architectural relation of the components of the distributed system</p>
           </header>
-          <pre><code>@<span class="dsl">peer</span> <span class="keyword">type</span> <span class="highlight" title="Peers">Server</span> &lt;: {
-  <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="highlight" title="Architectural Relation"><span class="dsl">Multiple</span>[Client]</span>
-}
-
-@<span class="dsl">peer</span> <span class="keyword">type</span> <span class="highlight" title="Peers">Client</span> &lt;: {
-  <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="highlight" title="Architectural Relation"><span class="dsl">Single</span>[Server]</span>
-}</code></pre>
+          <pre><code><span class="line indent-0">@<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span> <span class="highlight" title="Peers">Server</span>&nbsp;&lt;:&nbsp;{</span>
+<span class="line indent-2">  <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="highlight" title="Architectural Relation"><span class="dsl">Multiple</span>[Client]</span></span>
+<span class="line indent-0">}</span>
+<span class="line indent-0"></span>
+<span class="line indent-0">@<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span> <span class="highlight" title="Peers">Client</span>&nbsp;&lt;:&nbsp;{</span>
+<span class="line indent-2">  <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="highlight" title="Architectural Relation"><span class="dsl">Single</span>[Server]</span></span>
+<span class="line indent-0">}</span></code></pre>
         </section>
         <section>
           <header>
             <h3>Specify Placement</h3>
             <p>Control where data is located and computations are executed</p>
           </header>
-          <pre><code><span class="keyword">val</span> items: <span class="highlight" title="Placement Types">Items <span class="dsl">on</span> Server</span> =
-  getCurrentItems()
-
-<span class="keyword">val</span> ui: <span class="highlight" title="Placement Types">UI <span class="dsl">on</span> Client</span> =
-  <span class="keyword">new</span> UI</code></pre>
+          <pre><code><span class="line indent-0"><span class="keyword">val</span>&nbsp;items: <span class="highlight" title="Placement Types">Items&nbsp;<span class="dsl">on</span>&nbsp;Server</span>&nbsp;=</span>
+<span class="line indent-2">  getCurrentItems<span class="nobreak">&#x2060;</span>()</span>
+<span class="line indent-0"></span>
+<span class="line indent-0"><span class="keyword">val</span>&nbsp;ui: <span class="highlight" title="Placement Types">UI&nbsp;<span class="dsl">on</span>&nbsp;Client</span>&nbsp;=</span>
+<span class="line indent-2">  <span class="keyword">new</span> UI</span></code></pre>
         </section>
         <section>
           <header>
             <h3>Compose</h3>
             <p>Combine data flow across components through reactive programming</p>
           </header>
-          <pre><code><span class="keyword">val</span> items: Var[Items] <span class="dsl">on</span> Server =
-  <span class="highlight" title="Reactive Abstractions">Var</span>(getCurrentItems())
-
-<span class="dsl">on</span>[Client] {
-  <span class="highlight" title="Reactive Abstractions">Signal</span> {
-    items.<span class="highlight" title="Data Flow across Peers"><span class="dsl">asLocal</span></span>() map createUIEntry
-  }
-}</code></pre>
+          <pre><code><span class="line indent-0"><span class="keyword">val</span>&nbsp;items: Var[Items]&nbsp;<span class="dsl">on</span>&nbsp;Server&nbsp;=</span>
+  <span class="highlight" title="Reactive Abstractions">Var</span><span class="nobreak">&#x2060;</span>(getCurrentItems<span class="nobreak">&#x2060;</span>())
+<span class="line indent-0"></span>
+<span class="line indent-0"><span class="dsl">on</span>[Client]&nbsp;{</span>
+<span class="line indent-2">  <span class="highlight" title="Reactive Abstractions">Signal</span>&nbsp;{</span>
+<span class="line indent-4">    items<span class="break">&#x200b;</span>.<span class="highlight" title="Data Flow across Peers"><span class="dsl">asLocal</span></span><span class="nobreak">&#x2060;</span>()&nbsp;map createUIEntry</span>
+<span class="line indent-2">  }</span>
+<span class="line indent-0">}</span></code></pre>
         </section>
       </section>
 
@@ -123,110 +122,106 @@
           </ol>
           <figure>
             <figure>
-              <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> Chat {
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Server &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Multiple</span>[Client] }
+              <pre><code><span class="line indent-0">@<span class="dsl">multitier</span>&nbsp;<span class="keyword">object</span> Chat&nbsp;{</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Server&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Multiple</span>[Client]&nbsp;}</span>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;</span>
 
-
-
-
-
-
-
-
-
-
-
-}</code></pre>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-6">      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;</span>
+<span class="line indent-0">}</span></code></pre>
               <img width="465" height="324" src="resources/chat.svg?segment-0#segment-0" alt="A single server" />
               <figcaption><em>Server</em> declaration</figcaption>
             </figure>
 
             <figure>
-              <pre><code>
+              <pre><code><span class="line indent-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Client&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Server]&nbsp;}</span>
 
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Client &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Server] }
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;</span>
 
-
-
-
-
-
-
-
-
-
-
-
-</code></pre>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-6">      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;</span>
+<span class="line indent-0">&nbsp;</span></code></pre>
               <img width="465" height="324" src="resources/chat.svg?segment-1#segment-1" alt="Two clients" />
               <figcaption><em>Client</em> declaration</figcaption>
             </figure>
 
             <figure>
-              <pre><code>
+              <pre><code><span class="line indent-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;message = <span class="dsl">on</span>[Client]&nbsp;{ Evt[String]<span class="nobreak">&#x2060;</span>()&nbsp;}</span>
 
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;</span>
 
-  <span class="keyword">val</span> message = <span class="dsl">on</span>[Client] { Evt[String]() }
-
-
-
-
-
-  <span class="keyword">def</span> main() = <span class="dsl">on</span>[Client] {
-
-    <span class="keyword">for</span> (line &lt;- io.Source.stdin.getLines)
-      message.fire(line)
-  }
-
-</code></pre>
+<span class="line indent-2">  <span class="keyword">def</span>&nbsp;main<span class="nobreak">&#x2060;</span>() = <span class="dsl">on</span>[Client]&nbsp;{</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    <span class="keyword">for</span>&nbsp;(line &lt;- io<span class="break">&#x200b;</span>.Source<span class="break">&#x200b;</span>.stdin<span class="break">&#x200b;</span>.getLines)</span>
+<span class="line indent-6">      message<span class="break">&#x200b;</span>.fire<span class="nobreak">&#x2060;</span>(line)</span>
+<span class="line indent-2">  }</span>
+<span class="line indent-0">&nbsp;</span></code></pre>
               <img width="465" height="324" src="resources/chat.svg?segment-2#segment-2" alt="A message event, placed on every client"/>
               <figcaption>Event <em>message</em> declaration</figcaption>
             </figure>
 
             <figure>
-              <pre><code>
+              <pre><code><span class="line indent-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
+<span class="line indent-2">  <span class="keyword">val</span> publicMessage = <span class="dsl">on</span>[Server]&nbsp;{</span>
+<span class="line indent-4">    message<span class="break">&#x200b;</span>.<span class="dsl">asLocalFromAllSeq</span>&nbsp;map { <span class="keyword">case</span>&nbsp;(_,&nbsp;message)&nbsp;=> message&nbsp;}</span>
+<span class="line indent-2">  }</span>
 
-
-
-  <span class="keyword">val</span> publicMessage = <span class="dsl">on</span>[Server] {
-    message.<span class="dsl">asLocalFromAllSeq</span> map { <span class="keyword">case</span> (_, message) => message }
-  }
-
-
-
-
-
-
-
-</code></pre>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-6">      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;</span>
+<span class="line indent-0">&nbsp;</span></code></pre>
               <img width="465" height="324" src="resources/chat.svg?segment-3#segment-3" alt="Messages are sent from the clients' message events to the publicMessage event on the server"/>
               <figcaption>Event <em>publicMessage</em> declaration</figcaption>
             </figure>
 
             <figure>
-              <pre><code>
+              <pre><code><span class="line indent-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;</span>
 
-
-
-
-
-
-
-
-    publicMessage.<span class="dsl">asLocal</span> observe println
-
-
-
-
-</code></pre>
+<span class="line indent-2">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-4">    publicMessage<span class="break">&#x200b;</span>.<span class="dsl">asLocal</span>&nbsp;observe println</span>
+<span class="line indent-4">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-6">      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x200b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="line indent-2">  &nbsp;</span>
+<span class="line indent-0">&nbsp;</span></code></pre>
               <img width="465" height="324" src="resources/chat.svg?segment-4#segment-4" alt="Messages are forwarded from the publicMessage event on the server to all clients, which print them to their console"/>
               <figcaption>Remote observer for <em>publicMessage</em> declaration</figcaption>
             </figure>
@@ -240,8 +235,8 @@
         <section>
           <h3>Try out ScalaLoci Examples from GitHub</h3>
           <ul>
-            <li><a href="http://github.com/scala-loci/examples-simple">Simple Examples</a></li>
-            <li><a href="http://github.com/scala-loci/examples-variants">Applications in Different Variants</a></li>
+            <li><a href="https://github.com/scala-loci/examples-simple">Simple Examples</a></li>
+            <li><a href="https://github.com/scala-loci/examples-variants">Applications in Different Variants</a></li>
           </ul>
         </section>
         <section>
@@ -255,14 +250,14 @@
                   <pre><code>scalacOptions += <span class="string">"-Ymacro-annotations"</span></code></pre>
                 </li>
                 <li>
-                  for Scala 2.11 or 2.12 (<a href="http://docs.scala-lang.org/overviews/macros/paradise.html">Macro Paradise Plugin</a>)
-                  <pre><code>addCompilerPlugin(<span class="string">"org.scalamacros"</span> % <span class="string">"paradise"</span> % <span class="string">"2.1.1"</span> cross CrossVersion.patch)</code></pre>
+                  for Scala 2.11 or 2.12 (<a href="https://docs.scala-lang.org/overviews/macros/paradise.html">Macro Paradise Plugin</a>)
+                  <pre><code>addCompilerPlugin(<span class="break">&#x200b;</span><span class="string">"org.scalamacros"</span> % <span class="string">"paradise"</span> % <span class="string">"2.1.1"</span> cross CrossVersion<span class="break">&#x200b;</span>.patch)</code></pre>
                 </li>
               </ul>
             </li>
             <li>
               Add the resolver for the ScalaLoci dependencies to your <em>build.sbt</em>
-              <pre><code>resolvers += (<span class="string">"STG old bintray repo"</span> at <span class="string">"http://www.st.informatik.tu-darmstadt.de/maven/"</span>).withAllowInsecureProtocol(<span class="keyword">true</span>)</code></pre>
+              <pre><code>resolvers += (<span class="break">&#x200b;</span><span class="string">"STG old bintray repo"</span> at <span class="string">"http://<span class="break">&#x200b;</span>www.st.informatik.tu-darmstadt.de/<span class="break">&#x200b;</span>maven/"</span>)<span class="break">&#x200b;</span>.withAllowInsecureProtocol(<span class="break">&#x200b;</span><span class="keyword">true</span>)</code></pre>
             </li>
             <li>
               Add the ScalaLoci dependencies that you need for your system to your <em>build.sbt</em>
@@ -276,7 +271,7 @@
                   (built-in Scala types and standard collections are directly supported without additional dependencies)
                   <ul>
                     <li>
-                      <a href="http://www.rescala-lang.com/">REScala</a> reactive events and signals
+                      <a href="https://www.rescala-lang.com/">REScala</a> reactive events and signals
                       <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-lang-transmitter-rescala"</span> % <span class="string">"0.4.0"</span></code></pre>
                     </li>
                   </ul>
@@ -289,15 +284,15 @@
                       <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-tcp"</span> % <span class="string">"0.4.0"</span></code></pre>
                     </li>
                     <li>
-                      WebSocket (using <a href="http://doc.akka.io/docs/akka-http/">Akka HTTP</a> on the JVM) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
+                      WebSocket (using <a href="https://doc.akka.io/docs/akka-http/">Akka HTTP</a> on the JVM) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
                       <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-ws-akka"</span> % <span class="string">"0.4.0"</span></code></pre>
                     </li>
                     <li>
-                      WebSocket (<a href="http://www.playframework.com">Play</a> integration) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
+                      WebSocket (<a href="https://www.playframework.com">Play</a> integration) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
                       <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-ws-akka-play"</span> % <span class="string">"0.4.0"</span></code></pre>
                     </li>
                     <li>
-                      WebSocket (using <a href="http://javalin.io">Javalin</a> on the JVM) [<em>server: JVM only, client: JS web browser APIs</em>]
+                      WebSocket (using <a href="https://javalin.io">Javalin</a> on the JVM) [<em>server: JVM only, client: JS web browser APIs</em>]
                       <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-ws-javalin"</span> % <span class="string">"0.4.0"</span></code></pre>
                     </li>
                     <li>
@@ -310,11 +305,11 @@
                   Serializer for network communication
                   <ul>
                     <li>
-                      <a href="http://www.lihaoyi.com/upickle/">µPickle</a> serialization
+                      <a href="https://com-lihaoyi.github.io/upickle/">µPickle</a> serialization
                       <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-serializer-upickle"</span> % <span class="string">"0.4.0"</span></code></pre>
                     </li>
                     <li>
-                      <a href="http://circe.github.io/circe/">Circe</a> serialization
+                      <a href="https://circe.github.io/circe/">Circe</a> serialization
                       <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-serializer-circe"</span> % <span class="string">"0.4.0"</span></code></pre>
                     </li>
                   </ul>
@@ -329,112 +324,113 @@
         <h2>Showcases</h2>
         <section>
           <header>
-            <h3><a href="http://github.com/scala-loci/examples-simple/tree/master/src/main/scala/interactive/chatsimple">Chat</a></h3>
+            <h3><a href="https://github.com/scala-loci/examples-simple/tree/master/src/main/scala/interactive/chatsimple">Chat</a></h3>
             <p>The example logs messages that are sent and received by each participant as a composition of the data flow from the local UI and from remote chat partners. In the application, nodes are connected to multiple remote nodes and maintain a one-to-one chat with each. Users can select any chat to send messages. The <code>messageSent</code> event is defined as subjective value filtering the <code>ui.&#x200b;messageTyped</code> messages from the UI for the currently active chat partner <code>node</code>. The <code>messageLog</code> signal contains the chat log for the chat between the local peer instance and the remote <code>node</code> given as parameter. It merges the remote stream for the chat messages <em>from the remote instance</em> <code>node</code> and the local stream <em>subjective to the remote instance</em> <code>node</code> via the <code>||</code> operator. The chat log is a signal created using <code>list</code>, which extends the list by an element for each new event occurrence in the merged stream. The <code>chatLogs</code> signal folds the <code>remote[Node].&#x200b;joined</code> event stream, which is fired for each newly connected chat partner, into a signal that contains the chat logs for every chat partner generated by calling <code>messageLog</code>.</p>
           </header>
-          <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> Chat {
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Node &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Multiple</span>[Node] }
+          <pre><code><span class="line indent-0">@<span class="dsl">multitier</span>&nbsp;<span class="keyword">object</span> Chat&nbsp;{</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Node &lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Multiple</span>[Node]&nbsp;}</span>
 
-  <span class="keyword">type</span> SingleChatLog = Signal[List[String]]
-  <span class="keyword">type</span> MultiChatLogs = Signal[List[SingleChatLog]]
+<span class="line indent-2">  <span class="keyword">type</span> SingleChatLog = Signal[List[String]]</span>
+<span class="line indent-2">  <span class="keyword">type</span> MultiChatLogs = Signal[List[SingleChatLog]]</span>
 
-  <span class="keyword">val</span> ui: UI <span class="dsl">on</span> Node = UI()
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;ui: UI <span class="dsl">on</span> Node = UI<span class="nobreak">&#x2060;</span>()</span>
 
-  <span class="keyword">val</span> messageSent = <span class="dsl">on</span>[Node] <span class="dsl">sbj</span> { node: Remote[Node] =&gt;
-    ui.messageTyped filter { _ =&gt; ui.isSelectedChat(node) }
-  }
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;messageSent = <span class="dsl">on</span>[Node]&nbsp;<span class="dsl">sbj</span>&nbsp;{ node:&nbsp;Remote[Node]&nbsp;=&gt;</span>
+<span class="line indent-4">    ui.messageTyped&nbsp;filter {&nbsp;_&nbsp;=&gt; ui.isSelectedChat<span class="nobreak">&#x2060;</span>(node)&nbsp;}</span>
+<span class="line indent-2">  }</span>
 
-  <span class="keyword">def</span> messageLog(node: Remote[Node]): Local[SingleChatLog] <span class="dsl">on</span> Node =
-    ((messageSent <span class="dsl">from</span> node).asLocal ||
-     (messageSent <span class="dsl">to</span> node)).list 
+<span class="line indent-2">  <span class="keyword">def</span>&nbsp;messageLog<span class="nobreak">&#x2060;</span>(node: Remote[Node]): Local[SingleChatLog] <span class="dsl">on</span> Node =</span>
+<span class="line indent-4">    ((messageSent <span class="dsl">from</span> node).<span class="dsl">asLocal</span> ||</span>
+<span class="line indent-4">     (messageSent <span class="dsl">to</span> node)).list </span>
 
-  <span class="keyword">val</span> chatLogs: MultiChatLogs <span class="dsl">on</span> Node =
-    <span class="dsl">remote</span>[Node].joined.fold(List.empty[SingleChatLog]) { (chats, node) =&gt;
-      messageLog(node) :: chats
-    }
-}</code></pre>
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;chatLogs: MultiChatLogs <span class="dsl">on</span> Node =</span>
+<span class="line indent-4">    <span class="dsl">remote</span>[Node]<span class="break">&#x200b;</span>.joined<span class="break">&#x200b;</span>.fold<span class="nobreak">&#x2060;</span>(List<span class="break">&#x200b;</span>.empty[SingleChatLog])&nbsp;{ (chats,&nbsp;node)&nbsp;=&gt;</span>
+<span class="line indent-6">      messageLog<span class="nobreak">&#x2060;</span>(node)&nbsp;:: chats</span>
+<span class="line indent-4">    }</span>
+<span class="line indent-0">}</span></code></pre>
         </section>
         <section>
           <header>
-            <h3><a href="http://github.com/scala-loci/examples-simple/tree/master/src/main/scala/batch/pipeline">Tweets</a></h3>
+            <h3><a href="https://github.com/scala-loci/examples-simple/tree/master/src/main/scala/batch/pipeline">Tweets</a></h3>
             <p>The example shows how the operators in a processing pipeline can be placed on different peers to count the tweets that each author produces in a tweet stream. The application receives a stream of tweets on the <code>Input</code> peer, selects those containing the <code>"multitier"</code> string on the <code>Filter</code> peer, extracts the <code>author</code> for each tweet on the <code>Mapper</code> peer, and stores a signal with a map counting the tweets from each author on the <code>Folder</code> peer.</p>
           </header>
-          <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> TweetAuthoring {
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Input &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Filter] }
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Filter &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Mapper] <span class="keyword">with</span> <span class="dsl">Single</span>[Input] }
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Mapper &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Folder] <span class="keyword">with</span> <span class="dsl">Single</span>[Filter] } 
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Folder &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Mapper] }
+          <pre><code><span class="line indent-0">@<span class="dsl">multitier</span>&nbsp;<span class="keyword">object</span> TweetAuthoring&nbsp;{</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Input &nbsp;lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Filter]&nbsp;}</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Filter&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Mapper] <span class="keyword">with</span> <span class="dsl">Single</span>[Input]&nbsp;}</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Mapper&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Folder] <span class="keyword">with</span> <span class="dsl">Single</span>[Filter]&nbsp;}</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Folder&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Mapper]&nbsp;}</span>
 
-  <span class="keyword">val</span> tweetStream: Event[Tweet] <span class="dsl">on</span> Input =
-    retrieveTweetStream()
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;tweetStream: Event[Tweet] <span class="dsl">on</span> Input =</span>
+<span class="line indent-4">    retrieveTweetStream<span class="nobreak">&#x2060;</span>()</span>
 
-  <span class="keyword">val</span> filtered: Event[Tweet] <span class="dsl">on</span> Filter =
-    tweetStream.<span class="dsl">asLocal</span> filter { tweet =&gt; tweet.hasHashtag(<span class="string">"multitier"</span>) }
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;filtered: Event[Tweet] <span class="dsl">on</span> Filter =</span>
+<span class="line indent-4">    tweetStream<span class="break">&#x200b;</span>.<span class="dsl">asLocal</span>&nbsp;filter&nbsp;{ tweet&nbsp;=&gt; tweet<span class="break">&#x200b;</span>.hasHashtag<span class="nobreak">&#x2060;</span>(<span class="break">&#x200b;</span><span class="string">"multitier"</span>)&nbsp;}</span>
 
-  <span class="keyword">val</span> mapped: Event[Author] <span class="dsl">on</span> Mapper =
-    filtered.<span class="dsl">asLocal</span> map { tweet =&gt; tweet.author }
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;mapped: Event[Author] <span class="dsl">on</span> Mapper =</span>
+<span class="line indent-4">    filtered<span class="break">&#x200b;</span>.<span class="dsl">asLocal</span>&nbsp;map&nbsp;{ tweet&nbsp;=&gt; tweet.author&nbsp;}</span>
 
-  <span class="keyword">val</span> folded: Signal[Map[Author, Int]] <span class="dsl">on</span> Folder =
-    mapped.<span class="dsl">asLocal</span>.fold(Map.empty[Author, Int].withDefaultValue(0)) {
-      (map, author) =&gt; map + (author -> (map(author) + 1))
-    }
-}</code></pre>
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;folded: Signal[Map[Author, Int]] <span class="dsl">on</span> Folder =</span>
+<span class="line indent-4">    mapped<span class="break">&#x200b;</span>.<span class="dsl">asLocal</span><span class="break">&#x200b;</span>.fold<span class="nobreak">&#x2060;</span>(Map<span class="break">&#x200b;</span>.empty[Author, Int]<span class="break">&#x200b;</span>.withDefaultValue<span class="nobreak">&#x2060;</span>(0)) { (map,&nbsp;author)&nbsp;=&gt;</span>
+<span class="line indent-6">      map&nbsp;+ (author&nbsp;-> (map<span class="nobreak">&#x2060;</span>(author)&nbsp;+ 1))</span>
+<span class="line indent-4">    }</span>
+<span class="line indent-0">}</span></code></pre>
         </section>
         <section>
           <header>
-            <h3><a href="http://github.com/scala-loci/examples-simple/tree/master/src/main/scala/batch/masterworker">Master–worker</a></h3>
+            <h3><a href="https://github.com/scala-loci/examples-simple/tree/master/src/main/scala/batch/masterworker">Master–worker</a></h3>
             <p>The example shows a ScalaLoci implementation of the master–worker pattern where a master node dispatches tasks – double a number, for simplicity – to workers. The <code>taskStream</code> on the master carries the tasks as events. The <code>assocs</code> signal contains the assignments of workers to tasks. It folds over the <code>taskStream<span>&thinsp;</span>||<span>&thinsp;</span>taskResult.&#x200b;asLocalFromAllSeq</code> event stream that fires for every new task (<code>taskStream</code>) and every completed task (<code>taskResult.&#x200b;asLocalFromAllSeq</code>). The <code>assignTasks</code> method assigns a worker to the new task (<code>taskAssocs</code>), or enqueues the task if no worker is free (<code>taskQueue</code>) based on the folded event (<code>taskChanged</code>) and the currently connected worker instances (<code>remote[Worker].&#x200b;connected</code>). The <code>deployTask</code> event subjectively provides every worker instance with the task it is assigned. Workers provide the result in the <code>taskResult</code> event stream which the master aggregates into the <code>result</code> signal. The signal is updated for every event to contain the sum of all values carried by the events.</p>
           </header>
-          <pre><code>@<span class="dsl">multitier</span> <span class="keyword">object</span> MasterWorker {
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Master &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Multiple</span>[Worker] }
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Worker &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Master] }
+          <pre><code><span class="line indent-0">@<span class="dsl">multitier</span>&nbsp;<span class="keyword">object</span> MasterWorker&nbsp;{</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Master&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Multiple</span>[Worker]&nbsp;}</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Worker&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Master]&nbsp;}</span>
 
-  <span class="keyword">class</span> Task(v: Int) { <span class="keyword">def</span> exec(): Int = 2 * v }
+<span class="line indent-2">  <span class="keyword">class</span>&nbsp;Task<span class="nobreak">&#x2060;</span>(v: Int)&nbsp;{ <span class="keyword">def</span>&nbsp;exec(): Int = 2&nbsp;*&nbsp;v&nbsp;}</span>
 
-  <span class="comment">// to add tasks: `taskStream.fire(Task(42))`</span>
-  <span class="keyword">val</span> taskStream: <span class="dsl">Local</span>[Event[Task]] <span class="dsl">on</span> Master = Evt[Task]()
+<span class="line indent-2">  <span class="comment">// to add tasks: `taskStream.fire<span class="nobreak">&#x2060;</span>(Task<span class="nobreak">&#x2060;</span>(42))`</span></span>
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;taskStream: <span class="dsl">Local</span>[Event[Task]] <span class="dsl">on</span> Master = Evt[Task]<span class="nobreak">&#x2060;</span>()</span>
 
-  <span class="keyword">val</span> assocs: <span class="dsl">Local</span>[Signal[Map[Remote[Worker], Task]]] <span class="dsl">on</span> Master =
-    (taskStream || taskResult.<span class="dsl">asLocalFromAllSeq</span>).fold(
-        Map.empty[Remote[Worker], Task],
-        List.empty[Task]) { (taskAssocs, taskQueue, taskChanged) =&gt;
-      assignTasks(taskAssocs, taskQueue, taskChanged, <span class="dsl">remote</span>[Worker].<span class="dsl">connected</span>)
-    }
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;assocs: <span class="dsl">Local</span>[Signal[<span class="break">&#x200b;</span>Map[Remote[Worker],&nbsp;Task]]] <span class="dsl">on</span> Master =</span>
+<span class="line indent-4">    (taskStream || taskResult<span class="break">&#x200b;</span>.<span class="dsl">asLocalFromAllSeq</span>)<span class="break">&#x200b;</span>.fold<span class="nobreak">&#x2060;</span>(</span>
+<span class="line indent-8">        Map<span class="break">&#x200b;</span>.empty[<span class="break">&#x200b;</span>Remote[Worker], Task],</span>
+<span class="line indent-8">        List<span class="break">&#x200b;</span>.empty[Task])&nbsp;{ (taskAssocs, taskQueue, taskChanged)&nbsp;=&gt;</span>
+<span class="line indent-6">      assignTasks<span class="nobreak">&#x2060;</span>(taskAssocs, taskQueue, taskChanged, <span class="dsl">remote</span>[Worker]<span class="break">&#x200b;</span>.<span class="dsl">connected</span>)</span>
+<span class="line indent-4">    }</span>
 
-  <span class="keyword">val</span> deployTask: Signal[Task] <span class="dsl">per</span> Worker <span class="dsl">on</span> Master =
-    worker: Remote[Worker] =&gt; Signal{ assocs().get(worker) }
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;deployTask: Signal[Task] <span class="dsl">per</span> Worker <span class="dsl">on</span> Master = { worker:&nbsp;Remote[Worker]&nbsp;=&gt;</span>
+<span class="line indent-4">    Signal { assocs<span class="nobreak">&#x2060;</span>().get<span class="nobreak">&#x2060;</span>(worker) }</span>
+<span class="line indent-2">  }</span>
 
-  <span class="keyword">val</span> taskResult: Event[Int] <span class="dsl">on</span> Worker =
-    deployTask.<span class="dsl">asLocal</span>.changed collect { <span class="keyword">case</span> Some(task) =&gt; task.exec() }
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;taskResult: Event[Int] <span class="dsl">on</span> Worker =</span>
+<span class="line indent-4">    deployTask<span class="break">&#x200b;</span>.<span class="dsl">asLocal</span><span class="break">&#x200b;</span>.changed collect { <span class="keyword">case</span>&nbsp;Some<span class="nobreak">&#x2060;</span>(task) =&gt; task.exec<span class="nobreak">&#x2060;</span>()&nbsp;}</span>
 
-  <span class="keyword">val</span> result: Signal[Int] <span class="dsl">on</span> Master =
-    taskResult.<span class="dsl">asLocalFromAllSeq</span>.fold(0) { <span class="keyword">case</span> (acc, (worker, result)) =&gt;
-      acc + result
-    }
-}</code></pre>
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;result: Signal[Int] <span class="dsl">on</span> Master =</span>
+<span class="line indent-4">    taskResult<span class="break">&#x200b;</span>.<span class="dsl">asLocalFromAllSeq</span><span class="break">&#x200b;</span>.fold<span class="nobreak">&#x2060;</span>(0)&nbsp;{ <span class="keyword">case</span>&nbsp;(acc, (worker,&nbsp;result))&nbsp;=&gt;</span>
+<span class="line indent-6">      acc + result</span>
+<span class="line indent-4">    }</span>
+<span class="line indent-0">}</span></code></pre>
         </section>
         <section>
           <header>
-            <h3><a href="http://github.com/scala-loci/examples-simple/tree/master/src/main/scala/batch/tokenring">Token Ring</a></h3>
+            <h3><a href="https://github.com/scala-loci/examples-simple/tree/master/src/main/scala/batch/tokenring">Token Ring</a></h3>
             <p>The example models a token ring, where every node in the ring can send a token for another node. Multiple tokens can circulate in the ring simultaneously until they reach their destination. Every node has exactly one predecessor and one successor. We define a <code>Prev</code> and a <code>Next</code> peer and specify that a <code>Node</code> itself is both a predecessor and a successor and has a single tie to its own predecessor and a single tie to its successor. Tokens are passed from predecessors to successors, hence nodes access the tokens sent from their predecessor. For this reason, values are placed on the <code>Prev</code> peer. Every node has a unique ID. The <code>sendToken</code> event sends a token along the ring to another peer instance. The <code>recv</code> event stream provides the data received by each peer instance. Each node fires <code>recv</code> when it receives a token addressed to itself, i.e., when the <code>receiver</code> equals the node ID and forwards other tokens. The expression <code>sent.&#x200b;asLocal<span>&thinsp;</span>\<span>&thinsp;</span>recv</code> evaluates to an event stream of all events from <code>sent.&#x200b;asLocal</code> for which <code>recv</code> does not fire. Merging such stream (of forwarded tokens) with the <code>sendToken</code> stream via the <code>||</code> operator injects both new and forwarded tokens into the ring.</p>
           </header>
-          <pre><code>@multitier <span class="keyword">object</span> TokenRing {
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Prev &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Prev] }
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Next &lt;: { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Next] }
-  @<span class="dsl">peer</span> <span class="keyword">type</span> Node &lt;: Prev <span class="keyword">with</span> Next { <span class="keyword">type</span> <span class="dsl">Tie</span> &lt;: <span class="dsl">Single</span>[Prev] <span class="keyword">with</span> <span class="dsl">Single</span>[Next] }
+          <pre><code><span class="line indent-0">@multitier&nbsp;<span class="keyword">object</span> TokenRing&nbsp;{</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Prev&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Prev]&nbsp;}</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Next&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Next]&nbsp;}</span>
+<span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Node&nbsp;&lt;: Prev <span class="keyword">with</span> Next&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Prev] <span class="keyword">with</span> <span class="dsl">Single</span>[Next]&nbsp;}</span>
 
-  <span class="keyword">val</span> id: Id <span class="dsl">on</span> Prev = Id()
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;id: Id <span class="dsl">on</span> Prev = Id<span class="nobreak">&#x2060;</span>()</span>
 
-  <span class="keyword">val</span> sendToken: <span class="dsl">Local</span>[Event[(Id, Token)]] <span class="dsl">on</span> Prev = Event[(Id, Token)]()
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;sendToken: <span class="dsl">Local</span>[Event[(Id,&nbsp;Token)]] <span class="dsl">on</span> Prev = Event[(Id,&nbsp;Token)]<span class="nobreak">&#x2060;</span>()</span>
 
-  <span class="keyword">val</span> recv: <span class="dsl">Local</span>[Event[Token]] <span class="dsl">on</span> Prev =
-    sent.<span class="dsl">asLocal</span> collect {
-      <span class="keyword">case</span> (receiver, token) <span class="keyword">if</span> receiver == id => token
-    }
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;recv: <span class="dsl">Local</span>[Event[Token]] <span class="dsl">on</span> Prev =</span>
+<span class="line indent-4">    sent<span class="break">&#x200b;</span>.<span class="dsl">asLocal</span>&nbsp;collect&nbsp;{</span>
+<span class="line indent-6">      <span class="keyword">case</span>&nbsp;(receiver,&nbsp;token) <span class="keyword">if</span> receiver&nbsp;==&nbsp;id&nbsp;=> token</span>
+<span class="line indent-4">    }</span>
 
-  <span class="keyword">val</span> sent: Event[(Id, Token)] <span class="dsl">on</span> Prev =
-    (sent.<span class="dsl">asLocal</span> \ recv) || sendToken
-}</code></pre>
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;sent: Event[(Id, Token)] <span class="dsl">on</span> Prev =</span>
+<span class="line indent-4">    (sent<span class="break">&#x200b;</span>.<span class="dsl">asLocal</span> \ recv) || sendToken</span>
+<span class="line indent-0">}</span></code></pre>
         </section>
       </section>
 
@@ -447,7 +443,7 @@
             In <i>Proceedings of the 35th European Conference on Object-Oriented Programming</i>, ECOOP, Leibniz International Proceedings in Informatics (LIPIcs).
             <i>July&nbsp;11–17, 2021, Aarhus, Denmark</i>.
             Schloss Dagstuhl – Leibniz-Zentrum für Informatik, Dagstuhl, Germany.
-            <a href="http://doi.org/10.4230/LIPIcs.ECOOP.2021.22">http://doi.org/10.4230/LIPIcs.ECOOP.2021.22</a></cite>
+            <a href="https://doi.org/10.4230/LIPIcs.ECOOP.2021.22">https://<span class="break">&#x200b;</span>doi.org/<span class="break">&#x200b;</span>10.4230/<span class="break">&#x200b;</span>LIPIcs.ECOOP.2021.22</a></cite>
             [<a href="https://drops.dagstuhl.de/opus/volltexte/2021/14065/">definitive version</a>]
             [<a href="publications/2021-ecoop/paper.pdf">author version</a>]
             [<a href="publications/2021-ecoop/slides.pdf">PDF slides</a>]
@@ -459,7 +455,7 @@
             In <i>Proceedings of the 3rd IEEE/ACM International Workshop on Interoperability of Supercomputing and Cloud Technologies</i>, SuperCompCloud.
             <i>November&nbsp;11, 2020, Atlanta, GA, USA</i>.
             IEEE, Piscataway, NY, USA, 27–32.
-            <a href="http://doi.org/10.1109/SuperCompCloud51944.2020.00010">http://doi.org/10.1109/SuperCompCloud51944.2020.00010</a></cite>
+            <a href="https://doi.org/10.1109/SuperCompCloud51944.2020.00010">https://<span class="break">&#x200b;</span>doi.org/<span class="break">&#x200b;</span>10.1109/<span class="break">&#x200b;</span>SuperCompCloud51944.2020.00010</a></cite>
             [<a href="https://ieeexplore.ieee.org/document/9308082">definitive version</a>]
             [<a href="publications/2020-supercompcloud/paper.pdf">author version</a>]
           </li>
@@ -467,7 +463,7 @@
             <cite>Pascal Weisenburger, Johannes Wirth, and Guido Salvaneschi. 2020.
             A Survey of Multitier Programming.
             <i>ACM Computing Surveys</i>, Volume&nbsp;53, Issue&nbsp;4, Article&nbsp;81 (September 2020), 35&nbsp;pages.
-            <a href="http://doi.org/10.1145/3397495">http://doi.org/10.1145/3397495</a></cite>
+            <a href="https://doi.org/10.1145/3397495">https://<span class="break">&#x200b;</span>doi.org/<span class="break">&#x200b;</span>10.1145/3397495</a></cite>
             [<a href="https://dl.acm.org/doi/10.1145/3397495?cid=99659082165">definitive version</a>]
             [<a href="publications/2020-csur/paper.pdf">author version</a>]
           </li>
@@ -475,7 +471,7 @@
             <cite>Pascal Weisenburger and Guido Salvaneschi. 2020.
             Implementing a Language for Distributed Systems: Choices and Experiences with Type Level and Macro Programming in Scala.
             <i>The Art, Science, and Engineering of Programming</i>, Volume&nbsp;4, Issue&nbsp;3, Article&nbsp;17 (February 2020), 29&nbsp;pages.
-            <a href="http://doi.org/10.22152/programming-journal.org/2020/4/17">http://doi.org/10.22152/programming-journal.org/2020/4/17</a></cite>
+            <a href="https://doi.org/10.22152/programming-journal.org/2020/4/17">https://<span class="break">&#x200b;</span>doi.org/<span class="break">&#x200b;</span>10.22152/<span class="break">&#x200b;</span>programming-journal.org/<span class="break">&#x200b;</span>2020/<span class="break">&#x200b;</span>4/<span class="break">&#x200b;</span>17</a></cite>
             [<a href="https://programming-journal.org/2020/4/17/">definitive version</a>]
             [<a href="publications/2020-programming/paper.pdf">author version</a>]
           </li>
@@ -492,7 +488,7 @@
             In <i>Proceedings of the 33rd European Conference on Object-Oriented Programming</i>, ECOOP, Leibniz International Proceedings in Informatics (LIPIcs).
             <i>July&nbsp;15–19, 2019, London, United Kingdom</i>.
             Schloss Dagstuhl – Leibniz-Zentrum für Informatik, Dagstuhl, Germany.
-            <a href="http://doi.org/10.4230/LIPIcs.ECOOP.2019.3">http://doi.org/10.4230/LIPIcs.ECOOP.2019.3</a></cite>
+            <a href="https://doi.org/10.4230/LIPIcs.ECOOP.2019.3">https://<span class="break">&#x200b;</span>doi.org/<span class="break">&#x200b;</span>10.4230/<span class="break">&#x200b;</span>LIPIcs.ECOOP.2019.3</a></cite>
             [<a href="https://drops.dagstuhl.de/opus/volltexte/2019/10795/">definitive version</a>]
             [<a href="publications/2019-ecoop/paper.pdf">author version</a>]
             [<a href="publications/2019-ecoop/slides.pdf">PDF slides</a>]
@@ -505,7 +501,7 @@
             In <i>Proceedings of the 13th ACM International Conference on Distributed and Event-based Systems</i>, DEBS.
             <i>June&nbsp;24–28, 2019, Darmstadt, Germany</i>.
             ACM, New York, NY, USA, 203–204.
-            <a href="http://doi.org/10.1145/3328905.3332465">http://doi.org/10.1145/3328905.3332465</a></cite>
+            <a href="https://doi.org/10.1145/3328905.3332465">https://<span class="break">&#x200b;</span>doi.org/<span class="break">&#x200b;</span>10.1145/3328905.3332465</a></cite>
             [<a href="https://dl.acm.org/doi/10.1145/3328905.3332465?cid=99659082165">definitive version</a>]
             [<a href="publications/2019-debs/paper.pdf">author version</a>]
           </li>
@@ -513,7 +509,7 @@
             <cite>Pascal Weisenburger, Mirko Köhler, and Guido Salvaneschi. 2018.
             Distributed System Development with ScalaLoci.
             <i>Proceedings of the ACM on Programming Languages</i>&nbsp;2, OOPSLA, Article&nbsp;129 (October&nbsp;2018), 30&nbsp;pages.
-            <a href="http://doi.org/10.1145/3276499">http://doi.org/10.1145/3276499</a></cite>
+            <a href="https://doi.org/10.1145/3276499">https://doi.org/10.1145/3276499</a></cite>
             [<a href="https://dl.acm.org/doi/10.1145/3276499">definitive version</a>]
             [<a href="publications/2018-oopsla/paper.pdf">author version</a>]
             [<a href="publications/2018-oopsla/slides.pdf">PDF slides</a>]
@@ -526,7 +522,7 @@
             In <i>Companion Proceedings for the ISSTA/ECOOP 2018 Workshops (FTfJP’18)</i>.
             <i>July&nbsp;16–21, 2018, Amsterdam, Netherlands</i>.
             ACM, New York, NY, USA, 34–36.
-            <a href="http://doi.org/10.1145/3236454.3236486">http://doi.org/10.1145/3236454.3236486</a></cite>
+            <a href="https://doi.org/10.1145/3236454.3236486">https://<span class="break">&#x200b;</span>doi.org/<span class="break">&#x200b;</span>10.1145/<span class="break">&#x200b;</span>3236454.3236486</a></cite>
             [<a href="https://dl.acm.org/doi/10.1145/3236454.3236486?cid=99659082165">definitive version</a>]
             [<a href="publications/2018-ftfjp/paper.pdf">author version</a>]
           </li>
@@ -536,7 +532,7 @@
             In <i>Companion Proceedings of the 2016 ACM SIGPLAN International Conference on Systems, Programming, Languages and Applications: Software for Humanity (SPLASH Companion 2016)</i>.
             <i>October&nbsp;30 – November&nbsp;4, 2016, Amsterdam, Netherlands</i>.
             ACM, New York, NY, USA, 18–20.
-            <a href="http://doi.org/10.1145/2984043.2984051">http://doi.org/10.1145/2984043.2984051</a></cite>
+            <a href="https://doi.org/10.1145/2984043.2984051">https://<span class="break">&#x200b;</span>doi.org/<span class="break">&#x200b;</span>10.1145/<span class="break">&#x200b;</span>2984043.2984051</a></cite>
             [<a href="https://dl.acm.org/doi/10.1145/2984043.2984051?cid=99659082165">definitive version</a>]
             [<a href="publications/2016-splash/paper.pdf">author version</a>]
           </li>

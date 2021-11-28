@@ -2,7 +2,8 @@
 
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,700|Lato:300,400,400i,700|Oxygen+Mono|Indie+Flower");
 
-@font-face {
+@font-face
+{
   font-family: "Linux Biolinum";
   src: url("LinuxBiolinumRegular.ttf") format("truetype");
   font-weight: normal;
@@ -62,6 +63,21 @@ main
   border-top: 1px solid transparent;
 }
 
+@media (max-width: 30em)
+{
+  #home main
+  {
+    font-size: 0.95em;
+  }
+}
+@media (max-width: 28em)
+{
+  #home main
+  {
+    font-size: 0.9em;
+  }
+}
+
 body > header
 {
   margin: 0;
@@ -73,7 +89,8 @@ body > header
     linear-gradient(rgb(0, 0, 48), black) fixed repeat-x,
     #657;
 }
-@media (min-width: 2000px), (min-height: 2000px) {
+@media (min-width: 2000px), (min-height: 2000px)
+{
   body > header
   {
     background-size: auto, cover, auto, auto;
@@ -178,6 +195,37 @@ pre, code
   font-size: 1em;
 }
 
+pre .line
+{
+  display: inline-block;
+  white-space: pre-wrap;
+}
+pre .line.indent-0
+{
+  margin-left: 2ch;
+  text-indent: -2ch;
+}
+pre .line.indent-2
+{
+  margin-left: 4ch;
+  text-indent: -4ch;
+}
+pre .line.indent-4
+{
+  margin-left: 6ch;
+  text-indent: -6ch;
+}
+pre .line.indent-6
+{
+  margin-left: 8ch;
+  text-indent: -8ch;
+}
+pre .line.indent-8
+{
+  margin-left: 10ch;
+  text-indent: -10ch;
+}
+
 code .keyword
 {
   font-weight: bold;
@@ -193,6 +241,16 @@ code .dsl
 code .string
 {
   color: #873;
+}
+
+code .comment
+{
+  color: #999;
+}
+
+span.break, span.nobreak
+{
+  visibility: hidden;
 }
 
 
@@ -244,7 +302,8 @@ code .string
     linear-gradient(rgb(0, 0, 48), black) fixed repeat-x,
     #657;
 }
-@media (min-width: 2000px), (min-height: 2000px) {
+@media (min-width: 2000px), (min-height: 2000px)
+{
   #home body > header
   {
     background-size: auto, cover, auto, auto;
@@ -395,7 +454,8 @@ code .string
   padding: 0 0 1em 0;
 }
 
-#home nav {
+#home nav
+{
   position: fixed;
   z-index: 1;
   top: 0;
@@ -405,30 +465,36 @@ code .string
   opacity: 0.7;
   transition: opacity 0.3s ease;
 }
-#home nav:hover {
+#home nav:hover
+{
   opacity: 1;
 }
-#home nav ol {
+#home nav ol
+{
   padding: 0 0.5em;
   list-style: none;
   background: rgba(0, 0, 0, 0.8);
   text-align: center;
   font-family: 'Lato', sans-serif;
 }
-#home nav li {
+#home nav li
+{
   display: inline;
 }
-#home nav li:first-child {
+#home nav li:first-child
+{
   display: none;
 }
-#home nav a {
+#home nav a
+{
   display: inline-block;
   padding: 0.6em 0.5em;
   position: relative;
   color: white;
   text-decoration: none;
 }
-#home nav a::after {
+#home nav a::after
+{
   content: "";
   position: absolute;
   bottom: 0.4em;
@@ -437,13 +503,15 @@ code .string
   border-bottom: 2px solid #b00;
   transition: left 0.3s ease, right 0.3s ease;
 }
-#home nav a:hover::after {
+#home nav a:hover::after
+{
   left: 0;
   right: 0;
 }
 @media (max-width: 47em)
 {
-  #home nav li:last-child {
+  #home nav li:last-child
+  {
     display: none;
   }
 }
@@ -704,7 +772,8 @@ code .string
   margin: 3em auto;
 }
 
-#home #showcases {
+#home #showcases
+{
   margin: 5em 1em;
 }
 
@@ -859,7 +928,8 @@ code .string
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 700;
 }
-#home #getting-started section > ul li a::before {
+#home #getting-started section > ul li a::before
+{
   content: ">";
   display: inline-block;
   width: 0.8em;
@@ -1025,66 +1095,86 @@ code .string
 {
   font-style: normal;
 }
-#home #publications a
+#home #publications a:not([href^="http://doi.org"]):not([href^="https://doi.org"])
 {
   white-space: nowrap;
 }
 
-#home pre code
+#home #concepts section pre .highlight
+{
+  white-space: pre;
+}
+#home #concepts section pre .line.indent-0
+{
+  white-space: pre;
+}
+#home #concepts section + section + section pre .line.indent-0
+{
+  white-space: pre-wrap;
+}
+#home #concepts section pre .line.indent-0 ~ .line.indent-0 ~ .line.indent-2
+{
+  margin-right: 2ch;
+}
+
+#home #concepts pre code
 {
   cursor: default;
 }
-#home pre code .highlight
+#home #concepts pre code .highlight
 {
   pointer-events: none;
   cursor: inherit;
   position: relative;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
-#home section:hover > pre code .highlight
+#home #concepts section:hover > pre code .highlight
 {
+  white-space: pre;
   background: rgba(255, 255, 0, 0.3);
   box-shadow: 0 0 3px 3px rgba(255, 255, 0, 0.3);
 }
-#home section > pre code .highlight[title]::before
+#home #concepts section > pre code .highlight[title]::before
 {
   content: attr(title);
   position: absolute;
+  white-space: pre;
   color: #aa0;
   font-family: 'Indie Flower', sans-serif;
   font-size: 1.4em;
-  top: -1.5em;
-  left: 0.5em;
+  top: -1.6em;
+  left: 1.5em;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-#home section > pre code .highlight[title] ~ .highlight[title]::before
+#home #concepts section > pre code .line + .line .highlight[title]::before
 {
-  top: 4.7em;
+  top: 5.1em;
   left: auto;
-  right: 2em;
+  right: 1.6em;
 }
-#home section + section > pre code .highlight[title]::before
+#home #concepts section + section > pre code .highlight[title]::before
 {
-  left: 0.8em;
+  left: 1.5em;
 }
-#home section + section + section > pre code .highlight[title]::before
+#home #concepts section + section + section > pre code .highlight[title]::before
 {
   top: -2.3em;
   left: auto;
   right: -6.4em;
 }
-#home #concepts section + section + section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::before {
+#home #concepts section + section + section > pre code .line + .line + .line + .line .highlight[title]::before
+{
   content: attr(title);
   top: 1.3em;
-  right: -6em;
+  right: -4.5em;
 }
-#home section > pre code .highlight[title]::after
+#home #concepts section > pre code .highlight[title]::after
 {
   content: "";
   position: absolute;
-  width: 5em;
-  height: 7.4em;
+  width: 5.2em;
+  height: 7.7em;
   top: -2em;
   left: -4.5em;
   background: url(concept-arrow-1.svg) no-repeat;
@@ -1092,17 +1182,17 @@ code .string
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-#home section > pre code .highlight[title] ~ .highlight[title]::after
+#home #concepts section > pre code .line + .line .highlight[title]::after
 {
-  width: 6.2em;
-  height: 7.4em;
-  top: 1em;
+  width: 6.4em;
+  height: 7.9em;
+  top: 1.2em;
   left: auto;
-  right: -4.2em;
+  right: -4.5em;
   background: url(concept-arrow-2.svg) no-repeat;
   background-size: 100% 100%;
 }
-#home section + section > pre code .highlight[title]::after
+#home #concepts section + section > pre code .highlight[title]::after
 {
   width: 6.2em;
   height: 7.4em;
@@ -1111,7 +1201,7 @@ code .string
   background: url(concept-arrow-3.svg) no-repeat;
   background-size: 100% 100%;
 }
-#home section + section + section > pre code .highlight[title]::after
+#home #concepts section + section + section > pre code .highlight[title]::after
 {
   width: 12.2em;
   height: 7.4em;
@@ -1121,27 +1211,38 @@ code .string
   background: url(concept-arrow-4.svg) no-repeat;
   background-size: 100% 100%;
 }
-#home #concepts section + section + section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::after
+#home #concepts section + section + section > pre code .line + .line + .line + .line .highlight[title]::after
 {
-  width: 12.2em;
+  width: 9.4em;
   height: 3em;
   top: 0.6em;
-  right: -12.8em;
+  right: -10.5em;
   background: url(concept-arrow-5.svg) no-repeat;
   background-size: 100% 100%;
 }
-#home section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::before,
-#home section > pre code .highlight[title] ~ .highlight[title] ~ .highlight[title]::after,
-#home section + section > pre code .highlight[title] ~ .highlight[title]::before,
-#home section + section > pre code .highlight[title] ~ .highlight[title]::after
+#home #concepts section > pre code .line + .line + .line .highlight[title]::before,
+#home #concepts section > pre code .line + .line + .line .highlight[title]::after
 {
   content: "";
   background: none;
 }
-#home section:hover > pre code .highlight[title]::before,
-#home section:hover > pre code .highlight[title]::after
+#home #concepts section:hover > pre code .highlight[title]::before,
+#home #concepts section:hover > pre code .highlight[title]::after
 {
   opacity: 1;
+}
+
+@media (max-width: 31em)
+{
+  #home #concepts section + section + section > pre code .highlight[title]::before
+  {
+    top: -2.65em;
+  }
+
+  #home #concepts section + section + section > pre code .highlight[title]::after
+  {
+    top: -3.6em;
+  }
 }
 
 
@@ -1546,14 +1647,14 @@ code .string
 }
 #step-by-step-example figure pre
 {
-  width: 42em;
   display: inline-block;
   text-align: left;
+  margin-right: 2em;
 }
 #step-by-step-example figure img
 {
   display: inline-block;
-  width: auto;
+  width: 100%;
   height: auto;
   max-width: 30em;
 }
@@ -1598,6 +1699,7 @@ code .string
   border-radius: 0 0.3em 0.3em 0;
   background: #322;
   color: white;
+  white-space: pre-wrap;
 }
 #showcases section:nth-of-type(2n)
 {
