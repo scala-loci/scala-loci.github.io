@@ -65,14 +65,14 @@ main
 
 @media (max-width: 30em)
 {
-  #home main
+  #home > nav, #home > main, #home > footer
   {
     font-size: 0.95em;
   }
 }
 @media (max-width: 28em)
 {
-  #home main
+  #home > nav, #home > main, #home > footer
   {
     font-size: 0.9em;
   }
@@ -651,6 +651,7 @@ span.break, span.nobreak
 #home #concepts
 {
   padding: 4em 0;
+  overflow: hidden;
 }
 #home #concepts h2
 {
@@ -1028,20 +1029,25 @@ span.break, span.nobreak
 {
   list-style: square;
 }
+#home #getting-started ol ol, #home #getting-started ol ul
+{
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  transition: margin 0.3s ease;
+}
 #home #getting-started ol ol
 {
   list-style: lower-roman;
+  padding-left: 1.2em;
 }
-#home #getting-started ol ol, #getting-started ol ul
+#home #getting-started ol ul
 {
-  margin: 0.5em 0 0 0;
-  padding: 0 0 0 1.2em;
+  padding-left: 1em;
 }
 #home #getting-started pre
 {
   margin: 0.5em 0 1.5em 0;
-  padding: 1em 1em 1em 2em;
-  text-indent: -1em;
+  padding: 1em;
   font-size: 0.7em;
   border-radius: 0.3em;
   background: #322;
@@ -1064,15 +1070,11 @@ span.break, span.nobreak
     padding: 0 1em 1em 4em;
   }
 }
-@media (max-width: 40em)
+@media (max-width: 35em)
 {
-  #home #getting-started section > ol
+  #home #getting-started section > ol > li > ul, #home #getting-started section > ol > li > ol
   {
-    padding: 0 1em 1em 3em;
-  }
-  #home #getting-started section > ol > li::before
-  {
-    margin-left: -1.8em;
+    margin-left: -2.5em;
   }
 }
 

@@ -243,28 +243,26 @@
           <h3>Add ScalaLoci to Your Project</h3>
           <ol>
             <li>
-              Enable support for macro annotations in your <em>build.sbt</em>
+              Enable support for macro annotations in your <em>build.sbt</em>:
               <ul>
                 <li>
                   for Scala 2.13
-                  <pre><code>scalacOptions += <span class="string">"-Ymacro-annotations"</span></code></pre>
+                  <pre><code><span class="line indent-0">scalacOptions += <span class="string">"-Ymacro-annotations"</span></span></code></pre>
                 </li>
                 <li>
                   for Scala 2.11 or 2.12 (<a href="https://docs.scala-lang.org/overviews/macros/paradise.html">Macro Paradise Plugin</a>)
-                  <pre><code>addCompilerPlugin(<span class="break">&#x200b;</span><span class="string">"org.scalamacros"</span> % <span class="string">"paradise"</span> % <span class="string">"2.1.1"</span> cross CrossVersion<span class="break">&#x200b;</span>.patch)</code></pre>
+                  <pre><code><span class="line indent-0">addCompilerPlugin(<span class="break">&#x200b;</span><span class="string">"org.scalamacros"</span> % <span class="string">"paradise"</span> % <span class="string">"2.1.1"</span> cross CrossVersion<span class="break">&#x200b;</span>.patch)</span></code></pre>
                 </li>
               </ul>
             </li>
             <li>
-              Add the resolver for the ScalaLoci dependencies to your <em>build.sbt</em>
-              <pre><code>resolvers += (<span class="break">&#x200b;</span><span class="string">"STG old bintray repo"</span> at <span class="string">"http://<span class="break">&#x200b;</span>www.st.informatik.tu-darmstadt.de/<span class="break">&#x200b;</span>maven/"</span>)<span class="break">&#x200b;</span>.withAllowInsecureProtocol(<span class="break">&#x200b;</span><span class="keyword">true</span>)</code></pre>
-            </li>
-            <li>
-              Add the ScalaLoci dependencies that you need for your system to your <em>build.sbt</em>
+              Add the ScalaLoci dependencies that you need for your system to your <em>build.sbt</em>:
               <ol>
                 <li>
-                  ScalaLoci language (always required):
-                  <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-lang"</span> % <span class="string">"0.4.0"</span></code></pre>
+                  ScalaLoci language (always required)
+                  <pre><code><span class="line indent-0">libraryDependencies ++= Seq(</span>
+<span class="line indent-2">  <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-language"</span> % <span class="string">"0.5.0"</span> % <span class="string">"compile-internal"</span>,</span>
+<span class="line indent-2">  <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-language-runtime"</span> % <span class="string">"0.5.0"</span>)</span></code></pre>
                 </li>
                 <li>
                   Transmitter for the types of values to be accessed remotely
@@ -272,7 +270,7 @@
                   <ul>
                     <li>
                       <a href="https://www.rescala-lang.com/">REScala</a> reactive events and signals
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-lang-transmitter-rescala"</span> % <span class="string">"0.4.0"</span></code></pre>
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-language-transmitter-rescala"</span> % <span class="string">"0.5.0"</span></span></code></pre>
                     </li>
                   </ul>
                 </li>
@@ -281,23 +279,31 @@
                   <ul>
                     <li>
                       TCP [<em>JVM only</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-tcp"</span> % <span class="string">"0.4.0"</span></code></pre>
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-communicator-tcp"</span> % <span class="string">"0.5.0"</span></span></code></pre>
                     </li>
                     <li>
-                      WebSocket (using <a href="https://doc.akka.io/docs/akka-http/">Akka HTTP</a> on the JVM) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-ws-akka"</span> % <span class="string">"0.4.0"</span></code></pre>
+                      WebSocket (using web browser APIs) [<em>JS only, client only</em>]
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-communicator-ws-webnative"</span> % <span class="string">"0.5.0"</span></span></code></pre>
                     </li>
                     <li>
-                      WebSocket (<a href="https://www.playframework.com">Play</a> integration) [<em>server: JVM only, client: JVM and JS web browser APIs</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-ws-akka-play"</span> % <span class="string">"0.4.0"</span></code></pre>
+                      WebSocket (using <a href="https://doc.akka.io/docs/akka-http/">Akka HTTP</a>) [<em>JVM only</em>]
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-communicator-ws-akka"</span> % <span class="string">"0.5.0"</span></span></code></pre>
                     </li>
                     <li>
-                      WebSocket (using <a href="https://javalin.io">Javalin</a> on the JVM) [<em>server: JVM only, client: JS web browser APIs</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-ws-javalin"</span> % <span class="string">"0.4.0"</span></code></pre>
+                      WebSocket (<a href="https://www.playframework.com">Play</a> integration using <a href="https://doc.akka.io/docs/akka-http/">Akka HTTP</a>) [<em>JVM only</em>]
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-communicator-ws-akka-play"</span> % <span class="string">"0.5.0"</span></span></code></pre>
                     </li>
                     <li>
-                      WebRTC [<em>JS web browser APIs only</em>]
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-communicator-webrtc"</span> % <span class="string">"0.4.0"</span></code></pre>
+                      WebSocket (using <a href="https://javalin.io">Javalin</a>) [<em>JVM only, server only</em>]
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-communicator-ws-javalin"</span> % <span class="string">"0.5.0"</span></span></code></pre>
+                    </li>
+                    <li>
+                      WebSocket (using <a href="https://www.eclipse.org/jetty/">Jetty</a>) [<em>JVM only</em>]
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-communicator-ws-jetty"</span> % <span class="string">"0.5.0"</span></span></code></pre>
+                    </li>
+                    <li>
+                      WebRTC (using web browser APIs) [<em>JS only</em>]
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-communicator-webrtc"</span> % <span class="string">"0.5.0"</span></span></code></pre>
                     </li>
                   </ul>
                 </li>
@@ -306,11 +312,15 @@
                   <ul>
                     <li>
                       <a href="https://com-lihaoyi.github.io/upickle/">µPickle</a> serialization
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-serializer-upickle"</span> % <span class="string">"0.4.0"</span></code></pre>
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-serializer-upickle"</span> % <span class="string">"0.5.0"</span></span></code></pre>
                     </li>
                     <li>
                       <a href="https://circe.github.io/circe/">Circe</a> serialization
-                      <pre><code>libraryDependencies += <span class="string">"de.tuda.stg"</span> %% <span class="string">"scala-loci-serializer-circe"</span> % <span class="string">"0.4.0"</span></code></pre>
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-serializer-circe"</span> % <span class="string">"0.5.0"</span></span></code></pre>
+                    </li>
+                    <li>
+                      <a href="https://github.com/plokhotnyuk/jsoniter-scala/">Jsoniter Scala</a> serialization
+                      <pre><code><span class="line indent-0">libraryDependencies += <span class="string">"io.github.scala-loci"</span> %% <span class="string">"scala-loci-serializer-jsoniter-scala"</span> % <span class="string">"0.5.0"</span></span></code></pre>
                     </li>
                   </ul>
                 </li>
@@ -421,7 +431,7 @@
 
 <span class="line indent-2">  <span class="keyword">val</span>&nbsp;id: Id <span class="dsl">on</span> Prev = Id<span class="nobreak">&#x2060;</span>()</span>
 
-<span class="line indent-2">  <span class="keyword">val</span>&nbsp;sendToken: <span class="dsl">Local</span>[Event[(Id,&nbsp;Token)]] <span class="dsl">on</span> Prev = Event[(Id,&nbsp;Token)]<span class="nobreak">&#x2060;</span>()</span>
+<span class="line indent-2">  <span class="keyword">val</span>&nbsp;sendToken: <span class="dsl">Local</span>[Event[(Id,&nbsp;Token)]] <span class="dsl">on</span> Prev = Evt[(Id,&nbsp;Token)]<span class="nobreak">&#x2060;</span>()</span>
 
 <span class="line indent-2">  <span class="keyword">val</span>&nbsp;recv: <span class="dsl">Local</span>[Event[Token]] <span class="dsl">on</span> Prev =</span>
 <span class="line indent-4">    sent<span class="break">&#x200b;</span>.<span class="dsl">asLocal</span>&nbsp;collect&nbsp;{</span>
