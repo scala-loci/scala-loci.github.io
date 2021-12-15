@@ -312,7 +312,7 @@ span.break, span.nobreak
 #home body > header h1
 {
   margin: auto;
-  padding: 1.6em 0 2.8em 4.16em;
+  padding: 2.6em 0 4.4em 4.16em;
   position: sticky;
   top: 0;
   font-family: 'Linux Biolinum', sans-serif;
@@ -346,8 +346,8 @@ span.break, span.nobreak
 }
 #home body > header p
 {
-  margin: -16.875em auto 0 auto;
-  padding: 8.125em 0 5.75em 13em;
+  margin: -25em auto 0 auto;
+  padding: 11.25em 0 10.75em 13em;
   position: sticky;
   top: 0;
   font-family: 'Lato', sans-serif;
@@ -395,12 +395,12 @@ span.break, span.nobreak
   }
   #home body > header h1
   {
-    padding: 1.6em 0 4.4em 3.2em;
+    padding: 2.6em 0 6em 3.2em;
   }
   #home body > header p
   {
-    margin-top: -21.875em;
-    padding: 8.125em 0 10.75em 10em;
+    margin-top: -30em;
+    padding: 11.25em 0 15.75em 10em;
   }
 }
 @media (max-width: 43em)
@@ -413,7 +413,7 @@ span.break, span.nobreak
   #home body > header h1
   {
     margin: 0 auto 0 auto;
-    padding: 1em 0.32em 0 0.32em;
+    padding: 2em 0.32em 0 0.32em;
     position: static;
     max-width: 4.48em;
     width: auto;
@@ -452,28 +452,47 @@ span.break, span.nobreak
 #home main
 {
   padding: 0 0 1em 0;
+  box-shadow: 0px -4px 10px #0004;
 }
 
 #home nav
 {
+  display: flex;
+  flex-direction: column-reverse;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
+}
+#home nav h2
+{
+  display: none;
 }
 #home nav ol
 {
   padding: 0 0.5em;
   list-style: none;
-  background: rgba(0, 0, 0, 0.84);
+  background: rgba(32, 32, 32, 0.84);
   text-align: center;
   font-family: 'Lato', sans-serif;
   transition: background 0.3s ease;
 }
-#home nav ol:hover
+#home nav:hover ol
 {
-  background: rgba(0, 0, 0, 0.92);
+  background: rgba(32, 32, 32, 0.92);
+}
+#home nav ul
+{
+  list-style: none;
+  background: rgba(64, 64, 64, 0.84);
+  text-align: center;
+  line-height: 0;
+  transition: background 0.3s ease;
+}
+#home nav:hover ul
+{
+  background: rgba(64, 64, 64, 0.92);
 }
 @supports (backdrop-filter: blur(15px))
 {
@@ -483,20 +502,28 @@ span.break, span.nobreak
   }
   #home nav ol
   {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(32, 32, 32, 0.5);
   }
-  #home nav ol:hover
+  #home nav:hover ol
   {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(32, 32, 32, 0.6);
+  }
+  #home nav ul
+  {
+    background: rgba(64, 64, 64, 0.5);
+  }
+  #home nav:hover ul
+  {
+    background: rgba(64, 64, 64, 0.6);
   }
 }
-#home nav ol li
+#home nav ol li, #home nav ul li
 {
-  display: inline;
+  display: inline-block;
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
-#home nav ol:hover li
+#home nav:hover ol li, #home nav:hover ul li
 {
   opacity: 0.8;
 }
@@ -504,7 +531,7 @@ span.break, span.nobreak
 {
   display: none;
 }
-#home nav a
+#home nav ol a
 {
   display: inline-block;
   padding: 0.6em 0.5em;
@@ -512,7 +539,7 @@ span.break, span.nobreak
   color: white;
   text-decoration: none;
 }
-#home nav a::after
+#home nav ol a::after
 {
   content: "";
   position: absolute;
@@ -522,11 +549,48 @@ span.break, span.nobreak
   border-bottom: 2px solid #b00;
   transition: left 0.3s ease, right 0.3s ease;
 }
-#home nav a:hover::after
+#home nav ol a:hover::after
 {
   left: 0;
   right: 0;
 }
+#home nav ul a
+{
+  display: inline-block;
+/*  position: relative; */
+  opacity: 0.9;
+  filter: saturate(0);
+  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+/*
+#home nav ul a img
+{
+  position: relative;
+}
+*/
+#home nav ul a:hover
+{
+  opacity: 1;
+  filter: saturate(1);
+}
+/*
+#home nav ul a::before
+{
+  content: "";
+  position: absolute;
+  background: #555;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+#home nav ul a:hover::before
+{
+  width: 100%;
+}
+*/
 
 #home #features
 {
@@ -559,6 +623,7 @@ span.break, span.nobreak
   border-radius: 0.3em;
   background: #623;
   text-align: center;
+  box-shadow: 4px 4px 10px #0002;
   animation: 1.5s ease 1s floatin both;
 }
 #home #features dl div + div
@@ -604,7 +669,7 @@ span.break, span.nobreak
     flex-basis: 17em;
   }
 }
-@media (max-height: 30em), (max-height: 40em) and (max-width: 62em), (max-height: 50em) and (max-width: 43em)
+@media (max-height: 40em), (max-height: 50em) and (max-width: 62em), (max-height: 60em) and (max-width: 43em)
 {
   #home #features
   {
@@ -619,14 +684,14 @@ span.break, span.nobreak
     margin-top: -3em;
   }
 }
-@media (max-height: 40em) and (max-width: 62em)
+@media (max-height: 50em) and (max-width: 62em)
 {
   #home #features dl
   {
     margin-top: -13em;
   }
 }
-@media (max-height: 50em) and (max-width: 43em)
+@media (max-height: 60em) and (max-width: 43em)
 {
   #home body > header
   {
@@ -638,12 +703,12 @@ span.break, span.nobreak
     margin-top: -22em;
   }
 }
-@media (max-width: 22em)
+@media (max-width: 23em)
 {
   #home body > header h1
   {
     font-size: 4em;
-    padding: 1em 0.4em 0 0.4em;
+    padding: 3.5em 0.4em 0 0.4em;
     max-width: 5.6em;
   }
 }
