@@ -465,7 +465,7 @@ span.break, span.nobreak
   left: 0;
   width: 100%;
   box-shadow: 0 4px 10px #0002;
-  transition: top 0.3s ease, box-shadow 0.3s ease;
+  transition: top 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease;
 }
 #home nav h2
 {
@@ -486,6 +486,9 @@ span.break, span.nobreak
 }
 #home nav ul
 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   line-height: 0;
 }
 #home nav ol::before,
@@ -520,7 +523,7 @@ span.break, span.nobreak
   #home nav
   {
     backdrop-filter: blur(15px);
-    transition: top 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    transition: top 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
   }
   #home nav ol::before,
   #home nav ul::before
@@ -714,7 +717,7 @@ span.break, span.nobreak
     margin-top: -22em;
   }
 }
-@media (max-width: 23em)
+@media (max-width: 22em)
 {
   #home body > header h1
   {

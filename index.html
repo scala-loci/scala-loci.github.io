@@ -41,7 +41,7 @@
 
         var smallWidth = window.matchMedia("(max-width: 62em)")
         var smallerWidth = window.matchMedia("(max-width: 43em)")
-        var smallestWidth = window.matchMedia("(max-width: 23em)")
+        var smallestWidth = window.matchMedia("(max-width: 22em)")
 
         var listsRule = null
         var navRule = null
@@ -90,10 +90,17 @@
 
         window.addEventListener("scroll", function() {
           var currentoffset = window.scrollY
-          rule.style.top = !noHover && !small.matches || prevoffset > currentoffset || currentoffset < 50
-            ? "0"
-            : "-" + nav.getBoundingClientRect().height + "px"
-          prevoffset = currentoffset;
+
+          if (!noHover && !small.matches || prevoffset > currentoffset || currentoffset < 50) {
+            rule.style.top = "0"
+            rule.style.visibility = "visible"
+          }
+          else {
+            rule.style.top = "-" + nav.getBoundingClientRect().height + "px"
+            rule.style.visibility = "hidden"
+          }
+
+          prevoffset = currentoffset
         })
       })
     //]]>
