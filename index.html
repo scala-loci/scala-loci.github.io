@@ -36,23 +36,40 @@
     <script type="text/javascript">
     //<![CDATA[
       window.addEventListener("DOMContentLoaded", function() {
-        var nav = document.querySelector("nav")
-        var ol = document.querySelector("nav ol")
+        var sheet = document.styleSheets[0]
+        var rules = sheet.cssRules
+
         var smallWidth = window.matchMedia("(max-width: 62em)")
         var smallerWidth = window.matchMedia("(max-width: 43em)")
         var smallestWidth = window.matchMedia("(max-width: 23em)")
 
-        nav.style.transition = (nav.style.transition ? nav.style.transition + ", " : "") +
-          "backdrop-filter 0.3s ease"
+        var listsRule = null
+        var navRule = null
 
         function updateNavigationTransparency() {
-          var initial =
-            smallWidth.matches && window.scrollY > 100 ||
-            smallerWidth.matches && window.scrollY > 10 ||
-            smallestWidth.matches ||
-            window.scrollY > 200
-          nav.style.backdropFilter = initial ? "" : "blur(1px)"
-          ol.style.background = initial ? "" : "none"
+          if (smallWidth.matches && window.scrollY > 100 ||
+              smallerWidth.matches && window.scrollY > 10 ||
+              smallestWidth.matches ||
+              window.scrollY > 200) {
+
+            if (listsRule) {
+              sheet.deleteRule(Array.from(rules).indexOf(listsRule))
+              sheet.deleteRule(Array.from(rules).indexOf(navRule))
+              listsRule = null
+              navRule = null
+            }
+          }
+          else {
+            if (!listsRule) {
+              listsRule = rules[sheet.insertRule(
+                "#home nav ol::before," +
+                "#home nav ul::before," +
+                "#home nav:hover ol::before," +
+                "#home nav:hover ul::before { opacity: 0 }", rules.length)]
+              navRule = rules[sheet.insertRule(
+                "#home nav { backdrop-filter: blur(0); box-shadow: 0 4px 10px #0000 }", rules.length)]
+            }
+          }
         }
 
         window.addEventListener("scroll", updateNavigationTransparency)
@@ -61,17 +78,19 @@
       })
 
       window.addEventListener("load", function() {
+        var sheet = document.styleSheets[0]
+        var rules = sheet.cssRules
+
+        var rule = rules[sheet.insertRule("#home nav { top: 0 }", rules.length)]
+
         var nav = document.querySelector("nav")
         var small = window.matchMedia("(max-height: 40em), (max-width: 20em)")
         var noHover = window.matchMedia("(hover: none)").matches
         var prevoffset = window.scrollY
 
-        nav.style.transition = (nav.style.transition ? nav.style.transition + ", " : "") +
-          "top 0.3s ease"
-
         window.addEventListener("scroll", function() {
           var currentoffset = window.scrollY
-          nav.style.top = !noHover && !small.matches || prevoffset > currentoffset || currentoffset < 50
+          rule.style.top = !noHover && !small.matches || prevoffset > currentoffset || currentoffset < 50
             ? "0"
             : "-" + nav.getBoundingClientRect().height + "px"
           prevoffset = currentoffset;
@@ -479,7 +498,7 @@
             <h3><a href="https://github.com/scala-loci/examples-simple/tree/master/src/main/scala/batch/tokenring">Token Ring</a></h3>
             <p>The example models a token ring, where every node in the ring can send a token for another node. Multiple tokens can circulate in the ring simultaneously until they reach their destination. Every node has exactly one predecessor and one successor. We define a <code>Prev</code> and a <code>Next</code> peer and specify that a <code>Node</code> itself is both a predecessor and a successor and has a single tie to its own predecessor and a single tie to its successor. Tokens are passed from predecessors to successors, hence nodes access the tokens sent from their predecessor. For this reason, values are placed on the <code>Prev</code> peer. Every node has a unique ID. The <code>sendToken</code> event sends a token along the ring to another peer instance. The <code>recv</code> event stream provides the data received by each peer instance. Each node fires <code>recv</code> when it receives a token addressed to itself, i.e., when the <code>receiver</code> equals the node ID and forwards other tokens. The expression <code>sent.&#x200b;asLocal<span>&thinsp;</span>\<span>&thinsp;</span>recv</code> evaluates to an event stream of all events from <code>sent.&#x200b;asLocal</code> for which <code>recv</code> does not fire. Merging such stream (of forwarded tokens) with the <code>sendToken</code> stream via the <code>||</code> operator injects both new and forwarded tokens into the ring.</p>
           </header>
-          <pre><code><span class="line indent-0">@multitier&nbsp;<span class="keyword">object</span> TokenRing&nbsp;{</span>
+          <pre><code><span class="line indent-0">@<span class="dsl">multitier</span>&nbsp;<span class="keyword">object</span> TokenRing&nbsp;{</span>
 <span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Prev&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Prev]&nbsp;}</span>
 <span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Next&nbsp;&lt;:&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Next]&nbsp;}</span>
 <span class="line indent-2">  @<span class="dsl">peer</span>&nbsp;<span class="keyword">type</span>&nbsp;Node&nbsp;&lt;: Prev <span class="keyword">with</span> Next&nbsp;{ <span class="keyword">type</span>&nbsp;<span class="dsl">Tie</span>&nbsp;&lt;: <span class="dsl">Single</span>[Prev] <span class="keyword">with</span> <span class="dsl">Single</span>[Next]&nbsp;}</span>

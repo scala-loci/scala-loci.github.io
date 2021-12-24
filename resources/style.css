@@ -452,7 +452,7 @@ span.break, span.nobreak
 #home main
 {
   padding: 0 0 1em 0;
-  box-shadow: 0px -4px 10px #0004;
+  box-shadow: 0 -4px 10px #0004;
 }
 
 #home nav
@@ -464,66 +464,84 @@ span.break, span.nobreak
   top: 0;
   left: 0;
   width: 100%;
+  box-shadow: 0 4px 10px #0002;
+  transition: top 0.3s ease, box-shadow 0.3s ease;
 }
 #home nav h2
 {
   display: none;
 }
+#home nav ol,
+#home nav ul
+{
+  position: relative;
+  padding: 0 0.5em;
+  list-style: none;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
 #home nav ol
 {
   padding: 0 0.5em;
-  list-style: none;
-  background: rgba(32, 32, 32, 0.84);
-  text-align: center;
-  font-family: 'Lato', sans-serif;
-  transition: background 0.3s ease;
-}
-#home nav:hover ol
-{
-  background: rgba(32, 32, 32, 0.92);
 }
 #home nav ul
 {
-  list-style: none;
-  background: rgba(64, 64, 64, 0.84);
-  text-align: center;
   line-height: 0;
-  transition: background 0.3s ease;
 }
-#home nav:hover ul
+#home nav ol::before,
+#home nav ul::before
 {
-  background: rgba(64, 64, 64, 0.92);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.92;
+  transition: opacity 0.3s ease;
+}
+#home nav ol::before
+{
+  background: rgb(32, 32, 32);
+  background: linear-gradient(180deg, #303030, #282828 0.5em);
+}
+#home nav ul::before
+{
+  background: rgb(64, 64, 64);
+  background: linear-gradient(0, #303030, #383838 0.5em);
+}
+#home nav:hover ol::before,
+#home nav:hover ul::before
+{
+  opacity: 0.96;
 }
 @supports (backdrop-filter: blur(15px))
 {
   #home nav
   {
     backdrop-filter: blur(15px);
+    transition: top 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
   }
-  #home nav ol
+  #home nav ol::before,
+  #home nav ul::before
   {
-    background: rgba(32, 32, 32, 0.5);
+    opacity: 0.5;
   }
-  #home nav:hover ol
+  #home nav:hover ol::before,
+  #home nav:hover ul::before
   {
-    background: rgba(32, 32, 32, 0.6);
-  }
-  #home nav ul
-  {
-    background: rgba(64, 64, 64, 0.5);
-  }
-  #home nav:hover ul
-  {
-    background: rgba(64, 64, 64, 0.6);
+    opacity: 0.6;
   }
 }
-#home nav ol li, #home nav ul li
+#home nav ol li,
+#home nav ul li
 {
   display: inline-block;
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
-#home nav:hover ol li, #home nav:hover ul li
+#home nav:hover ol li,
+#home nav:hover ul li
 {
   opacity: 0.8;
 }
@@ -557,18 +575,11 @@ span.break, span.nobreak
 #home nav ul a
 {
   display: inline-block;
-/*  position: relative; */
   opacity: 0.9;
   filter: saturate(0);
   transition: opacity 0.3s ease;
   transition: opacity 0.3s ease, filter 0.3s ease;
 }
-/*
-#home nav ul a img
-{
-  position: relative;
-}
-*/
 #home nav ul a:hover
 {
   opacity: 1;
