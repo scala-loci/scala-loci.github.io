@@ -624,7 +624,7 @@ span.break, span.nobreak
   padding: 0;
   position: sticky;
   top: 62vh;
-  max-width: 70em;
+  max-width: 80em;
   display: flex;
   flex-wrap: wrap;
 }
@@ -650,8 +650,9 @@ span.break, span.nobreak
 }
 #home #features dl div dt
 {
-  margin: 0 0 0.4em 0;
+  margin: 0 auto 0.4em auto;
   padding: 0;
+  max-width: 8em;
   font-size: 2em;
   line-height: 0.8em;
   font-family: 'Lato', sans-serif;
@@ -675,6 +676,21 @@ span.break, span.nobreak
   {
     flex-basis: 16em;
   }
+  #home #features dl div dt
+  {
+    max-width: none;
+  }
+}
+@media (max-width: 55em)
+{
+  #home #features dl div dt
+  {
+    max-width: 8em;
+  }
+  #home #features dl div + div + div dt
+  {
+    max-width: none;
+  }
 }
 @media (max-width: 43em)
 {
@@ -696,6 +712,10 @@ span.break, span.nobreak
   {
     position: static;
     margin-top: -3em;
+  }
+  #home #features dl div dt
+  {
+    max-width: none;
   }
 }
 @media (max-height: 50em) and (max-width: 62em)
