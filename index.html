@@ -85,13 +85,13 @@
 
         var nav = document.querySelector("nav")
         var small = window.matchMedia("(max-height: 40em), (max-width: 20em)")
-        var noHover = window.matchMedia("(hover: none)").matches
+        var nohover = window.matchMedia("(hover: none)").matches
         var prevoffset = window.scrollY
 
         window.addEventListener("scroll", function() {
           var currentoffset = window.scrollY
 
-          if (!noHover && !small.matches || prevoffset > currentoffset || currentoffset < 50) {
+          if (!nohover && !small.matches || prevoffset > currentoffset || currentoffset < 50) {
             rule.style.top = "0"
             rule.style.visibility = "visible"
           }
@@ -102,6 +102,76 @@
 
           prevoffset = currentoffset
         })
+      })
+
+      function loadSvgAsUniqueDataUrl(url, callback) {
+        var xhr = new XMLHttpRequest()
+
+        xhr.onload = function() {
+          var reader = new FileReader()
+          reader.onloadend = function() {
+            callback(reader.result.replace("image/svg+xml", "image/svg+xml;rnd=" + Math.random()))
+          }
+          reader.readAsDataURL(xhr.response)
+        }
+
+        xhr.open("GET", url)
+        xhr.setRequestHeader("Accept", "image/svg+xml")
+        xhr.responseType = "blob"
+        xhr.send()
+      }
+
+      function replaceBackgroundSvgByUniqueDataUrl(fetchUrl, styleUrl, callback) {
+        var styleApplied = false
+
+        function applyStyle(dataUrl) {
+          if (!styleApplied) {
+            var sheet = document.styleSheets[0]
+            var rules = sheet.cssRules
+
+            var rule = Array.from(rules).find(function(rule) {
+              return rule.style && rule.style.background && rule.style.background.includes(styleUrl)
+            })
+
+            if (rule) {
+              rule.style.background = rule.style.background.replace(styleUrl, dataUrl)
+
+              styleApplied = true
+
+              if (callback)
+                callback(rule, dataUrl)
+            }
+
+            return !!rule
+          }
+        }
+
+        loadSvgAsUniqueDataUrl(fetchUrl, function(dataUrl) {
+          if (!applyStyle(dataUrl)) {
+            window.addEventListener("DOMContentLoaded", function() { applyStyle(dataUrl) })
+            window.addEventListener("load", function() { applyStyle(dataUrl) })
+          }
+        })
+      }
+
+      replaceBackgroundSvgByUniqueDataUrl("resources/logo-animated.svg", "logo-animated.svg")
+
+      replaceBackgroundSvgByUniqueDataUrl("resources/network-animated.svg", "network-animated.svg", function(rule, url) {
+        var visible = true
+
+        function updateBackgroundImage() {
+          if (visible !== window.scrollY < window.innerHeight) {
+            visible = !visible
+            if (visible)
+              rule.style.background = rule.style.background.replace("network.svg", url)
+            else
+              rule.style.background = rule.style.background.replace(url, "network.svg")
+          }
+        }
+
+        window.addEventListener("scroll", updateBackgroundImage)
+        window.addEventListener("resize", updateBackgroundImage)
+        updateBackgroundImage()
       })
     //]]>
     </script>

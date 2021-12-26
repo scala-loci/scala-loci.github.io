@@ -83,10 +83,10 @@ body > header
   margin: 0;
   padding: 0;
   background:
-    linear-gradient(rgba(0, 0, 48, 0.5), rgba(0, 0, 48, 0)) fixed repeat-x,
-    url(network.svg) fixed no-repeat,
-    linear-gradient(160deg, rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0) 50%) fixed no-repeat,
-    linear-gradient(rgb(0, 0, 48), black) fixed repeat-x,
+    linear-gradient(rgba(0, 0, 48, 0.5), rgba(0, 0, 48, 0)) fixed,
+    url(network.svg) fixed center no-repeat,
+    linear-gradient(160deg, rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0) 50%) fixed,
+    linear-gradient(rgb(0, 0, 48), black) fixed,
     #657;
 }
 @media (min-width: 2000px), (min-height: 2000px)
@@ -266,6 +266,18 @@ span.break, span.nobreak
   }
 }
 
+@keyframes fitin {
+  from {
+    color: rgba(255, 255, 255, 0);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0);
+  }
+  
+  to {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 0 rgba(255, 255, 255, 1);
+  }
+}
+
 @keyframes floatin {
   from {
     position: relative;
@@ -282,7 +294,7 @@ span.break, span.nobreak
 
 @keyframes spinin {
   from {
-    transform: rotate(-20deg);
+    transform: rotate(-40deg);
   }
   
   to {
@@ -296,10 +308,10 @@ span.break, span.nobreak
   padding: 0;
   min-height: 100vh;
   background:
-    linear-gradient(rgba(0, 0, 48, 0.5), rgba(0, 0, 48, 0)) fixed repeat-x,
-    url(network-animated.svg) fixed,
-    linear-gradient(160deg, rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0) 50%) fixed no-repeat,
-    linear-gradient(rgb(0, 0, 48), black) fixed repeat-x,
+    linear-gradient(rgba(0, 0, 48, 0.5), rgba(0, 0, 48, 0)) fixed,
+    url(network-animated.svg) fixed center no-repeat,
+    linear-gradient(160deg, rgba(255, 0, 0, 0.75), rgba(255, 0, 0, 0) 50%) fixed,
+    linear-gradient(rgb(0, 0, 48), black) fixed,
     #657;
 }
 @media (min-width: 2000px), (min-height: 2000px)
@@ -325,7 +337,7 @@ span.break, span.nobreak
     margin-right 0.3s ease,
     padding-left 0.3s ease,
     padding-right 0.3s ease;
-  animation: 2s ease fadein;
+  animation: 2s ease 0.75s both fitin;
 }
 #home body > header h1::before
 {
@@ -335,7 +347,7 @@ span.break, span.nobreak
   position: absolute;
   width: 3.6em;
   height: 3.6em;
-  background: url(logo.svg) no-repeat center center;
+  background: url(logo-animated.svg) no-repeat center center;
   background-size: contain;
   transition:
     width 0.3s ease,
@@ -343,6 +355,7 @@ span.break, span.nobreak
     margin 0.3s ease,
     padding 0.3s ease;
   animation: 2s ease spinin;
+  animation: 0.1s ease 0.2s both fadein, 2s ease spinin;
 }
 #home body > header p
 {
@@ -361,7 +374,7 @@ span.break, span.nobreak
     margin-right 0.3s ease,
     padding-left 0.3s ease,
     padding-right 0.3s ease;
-  animation: 2s ease fadein;
+  animation: 2s ease 0.75s both fitin;
 }
 /*
 #home body > header p em
@@ -466,6 +479,7 @@ span.break, span.nobreak
   width: 100%;
   box-shadow: 0 4px 10px #0002;
   transition: top 0.3s ease, visibility 0.3s ease, box-shadow 0.3s ease;
+  animation: 0.1s ease 0.2s both fadein;
 }
 #home nav h2
 {

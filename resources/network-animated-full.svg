@@ -721,92 +721,212 @@
   <circle r="5" transform="translate(1167.56, 1036.81)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1167.56, 1036.81)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1470.52, 256.47)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1470.52, 256.47)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(937.00, 230.97)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(937.00, 230.97)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1493.38, 308.49)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1493.38, 308.49)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1116.91, 490.29)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1116.91, 490.29)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(85.04, 1143.85)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(85.04, 1143.85)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1288.34, 25.90)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1288.34, 25.90)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(7.75, 444.59)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(7.75, 444.59)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(518.96, 907.92)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(518.96, 907.92)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(23.81, 769.20)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(23.81, 769.20)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(588.13, 1211.81)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(588.13, 1211.81)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(442.61, 1412.14)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(442.61, 1412.14)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1124.67, 791.50)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1124.67, 791.50)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1011.08, 952.90)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1011.08, 952.90)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1484.31, 737.08)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1484.31, 737.08)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1008.94, 517.29)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1008.94, 517.29)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(891.34, 717.20)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(891.34, 717.20)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1012.81, 36.60)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1012.81, 36.60)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(188.42, 478.53)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(188.42, 478.53)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(12.82, 635.95)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(12.82, 635.95)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1515.99, 904.46)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1515.99, 904.46)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1435.75, 38.75)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1435.75, 38.75)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(584.35, 757.49)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(584.35, 757.49)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(997.85, 1078.39)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(997.85, 1078.39)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(751.82, 739.92)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(751.82, 739.92)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(606.27, 1471.48)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(606.27, 1471.48)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(32.41, 913.15)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(32.41, 913.15)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(560.73, 1593.98)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(560.73, 1593.98)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1412.87, 1348.64)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1412.87, 1348.64)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1163.69, 335.54)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;1;1" keyTimes="0;0.2;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1163.69, 335.54)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;0;0" keyTimes="0;0.4;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" begin="0s" dur="2s" />
   </circle>
 
   <circle r="5" transform="translate(1164.16, 1387.57)">
@@ -840,92 +960,212 @@
   <circle r="5" transform="translate(1200.84, 500.45)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1200.84, 500.45)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1542.89, 1465.06)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1542.89, 1465.06)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1242.26, 803.80)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1242.26, 803.80)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1278.08, 334.47)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1278.08, 334.47)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(850.71, 346.50)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(850.71, 346.50)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1052.66, 1474.13)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1052.66, 1474.13)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(87.03, 94.54)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(87.03, 94.54)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(384.06, 595.06)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(384.06, 595.06)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1454.07, 1443.13)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1454.07, 1443.13)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(384.02, 1281.36)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(384.02, 1281.36)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1397.75, 982.00)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1397.75, 982.00)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(317.12, 1336.17)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(317.12, 1336.17)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(105.63, 1535.56)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(105.63, 1535.56)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(456.51, 290.77)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(456.51, 290.77)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1129.39, 1266.62)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1129.39, 1266.62)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1224.08, 254.95)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1224.08, 254.95)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(758.22, 1280.98)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(758.22, 1280.98)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(378.12, 424.80)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(378.12, 424.80)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(409.34, 869.75)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(409.34, 869.75)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(601.08, 635.42)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(601.08, 635.42)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(998.23, 1436.33)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(998.23, 1436.33)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(534.08, 1341.46)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(534.08, 1341.46)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1204.04, 710.79)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1204.04, 710.79)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1004.28, 1293.83)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1004.28, 1293.83)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(525.00, 1451.45)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(525.00, 1451.45)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1347.30, 707.85)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1347.30, 707.85)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(677.16, 1408.73)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(677.16, 1408.73)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(43.79, 195.38)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(43.79, 195.38)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1002.77, 1553.13)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1002.77, 1553.13)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1563.29, 1532.45)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.1;0.3;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1563.29, 1532.45)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.1;0.5;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.1;0.5;1" begin="0s" dur="2s" />
   </circle>
 
   <circle r="5" transform="translate(833.43, 807.38)">
@@ -959,92 +1199,212 @@
   <circle r="5" transform="translate(1518.70, 1325.58)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1518.70, 1325.58)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(192.38, 1140.00)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(192.38, 1140.00)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(61.89, 1016.34)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(61.89, 1016.34)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(170.05, 527.58)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(170.05, 527.58)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1049.30, 325.39)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1049.30, 325.39)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1322.91, 1360.36)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1322.91, 1360.36)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(264.20, 748.04)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(264.20, 748.04)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(378.80, 328.49)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(378.80, 328.49)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(514.49, 593.99)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(514.49, 593.99)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(897.40, 1438.44)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(897.40, 1438.44)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(278.19, 1004.30)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(278.19, 1004.30)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(920.93, 1326.57)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(920.93, 1326.57)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(487.58, 1528.56)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(487.58, 1528.56)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(882.95, 1119.59)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(882.95, 1119.59)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1549.90, 142.69)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1549.90, 142.69)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(794.59, 471.85)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(794.59, 471.85)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1166.81, 1474.88)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1166.81, 1474.88)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(413.50, 782.81)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(413.50, 782.81)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1593.92, 1291.57)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1593.92, 1291.57)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(267.93, 1556.58)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(267.93, 1556.58)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(764.26, 1559.93)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(764.26, 1559.93)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1572.38, 359.86)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1572.38, 359.86)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(588.26, 250.82)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(588.26, 250.82)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1133.17, 1551.99)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1133.17, 1551.99)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(726.47, 1175.91)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(726.47, 1175.91)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1077.23, 1002.41)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1077.23, 1002.41)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1423.45, 1527.05)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1423.45, 1527.05)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1578.63, 28.55)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1578.63, 28.55)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1091.59, 250.24)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1091.59, 250.24)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(58.96, 1352.42)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.2;0.4;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(58.96, 1352.42)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.2;0.6;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.6;1" begin="0s" dur="2s" />
   </circle>
 
   <circle r="5" transform="translate(1553.03, 1026.92)">
@@ -1078,92 +1438,212 @@
   <circle r="5" transform="translate(585.48, 1080.28)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(585.48, 1080.28)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(409.18, 197.90)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(409.18, 197.90)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(112.25, 1065.54)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(112.25, 1065.54)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(921.88, 1568.25)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(921.88, 1568.25)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1405.51, 211.86)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1405.51, 211.86)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(872.63, 563.79)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(872.63, 563.79)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1230.50, 604.15)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1230.50, 604.15)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(785.48, 1455.32)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(785.48, 1455.32)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(704.78, 402.36)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(704.78, 402.36)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(681.86, 1106.74)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(681.86, 1106.74)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(127.89, 965.31)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(127.89, 965.31)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1037.54, 170.87)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1037.54, 170.87)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1042.45, 1338.45)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1042.45, 1338.45)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1125.99, 888.64)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1125.99, 888.64)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1594.30, 1141.13)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1594.30, 1141.13)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1488.02, 982.32)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1488.02, 982.32)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(229.43, 1250.75)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(229.43, 1250.75)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1105.42, 580.36)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1105.42, 580.36)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(364.93, 97.54)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(364.93, 97.54)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(373.44, 974.82)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(373.44, 974.82)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(212.97, 267.05)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(212.97, 267.05)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(995.57, 647.45)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(995.57, 647.45)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(83.12, 449.40)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(83.12, 449.40)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(853.92, 159.95)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(853.92, 159.95)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(167.82, 1316.89)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(167.82, 1316.89)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(706.43, 954.41)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(706.43, 954.41)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(883.05, 423.21)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(883.05, 423.21)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1394.87, 422.94)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1394.87, 422.94)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(862.47, 38.07)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(862.47, 38.07)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(146.22, 215.64)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.3;0.5;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(146.22, 215.64)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.3;0.7;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.7;1" begin="0s" dur="2s" />
   </circle>
 
   <circle r="5" transform="translate(617.12, 125.20)">
@@ -1197,92 +1677,212 @@
   <circle r="5" transform="translate(469.05, 23.77)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(469.05, 23.77)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1407.53, 685.10)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1407.53, 685.10)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1069.67, 1165.32)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1069.67, 1165.32)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1092.33, 682.73)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1092.33, 682.73)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1494.13, 1127.90)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1494.13, 1127.90)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(657.30, 1225.42)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(657.30, 1225.42)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(573.03, 285.08)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(573.03, 285.08)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1426.86, 808.51)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1426.86, 808.51)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(709.06, 96.87)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(709.06, 96.87)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(605.89, 985.78)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(605.89, 985.78)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1433.48, 134.00)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1433.48, 134.00)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(394.75, 678.18)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(394.75, 678.18)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1550.08, 679.25)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1550.08, 679.25)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1435.91, 51.27)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1435.91, 51.27)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(453.50, 224.88)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(453.50, 224.88)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(772.40, 262.04)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(772.40, 262.04)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(127.75, 314.96)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(127.75, 314.96)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1246.18, 1112.03)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1246.18, 1112.03)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1322.44, 565.39)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1322.44, 565.39)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1317.62, 1157.76)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1317.62, 1157.76)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(199.19, 999.39)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(199.19, 999.39)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1510.40, 1592.07)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1510.40, 1592.07)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(466.80, 1249.61)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(466.80, 1249.61)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1502.85, 407.71)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1502.85, 407.71)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(288.01, 1464.30)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(288.01, 1464.30)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1111.62, 1122.61)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1111.62, 1122.61)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(301.24, 1237.52)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(301.24, 1237.52)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(380.62, 1524.02)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(380.62, 1524.02)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(387.61, 22.70)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(387.61, 22.70)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1224.08, 91.67)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.4;0.6;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1224.08, 91.67)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.4;0.8;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.4;0.8;1" begin="0s" dur="2s" />
   </circle>
 
   <circle r="5" transform="translate(30.20, 567.00)">
@@ -1316,91 +1916,211 @@
   <circle r="5" transform="translate(548.97, 516.75)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(548.97, 516.75)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(180.13, 671.50)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(180.13, 671.50)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(779.89, 582.77)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(779.89, 582.77)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(617.99, 1302.91)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(617.99, 1302.91)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1308.52, 185.41)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1308.52, 185.41)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(295.57, 1083.30)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(295.57, 1083.30)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1482.27, 488.15)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1482.27, 488.15)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(964.21, 1191.40)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(964.21, 1191.40)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(545.41, 430.54)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(545.41, 430.54)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1300.23, 861.81)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1300.23, 861.81)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(476.39, 395.70)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(476.39, 395.70)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(699.44, 636.22)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(699.44, 636.22)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(964.59, 841.02)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(964.59, 841.02)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(791.10, 1047.02)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(791.10, 1047.02)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(345.09, 1165.70)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(345.09, 1165.70)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1402.09, 562.72)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1402.09, 562.72)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(199.19, 1430.28)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(199.19, 1430.28)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(170.88, 132.62)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(170.88, 132.62)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1297.86, 488.15)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1297.86, 488.15)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(103.81, 12.90)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(103.81, 12.90)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(195.64, 376.70)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(195.64, 376.70)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1348.61, 1034.54)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1348.61, 1034.54)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1044.22, 411.18)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1044.22, 411.18)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(499.79, 137.23)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(499.79, 137.23)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(666.03, 538.13)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(666.03, 538.13)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(620.59, 53.84)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(620.59, 53.84)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(988.17, 316.25)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(988.17, 316.25)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(826.63, 944.21)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(826.63, 944.21)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
   <circle r="5" transform="translate(1347.48, 314.88)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
   </circle>
+  <circle r="5" transform="translate(1347.48, 314.88)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
+  </circle>
   <circle r="5" transform="translate(1152.27, 164.24)">
     <animateTransform attributeName="transform" type="scale" additive="sum" values="0;0;1;1" keyTimes="0;0.5;0.7;1" begin="0s" dur="2s" />
+  </circle>
+  <circle r="5" transform="translate(1152.27, 164.24)">
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="10;10;0;0" keyTimes="0;0.5;0.9;1" fill="freeze" begin="0s" dur="2s" />
+    <animate attributeType="CSS" attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.9;1" begin="0s" dur="2s" />
   </circle>
 </svg>
