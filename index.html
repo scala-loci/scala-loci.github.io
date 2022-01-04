@@ -104,13 +104,13 @@
         })
       })
 
-      function loadSvgAsUniqueDataUrl(url, callback) {
+      function loadSvgAsUniqueDataUrl(url, random, callback) {
         var xhr = new XMLHttpRequest()
 
         xhr.onload = function() {
           var reader = new FileReader()
           reader.onloadend = function() {
-            callback(reader.result.replace("image/svg+xml", "image/svg+xml;rnd=" + Math.random()))
+            callback(reader.result.replace("image/svg+xml", "image/svg+xml;random=" + random))
           }
           reader.readAsDataURL(xhr.response)
         }
@@ -122,34 +122,48 @@
       }
 
       function replaceBackgroundSvgByUniqueDataUrl(fetchUrl, styleUrl, callback) {
-        var styleApplied = false
+        var random = Math.random()
+        var pendingDataUrl = "data:image/svg+xml;random=" + random + ",%3Csvg xmlns='http://www.w3.org/2000/svg' /%3E"
 
-        function applyStyle(dataUrl) {
-          if (!styleApplied) {
-            var sheet = document.styleSheets[0]
-            var rules = sheet.cssRules
+        var pendingStyleApplied = false
+        var loadedStyleApplied = false
 
-            var rule = Array.from(rules).find(function(rule) {
-              return rule.style && rule.style.background && rule.style.background.includes(styleUrl)
-            })
+        function applyStyle(from, url, callback) {
+          var sheet = document.styleSheets[0]
+          var rules = sheet.cssRules
 
-            if (rule) {
-              rule.style.background = rule.style.background.replace(styleUrl, dataUrl)
+          var rule = Array.from(rules).find(function(rule) {
+            return rule.style && rule.style.background && rule.style.background.includes(from)
+          })
 
-              styleApplied = true
-
-              if (callback)
-                callback(rule, dataUrl)
-            }
-
-            return !!rule
+          if (rule) {
+            rule.style.background = rule.style.background.replace(from, url)
+            if (callback)
+              callback(rule, url)
           }
+
+          return !!rule
         }
 
-        loadSvgAsUniqueDataUrl(fetchUrl, function(dataUrl) {
-          if (!applyStyle(dataUrl)) {
-            window.addEventListener("DOMContentLoaded", function() { applyStyle(dataUrl) })
-            window.addEventListener("load", function() { applyStyle(dataUrl) })
+        function applyPendingStyle() {
+          if (!pendingStyleApplied && applyStyle(styleUrl, pendingDataUrl))
+            pendingStyleApplied = true
+        }
+
+        function applyLoadedStyle(loadedDataUrl) {
+          if (!loadedStyleApplied && applyStyle(pendingStyleApplied ? pendingDataUrl : styleUrl, loadedDataUrl, callback))
+            loadedStyleApplied = true
+        }
+
+        if (!applyPendingStyle()) {
+          window.addEventListener("DOMContentLoaded", function() { applyPendingStyle() })
+          window.addEventListener("load", function() { applyPendingStyle() })
+        }
+
+        loadSvgAsUniqueDataUrl(fetchUrl, random, function(loadedDataUrl) {
+          if (!applyLoadedStyle(loadedDataUrl)) {
+            window.addEventListener("DOMContentLoaded", function() { applyLoadedStyle(loadedDataUrl) })
+            window.addEventListener("load", function() { applyLoadedStyle(loadedDataUrl) })
           }
         })
       }
